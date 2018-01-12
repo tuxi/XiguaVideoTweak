@@ -1,18 +1,19 @@
 //
-//  AppDelegate.m
+//  XYAppDelegate.m
 //  VideoTweak
 //
 //  Created by swae on 2018/1/12.
 //  Copyright © 2018年 alpface. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "XYAppDelegate.h"
+#import "VideoHeaders.h"
 
-@interface AppDelegate ()
+@interface XYAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation XYAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

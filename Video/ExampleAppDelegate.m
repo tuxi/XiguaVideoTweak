@@ -6,13 +6,13 @@
 //  Copyright © 2018年 alpface. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "ExampleAppDelegate.h"
 
-@interface AppDelegate ()
+@interface ExampleAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation ExampleAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

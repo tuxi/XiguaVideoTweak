@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D2E7EB922008E468009AEA30 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E7EB912008E468009AEA30 /* AppDelegate.m */; };
+		D2E7EB922008E468009AEA30 /* ExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E7EB912008E468009AEA30 /* ExampleAppDelegate.m */; };
 		D2E7EB952008E468009AEA30 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E7EB942008E468009AEA30 /* ViewController.m */; };
 		D2E7EB982008E468009AEA30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E7EB962008E468009AEA30 /* Main.storyboard */; };
 		D2E7EB9A2008E468009AEA30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2E7EB992008E468009AEA30 /* Assets.xcassets */; };
 		D2E7EB9D2008E468009AEA30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E7EB9B2008E468009AEA30 /* LaunchScreen.storyboard */; };
 		D2E7EBA02008E468009AEA30 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E7EB9F2008E468009AEA30 /* main.m */; };
 		D2E7EBA92008F1D6009AEA30 /* UILabel+XYExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E7EBA82008F1D6009AEA30 /* UILabel+XYExtend.m */; };
-		D2E7EBB22008FD4F009AEA30 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E7EBB12008FD4F009AEA30 /* AppDelegate.m */; };
+		D2E7EBB22008FD4F009AEA30 /* XYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E7EBB12008FD4F009AEA30 /* XYAppDelegate.m */; };
 		D2E7EBB52008FD4F009AEA30 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E7EBB42008FD4F009AEA30 /* ViewController.m */; };
 		D2E7EBB82008FD4F009AEA30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E7EBB62008FD4F009AEA30 /* Main.storyboard */; };
 		D2E7EBBA2008FD4F009AEA30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2E7EBB92008FD4F009AEA30 /* Assets.xcassets */; };
@@ -27,12 +27,14 @@
 		D2E7EBDD20092A0D009AEA30 /* libsubstrate.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E7EBD820092A0D009AEA30 /* libsubstrate.dylib */; };
 		D2E7EBDE20092A0D009AEA30 /* videotweak.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E7EBD920092A0D009AEA30 /* videotweak.dylib */; };
 		D2E7EBDF20092A0D009AEA30 /* Tweak.xm in Resources */ = {isa = PBXBuildFile; fileRef = D2E7EBDB20092A0D009AEA30 /* Tweak.xm */; };
+		D2E7EBEA200942E2009AEA30 /* UIViewController+XYHookExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E7EBE9200942E2009AEA30 /* UIViewController+XYHookExtend.m */; };
+		D2E7EBED20094403009AEA30 /* ExampleObj.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E7EBEC20094403009AEA30 /* ExampleObj.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D2E7EB8D2008E468009AEA30 /* Video.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Video.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2E7EB902008E468009AEA30 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		D2E7EB912008E468009AEA30 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D2E7EB902008E468009AEA30 /* ExampleAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleAppDelegate.h; sourceTree = "<group>"; };
+		D2E7EB912008E468009AEA30 /* ExampleAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleAppDelegate.m; sourceTree = "<group>"; };
 		D2E7EB932008E468009AEA30 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		D2E7EB942008E468009AEA30 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D2E7EB972008E468009AEA30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -43,8 +45,8 @@
 		D2E7EBA72008F1D6009AEA30 /* UILabel+XYExtend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+XYExtend.h"; sourceTree = "<group>"; };
 		D2E7EBA82008F1D6009AEA30 /* UILabel+XYExtend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+XYExtend.m"; sourceTree = "<group>"; };
 		D2E7EBAE2008FD4F009AEA30 /* VideoTweak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoTweak.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2E7EBB02008FD4F009AEA30 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		D2E7EBB12008FD4F009AEA30 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D2E7EBB02008FD4F009AEA30 /* XYAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYAppDelegate.h; sourceTree = "<group>"; };
+		D2E7EBB12008FD4F009AEA30 /* XYAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYAppDelegate.m; sourceTree = "<group>"; };
 		D2E7EBB32008FD4F009AEA30 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		D2E7EBB42008FD4F009AEA30 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D2E7EBB72008FD4F009AEA30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -59,6 +61,12 @@
 		D2E7EBD820092A0D009AEA30 /* libsubstrate.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libsubstrate.dylib; sourceTree = "<group>"; };
 		D2E7EBD920092A0D009AEA30 /* videotweak.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = videotweak.dylib; sourceTree = "<group>"; };
 		D2E7EBDB20092A0D009AEA30 /* Tweak.xm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tweak.xm; sourceTree = "<group>"; };
+		D2E7EBE0200931BC009AEA30 /* VideoHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoHeaders.h; sourceTree = "<group>"; };
+		D2E7EBE120093E75009AEA30 /* CaptainHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptainHook.h; sourceTree = "<group>"; };
+		D2E7EBE8200942E2009AEA30 /* UIViewController+XYHookExtend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XYHookExtend.h"; sourceTree = "<group>"; };
+		D2E7EBE9200942E2009AEA30 /* UIViewController+XYHookExtend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XYHookExtend.m"; sourceTree = "<group>"; };
+		D2E7EBEB20094403009AEA30 /* ExampleObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleObj.h; sourceTree = "<group>"; };
+		D2E7EBEC20094403009AEA30 /* ExampleObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleObj.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +110,8 @@
 		D2E7EB8F2008E468009AEA30 /* Video */ = {
 			isa = PBXGroup;
 			children = (
-				D2E7EB902008E468009AEA30 /* AppDelegate.h */,
-				D2E7EB912008E468009AEA30 /* AppDelegate.m */,
+				D2E7EB902008E468009AEA30 /* ExampleAppDelegate.h */,
+				D2E7EB912008E468009AEA30 /* ExampleAppDelegate.m */,
 				D2E7EB932008E468009AEA30 /* ViewController.h */,
 				D2E7EB942008E468009AEA30 /* ViewController.m */,
 				D2E7EBA72008F1D6009AEA30 /* UILabel+XYExtend.h */,
@@ -121,8 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				D2E7EBCD20091717009AEA30 /* videotweak */,
-				D2E7EBB02008FD4F009AEA30 /* AppDelegate.h */,
-				D2E7EBB12008FD4F009AEA30 /* AppDelegate.m */,
+				D2E7EBB02008FD4F009AEA30 /* XYAppDelegate.h */,
+				D2E7EBB12008FD4F009AEA30 /* XYAppDelegate.m */,
 				D2E7EBB32008FD4F009AEA30 /* ViewController.h */,
 				D2E7EBB42008FD4F009AEA30 /* ViewController.m */,
 				D2E7EBB62008FD4F009AEA30 /* Main.storyboard */,
@@ -159,7 +167,13 @@
 		D2E7EBDA20092A0D009AEA30 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D2E7EBE120093E75009AEA30 /* CaptainHook.h */,
 				D2E7EBDB20092A0D009AEA30 /* Tweak.xm */,
+				D2E7EBE0200931BC009AEA30 /* VideoHeaders.h */,
+				D2E7EBE8200942E2009AEA30 /* UIViewController+XYHookExtend.h */,
+				D2E7EBE9200942E2009AEA30 /* UIViewController+XYHookExtend.m */,
+				D2E7EBEB20094403009AEA30 /* ExampleObj.h */,
+				D2E7EBEC20094403009AEA30 /* ExampleObj.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -279,7 +293,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -rf ~/Desktop/work/Tweak/xiguavideo/Payload/Video.app ~/Library/Developer/Xcode/DerivedData/Video-ccmvyaieotmhkvbpiuykxqzhqluw/Build/Products/Debug-iphoneos/";
+			shellScript = "cp -rf /Users/swae/Desktop/work/Tweak/xiguavideo/new/Payload/Video.app ~/Library/Developer/Xcode/DerivedData/Video-ccmvyaieotmhkvbpiuykxqzhqluw/Build/Products/Debug-iphoneos/";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -290,7 +304,7 @@
 			files = (
 				D2E7EB952008E468009AEA30 /* ViewController.m in Sources */,
 				D2E7EBA02008E468009AEA30 /* main.m in Sources */,
-				D2E7EB922008E468009AEA30 /* AppDelegate.m in Sources */,
+				D2E7EB922008E468009AEA30 /* ExampleAppDelegate.m in Sources */,
 				D2E7EBA92008F1D6009AEA30 /* UILabel+XYExtend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,8 +315,10 @@
 			files = (
 				D2E7EBB52008FD4F009AEA30 /* ViewController.m in Sources */,
 				D2E7EBC02008FD4F009AEA30 /* main.m in Sources */,
+				D2E7EBEA200942E2009AEA30 /* UIViewController+XYHookExtend.m in Sources */,
+				D2E7EBED20094403009AEA30 /* ExampleObj.m in Sources */,
 				D2E7EBD320091717009AEA30 /* Makefile in Sources */,
-				D2E7EBB22008FD4F009AEA30 /* AppDelegate.m in Sources */,
+				D2E7EBB22008FD4F009AEA30 /* XYAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
