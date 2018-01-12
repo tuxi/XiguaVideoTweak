@@ -22,8 +22,11 @@
 		D2E7EBC02008FD4F009AEA30 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E7EBBF2008FD4F009AEA30 /* main.m */; };
 		D2E7EBD220091717009AEA30 /* control in Resources */ = {isa = PBXBuildFile; fileRef = D2E7EBCE20091717009AEA30 /* control */; };
 		D2E7EBD320091717009AEA30 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = D2E7EBCF20091717009AEA30 /* Makefile */; };
-		D2E7EBD420091717009AEA30 /* Tweak.xm in Resources */ = {isa = PBXBuildFile; fileRef = D2E7EBD020091717009AEA30 /* Tweak.xm */; };
 		D2E7EBD520091717009AEA30 /* videotweak.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2E7EBD120091717009AEA30 /* videotweak.plist */; };
+		D2E7EBDC20092A0D009AEA30 /* insert_dylib in Resources */ = {isa = PBXBuildFile; fileRef = D2E7EBD720092A0D009AEA30 /* insert_dylib */; };
+		D2E7EBDD20092A0D009AEA30 /* libsubstrate.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E7EBD820092A0D009AEA30 /* libsubstrate.dylib */; };
+		D2E7EBDE20092A0D009AEA30 /* videotweak.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E7EBD920092A0D009AEA30 /* videotweak.dylib */; };
+		D2E7EBDF20092A0D009AEA30 /* Tweak.xm in Resources */ = {isa = PBXBuildFile; fileRef = D2E7EBDB20092A0D009AEA30 /* Tweak.xm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,8 +54,11 @@
 		D2E7EBBF2008FD4F009AEA30 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D2E7EBCE20091717009AEA30 /* control */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
 		D2E7EBCF20091717009AEA30 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		D2E7EBD020091717009AEA30 /* Tweak.xm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tweak.xm; sourceTree = "<group>"; };
 		D2E7EBD120091717009AEA30 /* videotweak.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = videotweak.plist; sourceTree = "<group>"; };
+		D2E7EBD720092A0D009AEA30 /* insert_dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = insert_dylib; sourceTree = "<group>"; };
+		D2E7EBD820092A0D009AEA30 /* libsubstrate.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libsubstrate.dylib; sourceTree = "<group>"; };
+		D2E7EBD920092A0D009AEA30 /* videotweak.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = videotweak.dylib; sourceTree = "<group>"; };
+		D2E7EBDB20092A0D009AEA30 /* Tweak.xm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tweak.xm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +73,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2E7EBDD20092A0D009AEA30 /* libsubstrate.dylib in Frameworks */,
+				D2E7EBDE20092A0D009AEA30 /* videotweak.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,12 +137,31 @@
 		D2E7EBCD20091717009AEA30 /* videotweak */ = {
 			isa = PBXGroup;
 			children = (
+				D2E7EBD620092A0D009AEA30 /* dylib */,
+				D2E7EBDA20092A0D009AEA30 /* src */,
 				D2E7EBCE20091717009AEA30 /* control */,
 				D2E7EBCF20091717009AEA30 /* Makefile */,
-				D2E7EBD020091717009AEA30 /* Tweak.xm */,
 				D2E7EBD120091717009AEA30 /* videotweak.plist */,
 			);
 			path = videotweak;
+			sourceTree = "<group>";
+		};
+		D2E7EBD620092A0D009AEA30 /* dylib */ = {
+			isa = PBXGroup;
+			children = (
+				D2E7EBD720092A0D009AEA30 /* insert_dylib */,
+				D2E7EBD820092A0D009AEA30 /* libsubstrate.dylib */,
+				D2E7EBD920092A0D009AEA30 /* videotweak.dylib */,
+			);
+			path = dylib;
+			sourceTree = "<group>";
+		};
+		D2E7EBDA20092A0D009AEA30 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D2E7EBDB20092A0D009AEA30 /* Tweak.xm */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,10 +255,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2E7EBDF20092A0D009AEA30 /* Tweak.xm in Resources */,
+				D2E7EBDC20092A0D009AEA30 /* insert_dylib in Resources */,
 				D2E7EBD220091717009AEA30 /* control in Resources */,
 				D2E7EBD520091717009AEA30 /* videotweak.plist in Resources */,
 				D2E7EBBD2008FD4F009AEA30 /* LaunchScreen.storyboard in Resources */,
-				D2E7EBD420091717009AEA30 /* Tweak.xm in Resources */,
 				D2E7EBBA2008FD4F009AEA30 /* Assets.xcassets in Resources */,
 				D2E7EBB82008FD4F009AEA30 /* Main.storyboard in Resources */,
 			);
@@ -458,6 +486,10 @@
 				DEVELOPMENT_TEAM = NKW67GFDHM;
 				INFOPLIST_FILE = VideoTweak/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VideoTweak/videotweak/dylib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.alpface.VideoTweak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -472,6 +504,10 @@
 				DEVELOPMENT_TEAM = NKW67GFDHM;
 				INFOPLIST_FILE = VideoTweak/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VideoTweak/videotweak/dylib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.alpface.VideoTweak;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
