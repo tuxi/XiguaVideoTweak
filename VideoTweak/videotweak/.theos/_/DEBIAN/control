@@ -1,0 +1,10 @@
+Package: com.alpface.hydro
+Name: videotweak
+Depends: mobilesubstrate
+Architecture: iphoneos-arm
+Description: An awesome MobileSubstrate tweak!
+Maintainer: swae
+Author: swae
+Section: Tweaks
+Version: 0.0.1-10+debug
+Installed-Size: 104
