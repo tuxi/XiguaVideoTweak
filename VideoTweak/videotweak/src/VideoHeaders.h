@@ -209,87 +209,457 @@
 - (void)showQuestionWithQuestionAnswerUnit:(TTFQuestionAnswerUnit *)arg1;
 @end
 
-@interface TTFQuizShowLiveRoomViewController : TTFBaseViewController
-//@interface TTFQuizShowLiveRoomViewController : TTFBaseViewController <TTFQuizShowLiveRoomQuestionAnswerDelegate, TTFQuizShowLiveRoomDelegate, TTFQAViewDelegate, TTFPlayerDelegate, TTFClearanceUsersViewDelegate, TTFResurrectionDelegate, TTFEliminateDefeatViewDelegate, TTFEliminateViewDelegate, TTFLateViewDelegate>
-//    {
-//        BOOL _isFetchStreamInfoSuccess;
-//        BOOL _immediatelyEnterAfterIndex;
-//        BOOL _enterAgain;
-//        TTFPlayer *_player;
-//        UIActivityIndicatorView *_playerIndicatorView;
-//        TTVideoEngine *_videoEngine;
-//        LOTAnimationView *_logoLoopAnimationView;
-//        UIView *_containerView;
-//        UIButton *_shareButton;
-//        TTFResurrectionTipView *_resurrectionView;
-//        UIView *_redDotView;
-//        UILabel *_usersCountLabel;
-//        UIButton *_closeButton;
-//        TTFQuestionAnswerView *_questionAnswerView;
-//        TTFCountdownView *_countdownView;
-//        UIButton *_loginButton;
-//        TTFTalkBoardViewController *_talkboardViewController;
-//        UITapGestureRecognizer *_hideKeyboardGesture;
-//        LOTAnimationView *_fireworkAnimationView;
-//        TTFClearanceUsersView *_clearanceUsersView;
-//        TTFInputInvitationCodeView *_inputInvitationCodeView;
-//        NSMutableSet *_curQuestionAnswerUserCountSet;
-//        NSTimer *_logoLoopTimer;
-//        id <TTFQuizShowLiveRoomViewControllerProtocol> _delegate;
-//        TTFQuizShowLiveRoomViewModel *_viewModel;
-//    }
+@protocol TTFQuestionAnswerUnitDelegate <NSObject>
+- (void)userAnswerErrorOfQuestionAnswerUnit:(TTFQuestionAnswerUnit *)arg1;
+- (void)userAnswerExceptionOfQuestionAnswerUnit:(TTFQuestionAnswerUnit *)arg1;
+- (void)userNetworkErrorOfQuestionAnswerUnit:(TTFQuestionAnswerUnit *)arg1;
+@end
+
+@interface TTFHeartBeatTrace : NSObject
+{
+    BOOL _isFromWs;
+//    TTFHeartBeatStruct *_heartbeat;
+    id _heartbeat;
+    int _htStatus;
+    long long _activityId;
+    long long _localTime;
+    long long _htTime;
+}
+
+@property(nonatomic) long long activityId; // @synthesize activityId=_activityId;
+- (id)description;
+@property(retain, nonatomic) id heartbeat; // @synthesize heartbeat=_heartbeat;
+@property(nonatomic) int htStatus; // @synthesize htStatus=_htStatus;
+@property(nonatomic) long long htTime; // @synthesize htTime=_htTime;
+- (id)init;
+- (id)initWithHeartBeat:(id)arg1;
+@property(nonatomic) BOOL isFromWs; // @synthesize isFromWs=_isFromWs;
+@property(nonatomic) long long localTime; // @synthesize localTime=_localTime;
+- (id)traceDict;
+
+@end
+
+
+@protocol TTFHeartBeatServiceDelegate <NSObject>
+- (void)didReceiveHeartbeat:(TTFHeartBeatTrace *)arg1;
+@end
+
+@interface TTFLiveStreamInfo : NSObject
+{
+    int _defaultRes;
+    int _defaultBufferMs;
+    NSDictionary *_resolutionDict;
+    NSString *_app;
+    NSString *_stream;
+    NSDictionary *_play_list;
+}
+
+@property(copy, nonatomic) NSString *app; // @synthesize app=_app;
+@property(nonatomic) int defaultBufferMs; // @synthesize defaultBufferMs=_defaultBufferMs;
+@property(nonatomic) int defaultRes; // @synthesize defaultRes=_defaultRes;
+- (id)getStreamsForRes:(int)arg1;
+- (id)initWithDict:(id)arg1;
+@property(retain, nonatomic) NSDictionary *play_list; // @synthesize play_list=_play_list;
+@property(copy, nonatomic) NSDictionary *resolutionDict; // @synthesize resolutionDict=_resolutionDict;
+@property(copy, nonatomic) NSString *stream; // @synthesize stream=_stream;
+- (id)supportedResolutions;
+
+@end
+
+@class TTFLiveStreamInfo, TTFQuizShowLiveRoomViewModel;
+
+@protocol TTFQuizShowLiveRoomDelegate <NSObject>
+- (void)didFailedFetchingLiveStreamInfo;
+- (void)fetchedLivingStreamInfo:(TTFLiveStreamInfo *)arg1;
+- (void)quizShowActivityChangeToStatus:(int)arg1;
+- (void)quizShowFinishedWithViewModel:(TTFQuizShowLiveRoomViewModel *)arg1;
+- (void)quizShowLiveRoomInitCompletedWithSuccess:(BOOL)arg1;
+- (void)quizShowLiveRoomUsersCountChange;
+- (void)quizShowSuccess;
+- (void)quizShowUsedLife;
+@end
+
+
+
+@class CADisplayLink, NSArray, NSString, TTFActivityConfigStruct, TTFAuthStruct, TTFCeremonyStruct, TTFFetchLiveInfoTrace, TTFGeneralControlStruct, TTFIndexTrace, TTFLastAnswerInfo, TTFQuestionAnswerUnit, TTFUserStruct;
+
+@interface TTFQuizShowLiveRoomViewModel : NSObject <TTFQuestionAnswerUnitDelegate, TTFHeartBeatServiceDelegate>
+{
+    BOOL _isSign;
+    BOOL _isLiveRoomIndexSuccess;
+    BOOL _isLiveRoomInitSuccess;
+    BOOL _needUpgrade;
+    BOOL _isInvitation;
+    BOOL _kickoutNetError;
+    BOOL _isQuizshowSuccess;
+    BOOL _isFetchingStreamInfo;
+    id <TTFQuizShowLiveRoomDelegate> _delegate;
+    id <TTFQuizShowLiveRoomQuestionAnswerDelegate> _questionAnswerDelegate;
+    NSString *_enterFromStr;
+    TTFUserStruct *_curUser;
+    NSArray *_livingStreamUrls;
+    TTFAuthStruct *_authInfo;
+    TTFLastAnswerInfo *_lastAnswerInfo;
+    TTFCeremonyStruct *_ceremony;
+    TTFActivityConfigStruct *_currentActivity;
+    TTFActivityConfigStruct *_nextActivity;
+    int _activityStatus;
+    NSString *_curSignCountStr;
+    TTFQuestionAnswerUnit *_currentQuestionAnswerUnit;
+    int _netFailedQuestionID;
+    int _countDown;
+    int _commentInterval;
+    int _submitRetryCount;
+    int _submitRetryTimeout;
+    NSString *_upgradeTips;
+    TTFGeneralControlStruct *_generalControl;
+    CADisplayLink *_countDownDisplayLink;
+    int _indexRetryIndex;
+    int _getStreamRetryIndex;
+    TTFIndexTrace *_indexTrace;
+    TTFFetchLiveInfoTrace *_fetchLiveInfoTrace;
+    long long _curSignCount;
+    long long _curUsersCount;
+    long long _maxParticipateCount;
+    long long _startTime;
+}
+
++ (id)formatTimestamp:(long long)arg1;
++ (id)formatToBonus:(long long)arg1;
++ (id)formattedStringWithAllBonus:(long long)arg1;
++ (id)formattedStringWithMyBonus:(long long)arg1;
+- (void)_getStreamInfo;
+- (void)_indexWithActivityID:(long long)arg1;
+@property(nonatomic) int activityStatus; // @synthesize activityStatus=_activityStatus;
+@property(retain, nonatomic) TTFAuthStruct *authInfo; // @synthesize authInfo=_authInfo;
+@property(retain, nonatomic) TTFCeremonyStruct *ceremony; // @synthesize ceremony=_ceremony;
+- (void)checkActivityStatus;
+- (void)checkInvitationCode:(id)arg1 completionBlock:(id)arg2;
+@property(nonatomic) int commentInterval; // @synthesize commentInterval=_commentInterval;
+- (int)commentRefreshInterval;
+@property(nonatomic) int countDown; // @synthesize countDown=_countDown;
+@property(retain, nonatomic) CADisplayLink *countDownDisplayLink; // @synthesize countDownDisplayLink=_countDownDisplayLink;
+@property(nonatomic) long long curSignCount; // @synthesize curSignCount=_curSignCount;
+@property(copy, nonatomic) NSString *curSignCountStr; // @synthesize curSignCountStr=_curSignCountStr;
+@property(retain, nonatomic) TTFUserStruct *curUser; // @synthesize curUser=_curUser;
+@property(nonatomic) long long curUsersCount; // @synthesize curUsersCount=_curUsersCount;
+@property(retain, nonatomic) TTFActivityConfigStruct *currentActivity; // @synthesize currentActivity=_currentActivity;
+@property(retain, nonatomic) TTFQuestionAnswerUnit *currentQuestionAnswerUnit; // @synthesize currentQuestionAnswerUnit=_currentQuestionAnswerUnit;
+- (void)dealloc;
+@property(nonatomic) __weak id <TTFQuizShowLiveRoomDelegate> delegate; // @synthesize delegate=_delegate;
+- (void)didReceiveHeartbeat:(id)arg1;
+@property(retain, nonatomic) NSString *enterFromStr; // @synthesize enterFromStr=_enterFromStr;
+@property(retain, nonatomic) TTFFetchLiveInfoTrace *fetchLiveInfoTrace; // @synthesize fetchLiveInfoTrace=_fetchLiveInfoTrace;
+@property(retain, nonatomic) TTFGeneralControlStruct *generalControl; // @synthesize generalControl=_generalControl;
+- (id)getActivityStatusStringForTracker;
+- (void)getStreamInfo;
+@property(nonatomic) int getStreamRetryIndex; // @synthesize getStreamRetryIndex=_getStreamRetryIndex;
+@property(nonatomic) int indexRetryIndex; // @synthesize indexRetryIndex=_indexRetryIndex;
+@property(retain, nonatomic) TTFIndexTrace *indexTrace; // @synthesize indexTrace=_indexTrace;
+- (id)init;
+- (BOOL)isActivityEnd;
+- (BOOL)isActivityGetOn;
+@property(nonatomic) BOOL isFetchingStreamInfo; // @synthesize isFetchingStreamInfo=_isFetchingStreamInfo;
+@property(nonatomic) BOOL isInvitation; // @synthesize isInvitation=_isInvitation;
+@property(nonatomic) BOOL isLiveRoomIndexSuccess; // @synthesize isLiveRoomIndexSuccess=_isLiveRoomIndexSuccess;
+@property(nonatomic) BOOL isLiveRoomInitSuccess; // @synthesize isLiveRoomInitSuccess=_isLiveRoomInitSuccess;
+@property(nonatomic) BOOL isQuizshowSuccess; // @synthesize isQuizshowSuccess=_isQuizshowSuccess;
+@property(nonatomic) BOOL isSign; // @synthesize isSign=_isSign;
+@property(nonatomic) BOOL kickoutNetError; // @synthesize kickoutNetError=_kickoutNetError;
+@property(retain, nonatomic) TTFLastAnswerInfo *lastAnswerInfo; // @synthesize lastAnswerInfo=_lastAnswerInfo;
+- (void)leaveDashboard;
+@property(retain, nonatomic) NSArray *livingStreamUrls; // @synthesize livingStreamUrls=_livingStreamUrls;
+@property(readonly, nonatomic) long long maxParticipateCount; // @synthesize maxParticipateCount=_maxParticipateCount;
+@property(nonatomic) BOOL needUpgrade; // @synthesize needUpgrade=_needUpgrade;
+@property(nonatomic) int netFailedQuestionID; // @synthesize netFailedQuestionID=_netFailedQuestionID;
+@property(retain, nonatomic) TTFActivityConfigStruct *nextActivity; // @synthesize nextActivity=_nextActivity;
+- (void)operateCeremonyWithHeartbeat:(id)arg1;
+- (void)operateDistributeAndAnswerStatusWithHeartbeat:(id)arg1;
+- (void)operateRevealAnswerWithHeartbeat:(id)arg1;
+@property(nonatomic) __weak id <TTFQuizShowLiveRoomQuestionAnswerDelegate> questionAnswerDelegate; // @synthesize questionAnswerDelegate=_questionAnswerDelegate;
+- (void)quizShowLiveRoomIndexWithActivityID:(long long)arg1;
+- (void)quizShowLiveRoomInit;
+- (void)recoverLifesIfNeed;
+- (void)setNotNeedInit;
+@property(nonatomic) long long startTime; // @synthesize startTime=_startTime;
+@property(nonatomic) int submitRetryCount; // @synthesize submitRetryCount=_submitRetryCount;
+@property(nonatomic) int submitRetryTimeout; // @synthesize submitRetryTimeout=_submitRetryTimeout;
+@property(copy, nonatomic) NSString *upgradeTips; // @synthesize upgradeTips=_upgradeTips;
+- (void)signUpWithCompletionBlock:(id)arg1;
+- (void)startCountDown;
+- (void)updateInviteCodeInfoWithCompletionBlock:(id)arg1;
+- (void)userAnswerErrorOfQuestionAnswerUnit:(id)arg1;
+- (void)userAnswerExceptionOfQuestionAnswerUnit:(id)arg1;
+- (void)userNetworkErrorOfQuestionAnswerUnit:(id)arg1;
+
+
+@end
+
+@protocol TTFResurrectionDelegate <NSObject>
+- (void)resurrectShare;
+@end
+
+@class TTFQuestionAnswerView;
+
+@protocol TTFQAViewDelegate <NSObject>
+- (void)questionAnswerViewDidHidden:(TTFQuestionAnswerView *)arg1;
+@end
+
+
+@class TTFQuestionOptionView;
+
+@protocol TTFQuestionOptionViewDelegate <NSObject>
+- (void)optionViewBeClicked:(TTFQuestionOptionView *)arg1;
+@end
+
+@class CAShapeLayer, TTFOptionStruct, UILabel;
+
+@interface TTFQuestionOptionView : UIView
+{
+    BOOL _selected;
+    id <TTFQuestionOptionViewDelegate> _delegate;
+    UILabel *_optionTextLabel;
+    TTFOptionStruct *_option;
+    CAShapeLayer *_shapeLayer;
+    UILabel *_choosenUserCountLabel;
+}
+
+- (void)beClicked:(id)arg1;
+@property(retain, nonatomic) UILabel *choosenUserCountLabel; // @synthesize choosenUserCountLabel=_choosenUserCountLabel;
+@property(nonatomic) __weak id <TTFQuestionOptionViewDelegate> delegate; // @synthesize delegate=_delegate;
+- (void)initUIComponents;
+- (id)initWithFrame:(struct CGRect)arg1;
+@property(retain, nonatomic) TTFOptionStruct *option; // @synthesize option=_option;
+@property(retain, nonatomic) UILabel *optionTextLabel; // @synthesize optionTextLabel=_optionTextLabel;
+@property(nonatomic) BOOL selected; // @synthesize selected=_selected;
+- (void)setOption:(id)arg1 index:(int)arg2 isReveal:(BOOL)arg3 userChoosen:(BOOL)arg4 choosenRate:(float)arg5;
+@property(retain, nonatomic) CAShapeLayer *shapeLayer; // @synthesize shapeLayer=_shapeLayer;
+
+@end
+
+
+@class CAGradientLayer, CAShapeLayer, NSMutableArray, NSString, TTFPlayer, TTFQuestionAnswerUnit, TTFResultTipsView, TTFTimeUpView, UIImageView, UILabel;
+
+@interface TTFQuestionAnswerView : UIView <TTFQuestionOptionViewDelegate>
+{
+    BOOL _isQAViewShow;
+    BOOL _isPlayerContainerViewAnimationFinish;
+    id <TTFQAViewDelegate> _delegate;
+    TTFQuestionAnswerUnit *_questionAnswerUnit;
+    TTFPlayer *_player;
+    UIView *_qaContainerView;
+    UIImageView *_qaContainerHeaderView;
+    UIView *_qaContainerBackgroundView;
+    CAShapeLayer *_countdownShapeLayer;
+    UILabel *_remainingAnswerTimeFirstLabel;
+    UILabel *_remainingAnswerTimeSecondLabel;
+    TTFTimeUpView *_timeUpView;
+    UILabel *_timeUpLabel;
+    UILabel *_questionLabel;
+    UIView *_questionLabelMaskView;
+    CAGradientLayer *_questionLabelGradientLayer;
+    NSMutableArray *_optionViews;
+    TTFResultTipsView *_tipsView;
+    UILabel *_watchingTipsLabel;
+    UIView *_playerContainerView;
+    unsigned long _curRemainingAnswerTime;
+}
+
+@property(retain, nonatomic) CAShapeLayer *countdownShapeLayer; // @synthesize countdownShapeLayer=_countdownShapeLayer;
+@property(nonatomic) unsigned long curRemainingAnswerTime; // @synthesize curRemainingAnswerTime=_curRemainingAnswerTime;
+- (void)dealloc;
+@property(nonatomic) __weak id <TTFQAViewDelegate> delegate; // @synthesize delegate=_delegate;
+- (id)getQuestionAttributedString;
+- (float)heightWithQuestionAnswerUnit:(id)arg1;
+- (void)hideWithAnimated:(BOOL)arg1;
+- (void)initUIComponents;
+- (id)initWithFrame:(struct CGRect)arg1;
+@property(nonatomic) BOOL isPlayerContainerViewAnimationFinish; // @synthesize isPlayerContainerViewAnimationFinish=_isPlayerContainerViewAnimationFinish;
+@property(nonatomic) BOOL isQAViewShow; // @synthesize isQAViewShow=_isQAViewShow;
+- (void)optionViewBeClicked:(id)arg1;
+@property(retain, nonatomic) NSMutableArray *optionViews; // @synthesize optionViews=_optionViews;
+@property(nonatomic) __weak TTFPlayer *player; // @synthesize player=_player;
+@property(retain, nonatomic) UIView *playerContainerView; // @synthesize playerContainerView=_playerContainerView;
+@property(retain, nonatomic) UIView *qaContainerBackgroundView; // @synthesize qaContainerBackgroundView=_qaContainerBackgroundView;
+@property(retain, nonatomic) UIImageView *qaContainerHeaderView; // @synthesize qaContainerHeaderView=_qaContainerHeaderView;
+@property(retain, nonatomic) UIView *qaContainerView; // @synthesize qaContainerView=_qaContainerView;
+@property(retain, nonatomic) TTFQuestionAnswerUnit *questionAnswerUnit; // @synthesize questionAnswerUnit=_questionAnswerUnit;
+@property(retain, nonatomic) UILabel *questionLabel; // @synthesize questionLabel=_questionLabel;
+@property(retain, nonatomic) CAGradientLayer *questionLabelGradientLayer; // @synthesize questionLabelGradientLayer=_questionLabelGradientLayer;
+@property(retain, nonatomic) UIView *questionLabelMaskView; // @synthesize questionLabelMaskView=_questionLabelMaskView;
+@property(retain, nonatomic) UILabel *remainingAnswerTimeFirstLabel; // @synthesize remainingAnswerTimeFirstLabel=_remainingAnswerTimeFirstLabel;
+@property(retain, nonatomic) UILabel *remainingAnswerTimeSecondLabel; // @synthesize remainingAnswerTimeSecondLabel=_remainingAnswerTimeSecondLabel;
+@property(retain, nonatomic) UILabel *timeUpLabel; // @synthesize timeUpLabel=_timeUpLabel;
+@property(retain, nonatomic) TTFTimeUpView *timeUpView; // @synthesize timeUpView=_timeUpView;
+@property(retain, nonatomic) TTFResultTipsView *tipsView; // @synthesize tipsView=_tipsView;
+@property(retain, nonatomic) UILabel *watchingTipsLabel; // @synthesize watchingTipsLabel=_watchingTipsLabel;
+- (void)showAnswerWithQuestionAnswerUnit:(id)arg1;
+- (void)showLineOfIndex:(unsigned int)arg1 withLineOrigins:(id)arg2 lineHeights:(id)arg3 offset:(float)arg4 lineTopGap:(float)arg5 eachLineShowDuration:(float)arg6;
+- (void)showQuestionWithQuestionAnswerUnit:(id)arg1;
+
+
+@end
+
+@class UIButton, UIControl, UIImageView, UILabel;
+
+@interface TTFResurrectionTipView : UIView
+{
+    id <TTFResurrectionDelegate> _delegate;
+    id _shareTapped;
+    UIButton *_touchControl;
+    UILabel *_topTipLabel;
+    UIButton *_iconButton;
+    UIView *_linkedLine;
+    UIControl *_bottomTipControl;
+    UILabel *_bottomTipLabel;
+    UIImageView *_arrowIconView;
+}
+
+@property(retain, nonatomic) UIImageView *arrowIconView; // @synthesize arrowIconView=_arrowIconView;
+@property(retain, nonatomic) UIControl *bottomTipControl; // @synthesize bottomTipControl=_bottomTipControl;
+@property(retain, nonatomic) UILabel *bottomTipLabel; // @synthesize bottomTipLabel=_bottomTipLabel;
+- (void)buttonTouched;
+@property(nonatomic) __weak id <TTFResurrectionDelegate> delegate; // @synthesize delegate=_delegate;
+- (void)enableLife:(BOOL)arg1;
+- (void)expendTip;
+- (void)hideViews:(BOOL)arg1;
+@property(retain, nonatomic) UIButton *iconButton; // @synthesize iconButton=_iconButton;
+- (void)initComponents;
+- (id)initWithFrame:(struct CGRect)arg1;
+@property(retain, nonatomic) UIView *linkedLine; // @synthesize linkedLine=_linkedLine;
+- (void)setHasLife:(BOOL)arg1;
+- (void)setLifes:(int)arg1;
+@property(copy, nonatomic) id shareTapped; // @synthesize shareTapped=_shareTapped;
+@property(retain, nonatomic) UILabel *topTipLabel; // @synthesize topTipLabel=_topTipLabel;
+@property(retain, nonatomic) UIButton *touchControl; // @synthesize touchControl=_touchControl;
+- (void)shrinkTip;
+
+@end
+
+@class TTFPlayer;
+
+@protocol TTFPlayerDelegate <NSObject>
+
+@optional
+- (void)player:(TTFPlayer *)arg1 loadStateChanged:(int)arg2;
+- (void)playerDidFailed:(TTFPlayer *)arg1;
+- (void)playerIsReady:(TTFPlayer *)arg1;
+- (void)playerRenderStart:(TTFPlayer *)arg1;
+@end
+
+@class TTFClearanceUsersView;
+
+@protocol TTFClearanceUsersViewDelegate <NSObject>
+- (void)clearanceUsersViewDidHide:(TTFClearanceUsersView *)arg1;
+- (void)clearanceUsersViewEnterTopWinnerListViewController:(TTFClearanceUsersView *)arg1;
+- (void)clearanceUsersViewTriggerShareAction:(TTFClearanceUsersView *)arg1;
+- (void)clearanceUsersViewTriggerSignUpNextActivityAction:(TTFClearanceUsersView *)arg1 signUpTriggerBlock:(void (^)(void))arg2;
+@end
+
+@class TTFEliminateDefeatView, TTFQuestionAnswerUnit;
+
+@protocol TTFEliminateDefeatViewDelegate <NSObject>
+- (void)shareRecordOfEliminateDefeatView:(TTFEliminateDefeatView *)arg1 defeatCount:(long long)arg2 questionAnswerUnit:(TTFQuestionAnswerUnit *)arg3;
+@end
+
+@class TTFEliminateView, TTFQuestionAnswerUnit;
+
+@protocol TTFEliminateViewDelegate <NSObject>
+- (void)shareQuestionOfEliminateView:(TTFEliminateView *)arg1 withQuestionAnswerUnit:(TTFQuestionAnswerUnit *)arg2;
+@end
+
+@class TTFLateView;
+
+@protocol TTFLateViewDelegate <NSObject>
+- (void)inviteFriendsOfLateView:(TTFLateView *)arg1;
+@end
+
+
+
+@class LOTAnimationView, NSDate, NSMutableSet, NSString, NSTimer, TTFClearanceUsersView, TTFCountdownView, TTFInputInvitationCodeView, TTFPlayer, TTFQuestionAnswerView, TTFQuizShowLiveRoomViewModel, TTFResurrectionTipView, TTFTalkBoardViewController, TTVideoEngine, UIActivityIndicatorView, UIButton, UILabel, UITapGestureRecognizer, UIView;
+
+@protocol TTFPlayerDelegate, TTFClearanceUsersViewDelegate, TTFQAViewDelegate, TTFQuizShowLiveRoomDelegate, TTFEliminateDefeatViewDelegate, TTFEliminateDefeatViewDelegate, TTFEliminateViewDelegate, TTFLateViewDelegate;
+
+@interface TTFQuizShowLiveRoomViewController : TTFBaseViewController <TTFQuizShowLiveRoomQuestionAnswerDelegate, TTFQuizShowLiveRoomDelegate, TTFQAViewDelegate, TTFPlayerDelegate, TTFClearanceUsersViewDelegate, TTFResurrectionDelegate, TTFEliminateDefeatViewDelegate, TTFEliminateViewDelegate, TTFLateViewDelegate>
+{
+    BOOL _isFetchStreamInfoSuccess;
+    BOOL _immediatelyEnterAfterIndex;
+    BOOL _enterAgain;
+    TTFPlayer *_player;
+    UIActivityIndicatorView *_playerIndicatorView;
+    TTVideoEngine *_videoEngine;
+    LOTAnimationView *_logoLoopAnimationView;
+    UIView *_containerView;
+    UIButton *_shareButton;
+    TTFResurrectionTipView *_resurrectionView;
+    UIView *_redDotView;
+    UILabel *_usersCountLabel;
+    UIButton *_closeButton;
+    TTFQuestionAnswerView *_questionAnswerView;
+    TTFCountdownView *_countdownView;
+    UIButton *_loginButton;
+    TTFTalkBoardViewController *_talkboardViewController;
+    UITapGestureRecognizer *_hideKeyboardGesture;
+    LOTAnimationView *_fireworkAnimationView;
+    TTFClearanceUsersView *_clearanceUsersView;
+    TTFInputInvitationCodeView *_inputInvitationCodeView;
+    NSMutableSet *_curQuestionAnswerUserCountSet;
+    NSTimer *_logoLoopTimer;
+    id <TTFQuizShowLiveRoomViewControllerProtocol> _delegate;
+    TTFQuizShowLiveRoomViewModel *_viewModel;
+}
 
 + (void)prepareForQuizShowLiveRoom;
-    @property(retain, nonatomic) NSDate *beginLiveTimeDate;
-    @property(retain, nonatomic) NSDate *beginWatchTimeDate;
-    @property(retain, nonatomic) id clearanceUsersView; // @synthesize clearanceUsersView=_clearanceUsersView;
+@property(retain, nonatomic) NSDate *beginLiveTimeDate;
+@property(retain, nonatomic) NSDate *beginWatchTimeDate;
+@property(retain, nonatomic) TTFClearanceUsersView *clearanceUsersView; // @synthesize clearanceUsersView=_clearanceUsersView;
 - (void)clearanceUsersViewDidHide:(id)arg1;
 - (void)clearanceUsersViewEnterTopWinnerListViewController:(id)arg1;
 - (void)clearanceUsersViewTriggerShareAction:(id)arg1;
 - (void)clearanceUsersViewTriggerSignUpNextActivityAction:(id)arg1 signUpTriggerBlock:(id)arg2;
-    @property(retain, nonatomic) UIButton *closeButton; // @synthesize closeButton=_closeButton;
+@property(retain, nonatomic) UIButton *closeButton; // @synthesize closeButton=_closeButton;
 - (void)closeLiveRoom;
-    @property(retain, nonatomic) UIView *containerView; // @synthesize containerView=_containerView;
+@property(retain, nonatomic) UIView *containerView; // @synthesize containerView=_containerView;
 - (void)countdownShare:(id)arg1;
-    @property(retain, nonatomic) id countdownView; // @synthesize countdownView=_countdownView;
-    @property(retain, nonatomic) NSMutableSet *curQuestionAnswerUserCountSet; // @synthesize curQuestionAnswerUserCountSet=_curQuestionAnswerUserCountSet;
+@property(retain, nonatomic) TTFCountdownView *countdownView; // @synthesize countdownView=_countdownView;
+@property(retain, nonatomic) NSMutableSet *curQuestionAnswerUserCountSet; // @synthesize curQuestionAnswerUserCountSet=_curQuestionAnswerUserCountSet;
 - (void)dealloc;
-    @property(nonatomic) __weak id <TTFQuizShowLiveRoomViewControllerProtocol> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) __weak id <TTFQuizShowLiveRoomViewControllerProtocol> delegate; // @synthesize delegate=_delegate;
 - (void)didFailedFetchingLiveStreamInfo;
 - (void)didFailedWithQuestionAnswerUnit:(id)arg1;
 - (void)endTrackStayPage:(BOOL)arg1;
-    @property(nonatomic) BOOL enterAgain; // @synthesize enterAgain=_enterAgain;
+@property(nonatomic) BOOL enterAgain; // @synthesize enterAgain=_enterAgain;
 - (id)extraDict;
 - (void)fetchedLivingStreamInfo:(id)arg1;
-    @property(retain, nonatomic) id fireworkAnimationView; // @synthesize fireworkAnimationView=_fireworkAnimationView;
+@property(retain, nonatomic) LOTAnimationView *fireworkAnimationView; // @synthesize fireworkAnimationView=_fireworkAnimationView;
 - (double)getLiveTimeTimeInterval;
 - (double)getWatchTimeTimeInterval;
 - (long long)getWrongItemNum;
 - (void)help:(id)arg1;
-    @property(retain, nonatomic) UITapGestureRecognizer *hideKeyboardGesture; // @synthesize hideKeyboardGesture=_hideKeyboardGesture;
-    @property(nonatomic) BOOL immediatelyEnterAfterIndex; // @synthesize immediatelyEnterAfterIndex=_immediatelyEnterAfterIndex;
+@property(retain, nonatomic) UITapGestureRecognizer *hideKeyboardGesture; // @synthesize hideKeyboardGesture=_hideKeyboardGesture;
+@property(nonatomic) BOOL immediatelyEnterAfterIndex; // @synthesize immediatelyEnterAfterIndex=_immediatelyEnterAfterIndex;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)initWithViewModel:(id)arg1 immediatelyEnterAfterIndex:(BOOL)arg2 enterAgain:(BOOL)arg3 delegate:(id)arg4;
 - (void)inputInvitationCodeButtonDidClicked:(id)arg1;
-    @property(retain, nonatomic) id inputInvitationCodeView; // @synthesize inputInvitationCodeView=_inputInvitationCodeView;
+@property(retain, nonatomic) TTFInputInvitationCodeView *inputInvitationCodeView; // @synthesize inputInvitationCodeView=_inputInvitationCodeView;
 - (void)inviteFriendsOfLateView:(id)arg1;
-    @property(nonatomic) BOOL isFetchStreamInfoSuccess; // @synthesize isFetchStreamInfoSuccess=_isFetchStreamInfoSuccess;
-    @property(nonatomic) long long itemNum;
+@property(nonatomic) BOOL isFetchStreamInfoSuccess; // @synthesize isFetchStreamInfoSuccess=_isFetchStreamInfoSuccess;
+@property(nonatomic) long long itemNum;
 - (void)keyboardAnimationWithNotification:(id)arg1 isShow:(BOOL)arg2;
 - (void)keyboardWillHide:(id)arg1;
 - (void)keyboardWillShow:(id)arg1;
-    @property(retain, nonatomic) UIButton *loginButton; // @synthesize loginButton=_loginButton;
-    @property(retain, nonatomic) id logoLoopAnimationView; // @synthesize logoLoopAnimationView=_logoLoopAnimationView;
-    @property(retain, nonatomic) NSTimer *logoLoopTimer; // @synthesize logoLoopTimer=_logoLoopTimer;
+@property(retain, nonatomic) UIButton *loginButton; // @synthesize loginButton=_loginButton;
+@property(retain, nonatomic) LOTAnimationView *logoLoopAnimationView; // @synthesize logoLoopAnimationView=_logoLoopAnimationView;
+@property(retain, nonatomic) NSTimer *logoLoopTimer; // @synthesize logoLoopTimer=_logoLoopTimer;
 - (BOOL)needHideVideoEnginePlayerView;
 - (void)networkFailedWithQuestionAnswerUnit:(id)arg1;
 - (void)onReachabilityChangedNotification:(id)arg1;
-    @property(retain, nonatomic) id player; // @synthesize player=_player;
-    @property(retain, nonatomic) UIActivityIndicatorView *playerIndicatorView; // @synthesize playerIndicatorView=_playerIndicatorView;
+@property(retain, nonatomic) TTFPlayer *player; // @synthesize player=_player;
+@property(retain, nonatomic) UIActivityIndicatorView *playerIndicatorView; // @synthesize playerIndicatorView=_playerIndicatorView;
 - (void)playerRenderStart:(id)arg1;
 - (BOOL)prefersHomeIndicatorAutoHidden;
-    @property(retain, nonatomic) id questionAnswerView; // @synthesize questionAnswerView=_questionAnswerView;
+@property(retain, nonatomic) TTFQuestionAnswerView *questionAnswerView; // @synthesize questionAnswerView=_questionAnswerView;
 - (void)questionAnswerViewDidHidden:(id)arg1;
 - (void)quizShowActivityChangeToStatus:(int)arg1;
 - (void)quizShowFinishedWithViewModel:(id)arg1;
@@ -297,18 +667,18 @@
 - (void)quizShowLiveRoomUsersCountChange;
 - (void)quizShowSuccess;
 - (void)quizShowUsedLife;
-    @property(retain, nonatomic) UIView *redDotView; // @synthesize redDotView=_redDotView;
+@property(retain, nonatomic) UIView *redDotView; // @synthesize redDotView=_redDotView;
 - (void)registerNotification;
 - (void)removeNotification;
 - (void)resurrectShare;
-    @property(retain, nonatomic) id resurrectionView; // @synthesize resurrectionView=_resurrectionView;
+@property(retain, nonatomic) TTFResurrectionTipView *resurrectionView; // @synthesize resurrectionView=_resurrectionView;
 - (void)setCurUserCountAttributedString;
-    @property(retain, nonatomic) UIButton *shareButton; // @synthesize shareButton=_shareButton;
-    @property(retain, nonatomic) NSDate *stayBeginTime;
-    @property(retain, nonatomic) id talkboardViewController; // @synthesize talkboardViewController=_talkboardViewController;
-    @property(retain, nonatomic) UILabel *usersCountLabel; // @synthesize usersCountLabel=_usersCountLabel;
-    @property(retain, nonatomic) id videoEngine; // @synthesize videoEngine=_videoEngine;
-    @property(retain, nonatomic) id viewModel; // @synthesize viewModel=_viewModel;
+@property(retain, nonatomic) UIButton *shareButton; // @synthesize shareButton=_shareButton;
+@property(retain, nonatomic) NSDate *stayBeginTime;
+@property(retain, nonatomic) TTFTalkBoardViewController *talkboardViewController; // @synthesize talkboardViewController=_talkboardViewController;
+@property(retain, nonatomic) UILabel *usersCountLabel; // @synthesize usersCountLabel=_usersCountLabel;
+@property(retain, nonatomic) TTVideoEngine *videoEngine; // @synthesize videoEngine=_videoEngine;
+@property(retain, nonatomic) TTFQuizShowLiveRoomViewModel *viewModel; // @synthesize viewModel=_viewModel;
 - (void)shareQuestionOfEliminateView:(id)arg1 withQuestionAnswerUnit:(id)arg2;
 - (void)shareRecordOfEliminateDefeatView:(id)arg1 defeatCount:(long long)arg2 questionAnswerUnit:(id)arg3;
 - (void)shareToFriends:(id)arg1;
@@ -324,9 +694,10 @@
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidLoad;
 - (void)viewWillDisappear:(BOOL)arg1;
-    
-    
+
+
 @end
+
 
 @class SSSplashView;
 
@@ -568,7 +939,130 @@
 - (void)viewSafeAreaInsetsDidChange;
 - (void)viewWillAppear:(BOOL)arg1;
     
-    @end
+@end
 
+@interface TTFQuizShowLiveRoomNetworkManager : NSObject
+{
+}
+
++ (void)quizShowGetStreamOfGroupID:(long long)arg1 withCompletion:(id)arg2;
++ (id)quizShowLiveRoomIndexRequestOfActivityID:(long long)arg1 withCompletion:(id)arg2;
++ (void)quizShowLiveRoomInitRequestOfActivityID:(long long)arg1 withCompletion:(id)arg2;
++ (void)quizShowLiveRoomLeaveRequestOfActivityID:(long long)arg1 question:(id)arg2 completion:(id)arg3;
++ (void)quizShowWinRequestOfActivityID:(long long)arg1 withCompletion:(id)arg2;
++ (void)recoverLifesOfActivityID:(long long)arg1 question:(id)arg2;
++ (id)requestHeartbeatOfActivityID:(long long)arg1 completion:(id)arg2;
++ (void)signUpOfActivityID:(long long)arg1 completion:(id)arg2;
++ (void)submitAnwserOfActivityID:(long long)arg1 questionID:(long long)arg2 optionIDs:(id)arg3 completion:(id)arg4;
+
+@end
+
+@class LOTAnimationView, NSString, TTFDashboardView, TTFInputInvitationCodeView, TTFQuizShowLiveRoomViewController, TTFQuizShowLiveRoomViewModel, TTFResurrectionView, UIButton, UIImageView, UILabel, UIView;
+
+@interface TTFDashboardViewController : TTFBaseViewController <TTFQuizShowLiveRoomViewControllerProtocol>
+{
+    BOOL _hasAutoEnterLiveRoom;
+    BOOL _hasReceiveLiveRoomIndexSuccess;
+    BOOL _hasTrackEnterEvent;
+    BOOL _originalHideStatusBar;
+    NSString *_enterFromStr;
+    TTFQuizShowLiveRoomViewController *_curQuizShowLiveRoomVC;
+    UIImageView *_bannerImageView;
+    UIImageView *_backgroundStarImageView;
+    UIImageView *_backgroundCoinsImageView;
+    UIButton *_avatarButton;
+    UIButton *_closeButton;
+    UIView *_dashboardContainerView;
+    TTFDashboardView *_dashboardView;
+    TTFResurrectionView *_resurrectionView;
+    TTFInputInvitationCodeView *_inputInvitationCodeView;
+    UIButton *_retryButton;
+    UIButton *_enterAgainButton;
+    UILabel *_enterAgainTextLabel;
+    LOTAnimationView *_enterAgainAnimationView;
+    TTFQuizShowLiveRoomViewModel *_liveRoomViewModel;
+    int _originalStatusBarStyle;
+    double _liveTimeInterval;
+    double _watchTimeInterval;
+    long long _wrongItemNum;
+    long long _activityID;
+    long long _jumpMinTime;
+}
+
+@property(nonatomic) long long activityID; // @synthesize activityID=_activityID;
+@property(retain, nonatomic) UIButton *avatarButton; // @synthesize avatarButton=_avatarButton;
+@property(retain, nonatomic) UIImageView *backgroundCoinsImageView; // @synthesize backgroundCoinsImageView=_backgroundCoinsImageView;
+@property(retain, nonatomic) UIImageView *backgroundStarImageView; // @synthesize backgroundStarImageView=_backgroundStarImageView;
+@property(retain, nonatomic) UIImageView *bannerImageView; // @synthesize bannerImageView=_bannerImageView;
+- (void)clickAvatarButton:(id)arg1;
+- (void)clickHelp:(id)arg1;
+@property(retain, nonatomic) UIButton *closeButton; // @synthesize closeButton=_closeButton;
+- (void)closeDashboard:(id)arg1;
+@property(nonatomic) __weak TTFQuizShowLiveRoomViewController *curQuizShowLiveRoomVC; // @synthesize curQuizShowLiveRoomVC=_curQuizShowLiveRoomVC;
+@property(retain, nonatomic) UIView *dashboardContainerView; // @synthesize dashboardContainerView=_dashboardContainerView;
+@property(retain, nonatomic) TTFDashboardView *dashboardView; // @synthesize dashboardView=_dashboardView;
+- (void)dealloc;
+- (void)endTrackStayPageWithParams:(id)arg1;
+@property(retain, nonatomic) LOTAnimationView *enterAgainAnimationView; // @synthesize enterAgainAnimationView=_enterAgainAnimationView;
+@property(retain, nonatomic) UIButton *enterAgainButton; // @synthesize enterAgainButton=_enterAgainButton;
+- (void)enterAgainButtonDidClicked:(id)arg1;
+@property(retain, nonatomic) UILabel *enterAgainTextLabel; // @synthesize enterAgainTextLabel=_enterAgainTextLabel;
+@property(copy, nonatomic) NSString *enterFromStr; // @synthesize enterFromStr=_enterFromStr;
+- (void)enterQuizShowLiveRoomImmediatelyEnterAfterIndex:(BOOL)arg1 enterAgain:(BOOL)arg2;
+- (void)enterTopListViewController;
+@property(nonatomic) BOOL hasAutoEnterLiveRoom; // @synthesize hasAutoEnterLiveRoom=_hasAutoEnterLiveRoom;
+@property(nonatomic) BOOL hasReceiveLiveRoomIndexSuccess; // @synthesize hasReceiveLiveRoomIndexSuccess=_hasReceiveLiveRoomIndexSuccess;
+@property(nonatomic) BOOL hasTrackEnterEvent; // @synthesize hasTrackEnterEvent=_hasTrackEnterEvent;
+- (id)initWithActivityID:(long long)arg1;
+- (id)initWithCoder:(id)arg1;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+- (void)inputInvitationCode:(id)arg1;
+@property(retain, nonatomic) TTFInputInvitationCodeView *inputInvitationCodeView; // @synthesize inputInvitationCodeView=_inputInvitationCodeView;
+@property(nonatomic) long long jumpMinTime; // @synthesize jumpMinTime=_jumpMinTime;
+@property(retain, nonatomic) TTFQuizShowLiveRoomViewModel *liveRoomViewModel; // @synthesize liveRoomViewModel=_liveRoomViewModel;
+@property(nonatomic) double liveTimeInterval; // @synthesize liveTimeInterval=_liveTimeInterval;
+- (id)oppoDict;
+@property(nonatomic) BOOL originalHideStatusBar; // @synthesize originalHideStatusBar=_originalHideStatusBar;
+@property(nonatomic) int originalStatusBarStyle; // @synthesize originalStatusBarStyle=_originalStatusBarStyle;
+- (void)quizShowLiveRoomClose:(id)arg1;
+- (void)resurrection:(id)arg1;
+@property(retain, nonatomic) TTFResurrectionView *resurrectionView; // @synthesize resurrectionView=_resurrectionView;
+@property(retain, nonatomic) UIButton *retryButton; // @synthesize retryButton=_retryButton;
+- (void)retryButtonDidClicked:(id)arg1;
+- (void)setStaylBeginTime:(id)arg1;
+@property(nonatomic) double watchTimeInterval; // @synthesize watchTimeInterval=_watchTimeInterval;
+@property(nonatomic) long long wrongItemNum; // @synthesize wrongItemNum=_wrongItemNum;
+- (void)shareToFriend:(id)arg1;
+- (void)signUp:(id)arg1;
+- (void)startTrackStayPage;
+- (id)stayBeginTime;
+- (void)ttf_accountStatusChangeNotification:(id)arg1;
+- (void)ttf_applicationDidEnterBackground:(id)arg1;
+- (void)ttf_applicationWillEnterForeground:(id)arg1;
+- (id)ttf_createInterpolatingMotionEffectWithRelativeValue:(float)arg1 type:(int)arg2;
+- (void)ttf_endTrackStayPage:(BOOL)arg1;
+- (void)ttf_enterLoginTipsFlow;
+- (void)ttf_enterOpenNotificationTipsFlow;
+- (void)ttf_judgeNeedShowEnterAgain;
+- (void)ttf_openAppStore;
+- (void)ttf_preloadShareImage0;
+- (void)ttf_preloadShareImage1;
+- (void)ttf_refreshBannerImageWithImageURLstr:(id)arg1;
+- (void)ttf_registerNotification;
+- (void)ttf_removeNotification;
+- (void)ttf_requestIndex;
+- (void)ttf_setupConstraint;
+- (void)ttf_setupViews;
+- (void)ttf_triggerEnterTracker:(BOOL)arg1;
+- (void)ttf_triggerLivingEndFlow;
+- (void)ttf_unobserveLiveRoomViewModel;
+- (void)ttf_updateInviteCodeInfo;
+- (void)viewDidAppear:(BOOL)arg1;
+- (void)viewDidDisappear:(BOOL)arg1;
+- (void)viewDidLoad;
+- (void)viewWillAppear:(BOOL)arg1;
+
+
+@end
 
 #endif /* VideoHeaders_h */

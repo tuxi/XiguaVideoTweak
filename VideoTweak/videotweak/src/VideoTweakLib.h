@@ -1,5 +1,5 @@
 //
-//  ExampleObj.h
+//  VideoTweakLib.h
 //  VideoTweak
 //
 //  Created by swae on 2018/1/13.
@@ -8,6 +8,3 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ExampleObj : NSObject
-+ (void)helloObj;
-@end
