@@ -1,6 +1,6 @@
 # iOS 西瓜视频Tweak 实现最简单的百万英雄辅助
 
-最近看到有同事要求我一起玩百万英雄，那个出题5-10秒就没了，太快了导致没时间思考，就结束了，周六日在家没事就用Tweak的方式研究下西瓜视频是怎么实现的。
+百万英雄出题5-10秒就没了，太快了导致没时间思考就结束了，周六日在家用Tweak的方式研究下西瓜视频中百万英雄答题实现:
 
 <img src = "https://github.com/alpface/XiguaVideoTweak/blob/master/Video/img1.png?raw=true" width = "1015" height = "682" alt = "Screenshot1.png"/>
 
