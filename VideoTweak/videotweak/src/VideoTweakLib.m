@@ -186,7 +186,7 @@ void hookFunc(UIViewController *v) {
 //
 //    }];
 
-    [NSClassFromString(@"TTFQuestionOptionView") aspect_hookSelector:@selector(beClicked:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, id arg){
+    [NSClassFromString(@"TTFQuestionOptionView") aspect_hookSelector:@selector(beClicked:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, UITapGestureRecognizer *tap){
         NSLog(@"答案被选中:%@", arg);
     } error:&error];
     
