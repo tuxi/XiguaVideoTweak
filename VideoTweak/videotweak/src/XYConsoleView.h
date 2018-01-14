@@ -12,7 +12,7 @@
 
 #pragma clang diagnostic ignored "-Wignored-attributes"
 
-#ifdef DEBUG
+//#ifdef DEBUG
 #      define DLog(frmt, ...) \
             xy_log( \
             (@"<%s : %d> %s  " frmt), \
@@ -21,10 +21,10 @@
             __PRETTY_FUNCTION__,  \
             ##__VA_ARGS__);
 #      define NSLog(frmt, ...) xy_log((frmt), ##__VA_ARGS__)
-#else
-#      define DLog(...)
-#      define NSLog(...)
-#endif
+//#else
+//#      define DLog(...)
+//#      define NSLog(...)
+//#endif
 
 FOUNDATION_EXPORT NSNotificationName const XYConsoleDidChangeLogNotification;
 FOUNDATION_EXPORT void xy_log(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;

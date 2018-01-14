@@ -1207,5 +1207,24 @@
 //
 //@end
 
+//@interface TTFOptionStruct : GPBMessage
+//{
+//}
+//
+//+ (id)descriptor;
+//
+//// Remaining properties
+//@property(nonatomic) long long choosenUsers; // @dynamic choosenUsers;
+//@property(retain, nonatomic) NSMutableArray *imageURLArray; // @dynamic imageURLArray;
+//@property(readonly, nonatomic) unsigned int imageURLArray_Count; // @dynamic imageURLArray_Count;
+//@property(nonatomic) long long optionId; // @dynamic optionId;
+//@property(nonatomic) BOOL right; // @dynamic right;
+//@property(copy, nonatomic) NSString *text; // @dynamic text;
+//@property(retain, nonatomic) NSMutableArray *videoURLArray; // @dynamic videoURLArray;
+//@property(readonly, nonatomic) unsigned int videoURLArray_Count; // @dynamic videoURLArray_Count;
+
+
+
+
 
 #endif /* VideoHeaders_h */

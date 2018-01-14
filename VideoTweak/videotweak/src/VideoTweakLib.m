@@ -55,23 +55,19 @@ void hookFunc(UIViewController *v) {
     
     UIAlertController *arc = [UIAlertController alertControllerWithTitle:@"请选择" message:@"目前只支持读取问题的方式进行百度搜索，展示web" preferredStyle:UIAlertControllerStyleAlert];
     [arc addAction:[UIAlertAction actionWithTitle:@"show webview" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        if (![XYQuestionAnswerManager manager].questionText.length) {
-            [MBProgressHUD xy_showMessage:@"没有获取到问题"];
-        }
-        else {
-            [[UIApplication sharedApplication] xy_showWebViewWithCompletion:nil];
-            [XYQuestionAnswerManager manager].auxiliary1Block = ^(NSString *qText) {
-                if (!qText.length) {
-                    return;
-                }
-                /// 第一中辅助方式：根据问题去百度搜索，以webView呈现
-                NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:[XYQuestionAnswerManager manager].questionText] invertedSet];
-                NSString *wd = [[XYQuestionAnswerManager manager].questionText stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
-                NSString *urlString = [NSString stringWithFormat:@"https://m.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=%@&inputT=1696&rsv_sug4=1697", wd];
-                [UIApplication sharedApplication].xy_suspensionWebView.urlString = urlString;
-            };
-           
-        }
+        [[UIApplication sharedApplication] xy_showWebViewWithCompletion:nil];
+        [XYQuestionAnswerManager manager].auxiliary1Block = ^(NSString *qText) {
+            if (!qText.length) {
+                [MBProgressHUD xy_showMessage:@"没有获取到问题"];
+                return;
+            }
+            /// 第一中辅助方式：根据问题去百度搜索，以webView呈现
+            NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:[XYQuestionAnswerManager manager].questionText] invertedSet];
+            NSString *wd = [[XYQuestionAnswerManager manager].questionText stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
+            NSString *urlString = [NSString stringWithFormat:@"https://m.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=%@&inputT=1696&rsv_sug4=1697", wd];
+            [UIApplication sharedApplication].xy_suspensionWebView.urlString = urlString;
+        };
+        
     }]];
     [arc addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:NULL]];
     [[UIViewController xy_topViewController] presentViewController:arc animated:YES completion:nil];
@@ -79,22 +75,48 @@ void hookFunc(UIViewController *v) {
     TTFQuizShowLiveRoomViewController *vc = (TTFQuizShowLiveRoomViewController *)v;
     NSError *error = nil;
     /// 监听显示答案的事件
-    [vc aspect_hookSelector:@selector(showAnswerWithQuestionAnswerUnit:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, id questionAnswerUnit) {
+    [NSClassFromString(@"TTFQuizShowLiveRoomViewController") aspect_hookSelector:@selector(showAnswerWithQuestionAnswerUnit:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, TTFQuestionAnswerUnit *questionAnswerUnit) {
+        
+        // 问答单元
+        TTFQuestionAnswerUnit *unit = questionAnswerUnit;
+        // 问题结构
+        TTFQuestionStruct *questionStruct = unit.question;
+        DLog(@"TTFQuestionStruct:%@", questionStruct);
+        NSObject *questionStructTemp = (NSObject *)questionStruct;
+        // questionT 就是questionLabel.text
+        NSString *questionT = [questionStructTemp valueForKey:@"text"];
+        [XYQuestionAnswerManager manager].questionText = questionT;
+        
+        // 问题跟踪
+        TTFQuestionTrace *questionTrace = unit.questionTrace;
+        DLog(@"TTFQuestionTrace:%@", questionTrace);
+        // 答案结构， 显示问题时为nil，显示答案时才有此
+        TTFAnswerStruct *answerStruct = unit.answer;
+        DLog(@"TTFAnswerStruct:%@", answerStruct);
+        // 答案跟踪，显示问题时为nil，显示答案时才有此
+        TTFAnswerTrace *answerTrace = unit.answerTrace;
+        DLog(@"TTFAnswerTrace:%@", answerTrace);
         
     } error:&error];
     
     /// 监听显示问题
-    [vc aspect_hookSelector:@selector(showQuestionWithQuestionAnswerUnit:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, id questionAnswerUnit) {
+    [NSClassFromString(@"TTFQuizShowLiveRoomViewController") aspect_hookSelector:@selector(showQuestionWithQuestionAnswerUnit:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, TTFQuestionAnswerUnit *questionAnswerUnit) {
+        
+       TTFQuizShowLiveRoomViewController *vc =  info.instance;
         if (!vc) {
             return;
         }
-        // 获取问题视图
-        TTFQuestionAnswerView *qv = vc.questionAnswerView;
-        // 问题视图上显示问题的label
-        NSString *questionText = qv.questionLabel.text;
-        DLog(@"%@", questionText);
+        if (![vc isKindOfClass:NSClassFromString(@"TTFQuizShowLiveRoomViewController")]) {
+            return;
+        }
+        
+//        // 获取问题视图
+//        TTFQuestionAnswerView *qv = vc.questionAnswerView;
+//        // 问题视图上显示问题的label
+//        NSString *questionText = qv.questionLabel.text;
+//        DLog(@"%@", questionText);
         // 问答单元
-        TTFQuestionAnswerUnit *unit = qv.questionAnswerUnit;
+        TTFQuestionAnswerUnit *unit = questionAnswerUnit;
         // 问题结构
         TTFQuestionStruct *questionStruct = unit.question;
         DLog(@"TTFQuestionStruct:%@", questionStruct);
@@ -224,7 +246,7 @@ void hookFunc(UIViewController *v) {
 static __attribute__((constructor)) void entry() {
     
     
-    NSLog(@"\n               🎉!!！congratulations!!！🎉\n👍----------------insert dylib success----------------👍");
+    DLog(@"\n 🎉 🎉 🎉!!！congratulations!!！🎉\n👍👍👍👍👍👍👍👍👍👍insert dylib success👍👍👍👍👍👍👍👍👍👍🎉!");
     [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         
         [ExceptionUtils configExceptionHandler];

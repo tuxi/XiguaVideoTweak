@@ -42,7 +42,7 @@ __attribute__((constructor)) static void XYConsoleInitialize(void) {
         formatter = NSDateFormatter.new;
         formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss.SSS";
         lock = [NSLock new];
-#if DEBUG
+//#if DEBUG
         // 优化日志回调，使用[NSRunLoop mainRunLoop]会比回到主线程性能好很多
         // 发觉在子线程中打印log，再回到主线程中显示log会很卡，开启NSTimer每秒钟执行一次显示log，性能会好很多
         logTimer = [NSTimer xy_timerWithTimeInterval:1.0 repeats:YES block:^{
@@ -50,7 +50,7 @@ __attribute__((constructor)) static void XYConsoleInitialize(void) {
         }];
         // 发送log所在runLoop的mode使用NSRunLoopCommonModes，不然scrollView滚动时接收不到log
         [[NSRunLoop mainRunLoop] addTimer:logTimer forMode:NSDefaultRunLoopMode];
-#endif
+//#endif
     }
 }
 
