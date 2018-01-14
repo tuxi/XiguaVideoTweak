@@ -2,7 +2,7 @@
 
 最近看到有同事要求我一起玩百万英雄，那个出题5-10秒就没了，太快了导致没时间思考，就结束了，周六日在家没事就用Tweak的方式研究下西瓜视频是怎么实现的。
 
-<img src = "https://github.com/alpface/XiguaVideoTweak/blob/master/Video/img1.png?raw=true" width = "375" height = "667" alt = "Screenshot1.png"/>
+<img src = "https://github.com/alpface/XiguaVideoTweak/blob/master/Video/img1.png?raw=true" width = "667" height = "375" alt = "Screenshot1.png"/>
 
 
 原本计划: 当显示问题时，在事先创建好的webview上百度搜索，手机上弹出一个webview，
