@@ -3,7 +3,7 @@
 //  FileBrowser
 //
 //  Created by xiaoyuan on 05/08/2014.
-//  Copyright © 2014 xiaoyuan. All rights reserved.
+//  Copyright © 2014 alpface. All rights reserved.
 //
 
 #import "UIViewController+XYExtensions.h"

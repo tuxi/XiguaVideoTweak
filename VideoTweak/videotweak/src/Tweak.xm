@@ -1,7 +1,10 @@
-/* How to Hook with Logos
-Hooks are written with syntax similar to that of an Objective-C @implementation.
-You don't need to #include <substrate.h>, it will be done automatically, as will
-the generation of a class list and an automatic constructor.
+//
+//  Tweak.xm
+//  Video
+//
+//  Created by xiaoyuan on 2018/1/13.
+//  Copyright © 2018年 alpface. All rights reserved.
+//
 
 #import "VideoHeaders.h"
 #import "ExceptionUtils.h"
@@ -15,3 +18,4 @@ the generation of a class list and an automatic constructor.
 }
 
 
+%end

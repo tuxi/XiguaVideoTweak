@@ -2,7 +2,7 @@
 //  VideoTweakLib.m
 //  VideoTweak
 //
-//  Created by swae on 2018/1/13.
+//  Created by xiaoyuan on 2018/1/13.
 //  Copyright © 2018年 alpface. All rights reserved.
 //
 
@@ -15,9 +15,14 @@
 #import "FoldersViewController.h"
 #import "UIViewController+XYExtensions.h"
 #import "RuntimeInvoker.h"
+#import "Aspects.h"
+#import <objc/runtime.h>
+#import "AutoTimer.h"
+#import "XYSuspensionWebView.h"
 
 #pragma clang diagnostic ignored "-Wunused-function"
 #pragma clang diagnostic ignored "-Wformat"
+#pragma clang diagnostic ignored "-Wunused-variable"
 
 
 /// NewsBaseDelegate
@@ -45,6 +50,179 @@ CHOptimizedMethod(0, self, BOOL, TTFQuizShowLiveRoomViewController, immediatelyE
     return YES;
 }
 
+NSString * lastQuestionText = @"";
+void (^ auxiliary1Block)(NSString *lastQuestionText) = nil;
+
+void hookFunc(UIViewController *v) {
+    
+    UIAlertController *arc = [UIAlertController alertControllerWithTitle:@"请选择" message:@"目前只支持读取问题的方式进行百度搜索，展示web" preferredStyle:UIAlertControllerStyleAlert];
+    [arc addAction:[UIAlertAction actionWithTitle:@"show webview" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (!lastQuestionText.length) {
+            [MBProgressHUD xy_showMessage:@"没有获取到问题"];
+        }
+        else {
+            [[UIApplication sharedApplication] xy_showWebViewWithCompletion:nil];
+            auxiliary1Block = ^(NSString *qText) {
+                if (!qText.length) {
+                    return;
+                }
+                /// 第一中辅助方式：根据问题去百度搜索，以webView呈现
+                NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:lastQuestionText] invertedSet];
+                NSString *wd = [lastQuestionText stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
+                NSString *urlString = [NSString stringWithFormat:@"https://m.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=%@&inputT=1696&rsv_sug4=1697", wd];
+                [UIApplication sharedApplication].xy_suspensionWebView.urlString = urlString;
+            };
+           
+        }
+    }]];
+    [arc addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:NULL]];
+    [[UIViewController xy_topViewController] presentViewController:arc animated:YES completion:nil];
+    
+    TTFQuizShowLiveRoomViewController *vc = (TTFQuizShowLiveRoomViewController *)v;
+    NSError *error = nil;
+    /// 监听显示答案的事件
+    [vc aspect_hookSelector:@selector(showAnswerWithQuestionAnswerUnit:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, id questionAnswerUnit) {
+        
+    } error:&error];
+    
+    /// 监听显示问题
+    [vc aspect_hookSelector:@selector(showQuestionWithQuestionAnswerUnit:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, id questionAnswerUnit) {
+        if (!vc) {
+            return;
+        }
+        // 获取问题视图
+        TTFQuestionAnswerView *qv = vc.questionAnswerView;
+        // 问题视图上显示问题的label
+        NSString *questionText = qv.questionLabel.text;
+        DLog(@"%@", questionText);
+        if (questionText.length && ![lastQuestionText isEqualToString:questionText]) {
+            lastQuestionText = questionText;
+            if (auxiliary1Block) {
+                auxiliary1Block(questionText);
+            }
+        }
+        // 问答单元
+        TTFQuestionAnswerUnit *unit = qv.questionAnswerUnit;
+        // 问题结构
+        TTFQuestionStruct *questionStruct = unit.question;
+        DLog(@"TTFQuestionStruct:%@", questionStruct);
+        // 问题跟踪
+        TTFQuestionTrace *questionTrace = unit.questionTrace;
+        DLog(@"TTFQuestionTrace:%@", questionTrace);
+        // 答案结构
+        TTFAnswerStruct *answerStruct = unit.answer;
+        DLog(@"TTFAnswerStruct:%@", answerStruct);
+        // 答案跟踪
+        TTFAnswerTrace *answerTrace = unit.answerTrace;
+        DLog(@"TTFAnswerTrace:%@", answerTrace);
+        
+        
+        /// 存放答案选项的视图，每个
+        NSArray<TTFQuestionOptionView *> *optionsViews = vc.questionAnswerView.optionViews;
+        
+        for (TTFQuestionOptionView *optionView in optionsViews) {
+            
+            NSLog(@"%@", optionView);
+        }
+        
+    } error:&error];
+    
+    /// 开启定时器打印问题
+//    UIViewController *viewController = (UIViewController *)vc;
+//    [AutoTimer startTimerWithIdentifier:[NSString stringWithFormat:@"%p", vc] fireTime:0.0 timeInterval:1.0 queue:dispatch_get_main_queue() repeats:YES actionOption:AutoTimerActionOptionGiveUp block:^{
+//        // 获取问题视图
+//        TTFQuestionAnswerView *qv = vc.questionAnswerView;
+//        // 问题视图上显示问题的label
+//        NSString *questionText = qv.questionLabel.text;
+//        DLog(@"%@", questionText);
+//        if (questionText.length && ![lastQuestionText isEqualToString:questionText]) {
+//            lastQuestionText = questionText;
+//            if (auxiliary1Block) {
+//                auxiliary1Block(questionText);
+//            }
+//        }
+//        // 问答单元
+//       TTFQuestionAnswerUnit *unit = qv.questionAnswerUnit;
+//        // 问题结构
+//        TTFQuestionStruct *questionStruct = unit.question;
+//        DLog(@"TTFQuestionStruct:%@", questionStruct);
+//        // 问题跟踪
+//        TTFQuestionTrace *questionTrace = unit.questionTrace;
+//        DLog(@"TTFQuestionTrace:%@", questionTrace);
+//        // 答案结构
+//        TTFAnswerStruct *answerStruct = unit.answer;
+//        DLog(@"TTFAnswerStruct:%@", answerStruct);
+//        // 答案跟踪
+//        TTFAnswerTrace *answerTrace = unit.answerTrace;
+//        DLog(@"TTFAnswerTrace:%@", answerTrace);
+//
+//
+//        /// 存放答案选项的视图，每个
+//        NSArray<TTFQuestionOptionView *> *optionsViews = vc.questionAnswerView.optionViews;
+//
+//        for (TTFQuestionOptionView *optionView in optionsViews) {
+//
+//            NSLog(@"%@", optionView);
+//        }
+//
+//    }];
+
+    [NSClassFromString(@"TTFQuestionOptionView") aspect_hookSelector:@selector(beClicked:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, id arg){
+        NSLog(@"答案被选中:%@", arg);
+    } error:&error];
+    
+    
+    /// 用户是否需要答案
+    [NSClassFromString(@"TTFQuestionAnswerUnit") aspect_hookSelector:NSSelectorFromString(@"isUserNeedAnswer") withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info) {
+        BOOL res = YES;
+        [[info originalInvocation] setReturnValue:&res];
+    } error:&error];
+    
+    /// 用户回答正确吗
+//    [NSClassFromString(@"TTFQuestionAnswerUnit") aspect_hookSelector:NSSelectorFromString(@"isUserAnswerCorrect") withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info) {
+//        BOOL res = YES;
+//        [[info originalInvocation] setReturnValue:&res];
+//    } error:&error];
+//
+//    [NSClassFromString(@"TTFQuestionAnswerUnit") aspect_hookSelector:NSSelectorFromString(@"isUserAnswerCorrect") withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info) {
+//        BOOL res = YES;
+//        [[info originalInvocation] setReturnValue:&res];
+//    } error:&error];
+//
+//    /// 用户可以回答吗
+//    [NSClassFromString(@"TTFQuestionAnswerUnit") aspect_hookSelector:NSSelectorFromString(@"canAnswer") withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info) {
+//        BOOL res = YES;
+//        [[info originalInvocation] setReturnValue:&res];
+//    } error:&error];
+    
+    /// 获取问题（TTFQuestionStruct中的text属性是就是问题）
+//    [NSClassFromString(@"TTFQuestionStruct") aspect_hookSelector:NSSelectorFromString(@"text") withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info) {
+//
+//        NSLog(@"%@", info);
+//    } error:&error];
+    
+    
+    [NSClassFromString(@"TTFQuestionAnswerUnit") aspect_hookSelector:NSSelectorFromString(@"_submitAnswerToServerWithOptions:") withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, id arg) {
+        NSLog(@"%@", arg);
+    } error:&error];
+    
+    [NSClassFromString(@"TTFQuestionAnswerUnit") aspect_hookSelector:NSSelectorFromString(@"submitAnswerWithOptions:") withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, id arg) {
+        NSLog(@"%@", arg);
+    } error:&error];
+    
+    
+    // 揭示答案
+    [NSClassFromString(@"TTFQuestionAnswerUnit") aspect_hookSelector:NSSelectorFromString(@"revealAnswer:") withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, id answer) {
+        NSLog(@"%@", answer);
+    } error:&error];
+    
+    /// 复活
+    [NSClassFromString(@"TTFDashboardViewController") aspect_hookSelector:NSSelectorFromString(@"resurrection:") withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, id arg) {
+        NSLog(@"%@", arg);
+    } error:&error];
+    
+    
+}
 
 static __attribute__((constructor)) void entry() {
     
@@ -55,22 +233,12 @@ static __attribute__((constructor)) void entry() {
         [ExceptionUtils configExceptionHandler];
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            SuspensionMenuWindow *menuView = [[SuspensionMenuWindow alloc] initWithFrame:CGRectMake(0, 0, 300, 300) itemSize:CGSizeMake(50, 50)];
+            
+            XYSuspensionMenu *menuView = [[XYSuspensionMenu alloc] initWithFrame:CGRectMake(0, 0, 300, 300) itemSize:CGSizeMake(50, 50)];
             [menuView.centerButton setBackgroundColor:[UIColor redColor]];
             menuView.shouldOpenWhenViewWillAppear = NO;
             menuView.shouldHiddenCenterButtonWhenOpen = YES;
             menuView.shouldCloseWhenDeviceOrientationDidChange = YES;
-            {
-                HypotenuseAction *item = [HypotenuseAction actionWithType:1 handler:^(HypotenuseAction * _Nonnull action, SuspensionMenuView * _Nonnull menuView) {
-                    NSLog(@"%@", menuView);
-                    [ExceptionUtils openTestWindow];
-                    [menuView close];
-                }];
-                [menuView addAction:item];
-                [item.hypotenuseButton setTitle:@"Debug\n window" forState:UIControlStateNormal];
-                [item.hypotenuseButton setBackgroundColor:[UIColor whiteColor]];
-                item.hypotenuseButton.layer.cornerRadius = 10.0;
-            }
             {
                 HypotenuseAction *item1 = [HypotenuseAction actionWithType:1 handler:^(HypotenuseAction * _Nonnull action, SuspensionMenuView * _Nonnull menuView) {
                     FoldersViewController *vc = [[FoldersViewController alloc] initWithRootDirectory:NSHomeDirectory()];
@@ -90,7 +258,8 @@ static __attribute__((constructor)) void entry() {
                 HypotenuseAction *item = [HypotenuseAction actionWithType:1 handler:^(HypotenuseAction * _Nonnull action, SuspensionMenuView * _Nonnull menuView) {
                     UIViewController *vc = [UIViewController xy_topViewController];
                     if ([vc isKindOfClass:NSClassFromString(@"TTFQuizShowLiveRoomViewController")]) {
-                        [MBProgressHUD xy_showMessage:@"TTFQuizShowLiveRoomViewController 在展示"];
+                        hookFunc(vc);
+                        [MBProgressHUD xy_showMessage:@"已开启"];
                     }
                     else if ([vc isKindOfClass:NSClassFromString(@"TTFDashboardViewController")]) {
                         UIViewController *liveVc = [vc invoke:NSStringFromSelector(@selector(curQuizShowLiveRoomVC))];
@@ -105,7 +274,21 @@ static __attribute__((constructor)) void entry() {
                     
                 }];
                 [menuView addAction:item];
-                [item.hypotenuseButton setTitle:@"英雄直播" forState:UIControlStateNormal];
+                [item.hypotenuseButton setTitle:@"英雄直播辅助" forState:UIControlStateNormal];
+                [item.hypotenuseButton setBackgroundColor:[UIColor whiteColor]];
+                item.hypotenuseButton.layer.cornerRadius = 10.0;
+            }
+            {
+                HypotenuseAction *item = [HypotenuseAction actionWithType:1 handler:^(HypotenuseAction * _Nonnull action, SuspensionMenuView * _Nonnull menuView) {
+                    UIViewController *vc = [UIViewController xy_topViewController];
+                    if (![vc isKindOfClass:NSClassFromString(@"TTFQuizShowLiveRoomViewController")]) {
+                        [NSClassFromString(@"TTFQuizShowLiveRoomViewController") prepareForQuizShowLiveRoom];
+                    }
+                    [menuView close];
+                    
+                }];
+                [menuView addAction:item];
+                [item.hypotenuseButton setTitle:@"进入英雄直播间" forState:UIControlStateNormal];
                 [item.hypotenuseButton setBackgroundColor:[UIColor whiteColor]];
                 item.hypotenuseButton.layer.cornerRadius = 10.0;
             }
@@ -121,12 +304,26 @@ static __attribute__((constructor)) void entry() {
                 [item.hypotenuseButton setTitle:@"Console" forState:UIControlStateNormal];
                 
             }
+            
+            {
+                HypotenuseAction *item = [HypotenuseAction actionWithType:1 handler:^(HypotenuseAction * _Nonnull action, SuspensionMenuView * _Nonnull menuView) {
+                    [[UIApplication sharedApplication] xy_toggleWebViewWithCompletion:nil];
+                }];
+                [menuView addAction:item];
+                item.hypotenuseButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+                [item.hypotenuseButton setBackgroundColor:[UIColor blackColor]];
+                [item.hypotenuseButton setTitle:@"test webview" forState:UIControlStateNormal];
+                
+            }
             [menuView showWithCompetion:NULL];
             
         });
         
     }];
+    
 }
+
+
 
 
 CHDeclareMethod1(void, TTCollectionPageViewController, viewDidAppear, BOOL, animated)
@@ -135,10 +332,10 @@ CHDeclareMethod1(void, TTCollectionPageViewController, viewDidAppear, BOOL, anim
     
     [MBProgressHUD xy_showMessage:@"TTCollectionPageViewController"];
 }
-
+// 手动触发左侧返回按钮时调
 CHDeclareMethod0(void, TTFQuizShowLiveRoomViewController, closeLiveRoom) {
     // 不关闭百万问答页面
-    
+    CHSuper(0, TTFQuizShowLiveRoomViewController, closeLiveRoom);
     [MBProgressHUD xy_showMessage:@"答题时间到"];
 }
 
@@ -176,6 +373,50 @@ CHDeclareMethod1(void, TTFDashboardViewController, shareToFriend, id, arg1)
     });
     
 }
+
+/// 答题相关
+//CHDeclareClass(TTFQuestionAnswerUnit)
+//CHOptimizedMethod(0, self, BOOL, TTFQuestionAnswerUnit, isUserNeedAnswer) {
+//    
+//    BOOL isUserNeedAnswer = CHSuper(0, TTFQuestionAnswerUnit, isUserNeedAnswer);
+//    NSLog(@"isUserNeedAnswer: %hhd", isUserNeedAnswer);
+//    return YES;
+//}
+//
+//CHDeclareClass(TTFQuestionStruct)
+//CHOptimizedMethod(0, self, NSString *, TTFQuestionAnswerUnit, text) {
+//    
+//    NSString *text = CHSuper(0, TTFQuestionAnswerUnit, text);
+//    NSLog(@"答题: %hhd", text);
+//    [MBProgressHUD xy_showMessage:text];
+//    return text;
+//}
+//
+//CHOptimizedMethod(0, self, BOOL, TTFQuestionAnswerUnit, isUserAnswerCorrect) {
+//    
+//    BOOL isUserAnswerCorrect = CHSuper(0, TTFQuestionAnswerUnit, isUserAnswerCorrect);
+//    NSLog(@"用户回到正确吗: %hhd", isUserAnswerCorrect);
+//    return YES;
+//}
+//
+//CHOptimizedMethod(0, self, unsigned int, TTFQuestionAnswerUnit, userAnswerResult) {
+//    unsigned int userAnswerResult = CHSuper(0, TTFQuestionAnswerUnit, userAnswerResult);
+//    NSLog(@"用户回答结果: %d", userAnswerResult);
+//    return userAnswerResult;
+//}
+//
+//CHOptimizedMethod(0, self, BOOL, TTFQuestionAnswerUnit, canAnswer) {
+//    BOOL canAnswer = CHSuper(0, TTFQuestionAnswerUnit, canAnswer);
+//    NSLog(@"用户可以回答: %d", canAnswer);
+//    return canAnswer;
+//}
+//
+//CHOptimizedMethod(0, self, TTFQuestionStruct *, TTFQuestionAnswerUnit, question) {
+//    id question = CHSuper(0, TTFQuestionAnswerUnit, question);
+//    NSLog(@"question: %d", question);
+//    return question;
+//}
+//
 
 
 

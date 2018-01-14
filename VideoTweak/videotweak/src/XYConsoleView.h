@@ -3,7 +3,7 @@
 //  XYConsoleView
 //
 //  Created by xiaoyuan on 05/12/2017.
-//  Copyright © 2017 xiaoyuan. All rights reserved.
+//  Copyright © 2017 alpface. All rights reserved.
 //
 
 #import "XYSuspensionMenu.h"
@@ -22,16 +22,8 @@
             ##__VA_ARGS__);
 #      define NSLog(frmt, ...) xy_log((frmt), ##__VA_ARGS__)
 #else
-//#      define DLog(...)
-//#      define NSLog(...)
-#      define DLog(frmt, ...) \
-            xy_log( \
-            (@"<%s : %d> %s  " frmt), \
-            [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], \
-            __LINE__, \
-            __PRETTY_FUNCTION__,  \
-            ##__VA_ARGS__);
-#      define NSLog(frmt, ...) xy_log((frmt), ##__VA_ARGS__)
+#      define DLog(...)
+#      define NSLog(...)
 #endif
 
 FOUNDATION_EXPORT NSNotificationName const XYConsoleDidChangeLogNotification;

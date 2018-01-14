@@ -2,7 +2,7 @@
 //  VideoHeaders.h
 //  Video
 //
-//  Created by swae on 2018/1/13.
+//  Created by xiaoyuan on 2018/1/13.
 //  Copyright © 2018年 alpface. All rights reserved.
 //
 
@@ -437,6 +437,9 @@
 
 @end
 
+@class GPBMessage;
+
+
 
 @class CAGradientLayer, CAShapeLayer, NSMutableArray, NSString, TTFPlayer, TTFQuestionAnswerUnit, TTFResultTipsView, TTFTimeUpView, UIImageView, UILabel;
 
@@ -476,6 +479,7 @@
 - (id)initWithFrame:(struct CGRect)arg1;
 @property(nonatomic) BOOL isPlayerContainerViewAnimationFinish; // @synthesize isPlayerContainerViewAnimationFinish=_isPlayerContainerViewAnimationFinish;
 @property(nonatomic) BOOL isQAViewShow; // @synthesize isQAViewShow=_isQAViewShow;
+// 选择答案
 - (void)optionViewBeClicked:(id)arg1;
 @property(retain, nonatomic) NSMutableArray *optionViews; // @synthesize optionViews=_optionViews;
 @property(nonatomic) __weak TTFPlayer *player; // @synthesize player=_player;
@@ -1064,5 +1068,104 @@
 
 
 @end
+
+
+@class CADisplayLink, NSArray, TTFAnswerStruct, TTFAnswerTrace, TTFHeartBeatTrace, TTFQuestionStruct, TTFQuestionTrace, TTFQuizShowLiveRoomViewModel;
+
+/// 与回答问题相关的model类
+@interface TTFQuestionAnswerUnit : NSObject
+{
+    BOOL _userNeedAnswer;
+    BOOL _isUserAnswerCorrect;
+    id <TTFQuestionAnswerUnitDelegate> _delegate;
+    TTFQuizShowLiveRoomViewModel *_viewModel;
+    unsigned int _status;
+    TTFQuestionStruct *_question;
+    TTFAnswerStruct *_answer;
+    float _remainingAnswerTime;
+    NSArray *_userChoosenOptions;
+    TTFAnswerTrace *_answerTrace;
+    TTFHeartBeatTrace *_heartbeatTrace;
+    float _endTime;
+    CADisplayLink *_countdownDisplayLink;
+    int _retryCount;
+    int _retryTimeout;
+    int _retryIndex;
+    TTFQuestionTrace *_questionTrace;
+}
+
+- (void)_submitAnswerToServerWithOptions:(id)arg1;
+@property(retain, nonatomic) TTFAnswerStruct *answer; // @synthesize answer=_answer;
+- (void)answerTimeUp;
+@property(retain, nonatomic) TTFAnswerTrace *answerTrace; // @synthesize answerTrace=_answerTrace;
+- (void)beginAnswerCountdown;
+- (BOOL)canAnswer;
+@property(retain, nonatomic) CADisplayLink *countdownDisplayLink; // @synthesize countdownDisplayLink=_countdownDisplayLink;
+- (void)dealloc;
+@property(nonatomic) __weak id <TTFQuestionAnswerUnitDelegate> delegate; // @synthesize delegate=_delegate;
+@property(nonatomic) float endTime; // @synthesize endTime=_endTime;
+@property(retain, nonatomic) TTFHeartBeatTrace *heartbeatTrace; // @synthesize heartbeatTrace=_heartbeatTrace;
+- (id)init;
+- (id)initWithHeartbeatTrace:(id)arg1 currentTime:(long long)arg2 viewModel:(id)arg3;
+@property(nonatomic) BOOL isUserAnswerCorrect; // @synthesize isUserAnswerCorrect=_isUserAnswerCorrect;
+- (BOOL)isUserNeedAnswer;
+- (float)passTimeRate;
+@property(retain, nonatomic) TTFQuestionStruct *question; // @synthesize question=_question;
+@property(retain, nonatomic) TTFQuestionTrace *questionTrace; // @synthesize questionTrace=_questionTrace;
+@property(nonatomic) float remainingAnswerTime; // @synthesize remainingAnswerTime=_remainingAnswerTime;
+@property(nonatomic) int retryCount; // @synthesize retryCount=_retryCount;
+@property(nonatomic) int retryIndex; // @synthesize retryIndex=_retryIndex;
+@property(nonatomic) int retryTimeout; // @synthesize retryTimeout=_retryTimeout;
+- (void)revealAnswer:(id)arg1;
+@property(nonatomic) unsigned int status; // @synthesize status=_status;
+- (void)setUserChoosen:(id)arg1;
+@property(copy, nonatomic) NSArray *userChoosenOptions; // @synthesize userChoosenOptions=_userChoosenOptions;
+@property(nonatomic) BOOL userNeedAnswer; // @synthesize userNeedAnswer=_userNeedAnswer;
+@property(nonatomic) __weak TTFQuizShowLiveRoomViewModel *viewModel; // @synthesize viewModel=_viewModel;
+- (void)submitAnswerWithOptions:(id)arg1;
+- (unsigned int)userAnswerResult;
+
+@end
+
+@interface TTFAnswerTrace : NSObject
+{
+    BOOL _wsHt;
+    BOOL _isRight;
+    BOOL _useLife;
+    int _status;
+    int _auth;
+    NSString *_extra;
+    long long _aid;
+    long long _qid;
+    long long _optionId;
+    long long _rt;
+    long long _ht;
+    long long _startT;
+    long long _localOid;
+    long long _showT;
+    long long _leftT;
+}
+
+@property(nonatomic) long long aid; // @synthesize aid=_aid;
+@property(nonatomic) int auth; // @synthesize auth=_auth;
+@property(copy, nonatomic) NSString *extra; // @synthesize extra=_extra;
+@property(nonatomic) long long ht; // @synthesize ht=_ht;
+- (id)initWithHeartBeatTrace:(id)arg1;
+@property(nonatomic) BOOL isRight; // @synthesize isRight=_isRight;
+@property(nonatomic) long long leftT; // @synthesize leftT=_leftT;
+@property(nonatomic) long long localOid; // @synthesize localOid=_localOid;
+// 答案选项id
+@property(nonatomic) long long optionId; // @synthesize optionId=_optionId;
+@property(nonatomic) long long qid; // @synthesize qid=_qid;
+@property(nonatomic) long long rt; // @synthesize rt=_rt;
+@property(nonatomic) long long showT; // @synthesize showT=_showT;
+@property(nonatomic) long long startT; // @synthesize startT=_startT;
+@property(nonatomic) int status; // @synthesize status=_status;
+@property(nonatomic) BOOL useLife; // @synthesize useLife=_useLife;
+@property(nonatomic) BOOL wsHt; // @synthesize wsHt=_wsHt;
+- (id)traceDict;
+
+@end
+
 
 #endif /* VideoHeaders_h */
