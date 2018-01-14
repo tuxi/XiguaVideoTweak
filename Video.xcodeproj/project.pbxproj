@@ -445,7 +445,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -rf /Users/swae/Desktop/work/Tweak/xiguavideo/new/Payload/Video.app ~/Library/Developer/Xcode/DerivedData/Video-ccmvyaieotmhkvbpiuykxqzhqluw/Build/Products/Debug-iphoneos/";
+			shellScript = "cp -rf ~/Desktop/work/Tweak/xiguavideo/new/Payload/Video.app ~/Library/Developer/Xcode/DerivedData/Video-ccmvyaieotmhkvbpiuykxqzhqluw/Build/Products/Debug-iphoneos/";
 		};
 /* End PBXShellScriptBuildPhase section */
 

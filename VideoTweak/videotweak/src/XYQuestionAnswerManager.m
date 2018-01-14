@@ -9,6 +9,14 @@
 #import "XYQuestionAnswerManager.h"
 #import "XYSuspensionWebView.h"
 
+static NSString * const XYRecordQuestionKey = @"questionKey";
+
+@interface XYQuestionAnswerManager()
+
+@property (nonatomic, strong) NSMutableDictionary *questionAnserDict;
+
+@end
+
 @implementation XYQuestionAnswerManager
 
 @dynamic manager;
@@ -40,6 +48,8 @@
     if (self.auxiliary1Block) {
         self.auxiliary1Block(questionText);
     }
+    
+    [self.class recordQuestion:_questionText];
 }
 
 //- (void)auxiliary1:(NSString *)questionText {
@@ -50,4 +60,21 @@
 //    [UIApplication sharedApplication].xy_suspensionWebView.urlString = urlString;
 //}
 
+/// 统计问题
++ (void)recordQuestion:(NSString *)questionText {
+    if (!questionText.length) {
+        return;
+    }
+    
+    NSMutableArray *questionArray = [[XYQuestionAnswerManager manager].questionAnserDict objectForKey:XYRecordQuestionKey];
+    if (!questionArray) {
+        questionArray = @[].mutableCopy;
+        [[XYQuestionAnswerManager manager].questionAnserDict setObject:questionArray forKey:XYRecordQuestionKey];
+    }
+    if ([questionArray containsObject:questionText]) {
+        return;
+    }
+    [questionArray addObject:questionText];
+    
+}
 @end

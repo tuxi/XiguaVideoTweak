@@ -44,8 +44,10 @@ class ViewController: NSViewController {
             self.questionTextView.string = str;
             let urlString = "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=\(str)&rsv_pq=9e3f8940000a7d93&rsv_t=6098P091FNMvH%2FbsQk%2FSuTNHaP7rcWfSF2ASrBryXd7sl7jojDw8SdIol04&rqlang=cn&rsv_enter=1&rsv_sug3=3&rsv_sug1=3&rsv_sug7=100"
             
-            let unsafeP = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet(charactersIn:"`#%^{}\"[]|\\<> ").inverted)
-            self.questionURL = URL(string:unsafeP!)!
+            guard let url  = urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet(charactersIn:"`#%^{}\"[]|\\<> ").inverted) else {
+                return;
+            }
+            self.questionURL = URL(string:url)
             self.lastClipboardContent = str;
             self.searchAction()
         }
