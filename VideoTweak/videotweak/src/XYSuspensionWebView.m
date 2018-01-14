@@ -50,7 +50,6 @@
         return webView;
     }
     [webView xy_showWithCompletion:^(BOOL finished) {
-//        [view.consoleTextView scrollRangeToVisible:NSMakeRange(view.consoleTextView.text.length, 1)];
         if (completion) {
             completion(finished);
         }
@@ -125,12 +124,12 @@
         UIWebView *webView  = [[UIWebView alloc] initWithFrame:CGRectZero];
         webView.translatesAutoresizingMaskIntoConstraints = NO;
         webView.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
-        UIScrollView *scrollView = webView.scrollView;
-        UIView *scrollSuperView = scrollView.superview;
-        if (scrollSuperView) {
-           [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[scrollView]|" options:kNilOptions metrics:nil views:@{@"scrollView": scrollView}]];
-            [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView]|" options:kNilOptions metrics:nil views:@{@"scrollView": scrollView}]];
-        }
+//        UIScrollView *scrollView = webView.scrollView;
+//        UIView *scrollSuperView = scrollView.superview;
+//        if (scrollSuperView) {
+//           [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[scrollView]|" options:kNilOptions metrics:nil views:@{@"scrollView": scrollView}]];
+//            [NSLayoutConstraint activateConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView]|" options:kNilOptions metrics:nil views:@{@"scrollView": scrollView}]];
+//        }
         _webView = webView;
     }
     return _webView;

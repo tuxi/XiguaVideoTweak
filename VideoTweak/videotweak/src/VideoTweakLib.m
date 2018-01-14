@@ -136,7 +136,7 @@ void hookFunc(UIViewController *v) {
         DLog(@"TTFAnswerTrace:%@", answerTrace);
         
         
-        /// 存放答案选项的视图，每个
+        /// 存放答案选项的视图
         NSArray<TTFQuestionOptionView *> *optionsViews = vc.questionAnswerView.optionViews;
         
         for (TTFQuestionOptionView *optionView in optionsViews) {
