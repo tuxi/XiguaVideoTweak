@@ -1167,5 +1167,45 @@
 
 @end
 
+//@interface TTFQuestionStruct : GPBMessage
+//{
+//}
+//
+//+ (id)descriptor;
+//
+//// Remaining properties
+//@property(nonatomic) long long activityId; // @dynamic activityId;
+//@property(nonatomic) long long commitDelay; // @dynamic commitDelay;
+//@property(retain, nonatomic) NSMutableArray *imageURLArray; // @dynamic imageURLArray;
+//@property(readonly, nonatomic) unsigned int imageURLArray_Count; // @dynamic imageURLArray_Count;
+//@property(retain, nonatomic) NSMutableArray *optionsArray; // @dynamic optionsArray;
+//@property(readonly, nonatomic) unsigned int optionsArray_Count; // @dynamic optionsArray_Count;
+//@property(nonatomic) long long questionId; // @dynamic questionId;
+//@property(nonatomic) long long questionStartTsMs; // @dynamic questionStartTsMs;
+//@property(copy, nonatomic) NSString *text; // @dynamic text;
+//@property(nonatomic) long long timeLimit; // @dynamic timeLimit;
+//@property(nonatomic) long long uuQuestionId; // @dynamic uuQuestionId;
+//@property(retain, nonatomic) NSMutableArray *videoURLArray; // @dynamic videoURLArray;
+//@property(readonly, nonatomic) unsigned int videoURLArray_Count; // @dynamic videoURLArray_Count;
+//
+//@end
+
+//@interface TTFAnswerStruct : GPBMessage
+//{
+//}
+//
+//+ (id)descriptor;
+//
+//// Remaining properties
+//@property(nonatomic) long long activityId; // @dynamic activityId;
+//@property(nonatomic) long long answerStartTsMs; // @dynamic answerStartTsMs;
+//@property(retain, nonatomic) NSMutableArray *optionsArray; // @dynamic optionsArray;
+//@property(readonly, nonatomic) unsigned int optionsArray_Count; // @dynamic optionsArray_Count;
+//@property(nonatomic) long long questionId; // @dynamic questionId;
+//@property(nonatomic) long long useLifeUsers; // @dynamic useLifeUsers;
+//@property(nonatomic) long long uuQuestionId; // @dynamic uuQuestionId;
+//
+//@end
+
 
 #endif /* VideoHeaders_h */

@@ -146,7 +146,7 @@
 
 - (void)commonInit {
     self.leanEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-    _lastScale = 1.0;
+    self.lastScale = 1.0;
     self.backgroundColor = [UIColor whiteColor];
     self.webView.backgroundColor = [UIColor whiteColor];
     UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchView:)];
@@ -182,7 +182,7 @@
     if ((gesture.state == UIGestureRecognizerStateEnded) ||
         (gesture.state == UIGestureRecognizerStateCancelled)) {
         
-        _lastScale =_lastScale*gesture.scale;
+        self.lastScale =_lastScale*gesture.scale;
         
         [self checkTargetPosition];
     }
@@ -251,6 +251,16 @@
         _request = request;
     }
     return _request;
+}
+
+- (void)setLastScale:(CGFloat)lastScale {
+    if (lastScale == _lastScale) {
+        return;
+    }
+    _lastScale = lastScale;
+    self.webView.scrollView.minimumZoomScale = self.lastScale;
+    self.webView.scrollView.maximumZoomScale = self.lastScale;
+    self.webView.scrollView.zoomScale = self.lastScale;
 }
 
 - (void)setUrlString:(NSString *)urlString {

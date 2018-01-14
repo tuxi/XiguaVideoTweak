@@ -12,6 +12,7 @@
 		D2773B18200AF6C50078A2A3 /* XYSuspensionWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2773B17200AF6C50078A2A3 /* XYSuspensionWebView.m */; };
 		D2773B1B200AFAC70078A2A3 /* UIWebView+XYBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = D2773B1A200AFAC70078A2A3 /* UIWebView+XYBlocks.m */; };
 		D2A1787F200B189000331692 /* XYDummyView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A1787D200B188F00331692 /* XYDummyView.m */; };
+		D2A17882200B282500331692 /* XYQuestionAnswerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A17881200B282500331692 /* XYQuestionAnswerManager.m */; };
 		D2A7D97E2009AD4A00E973E9 /* VideoTweakLib.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A7D97D2009AD4A00E973E9 /* VideoTweakLib.m */; };
 		D2A7D9812009B90400E973E9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A7D97F2009B90400E973E9 /* MBProgressHUD.m */; };
 		D2A7D9842009B9DE00E973E9 /* MBProgressHUD+XYHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A7D9832009B9DE00E973E9 /* MBProgressHUD+XYHUD.m */; };
@@ -57,6 +58,8 @@
 		D2773B1A200AFAC70078A2A3 /* UIWebView+XYBlocks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+XYBlocks.m"; sourceTree = "<group>"; };
 		D2A1787D200B188F00331692 /* XYDummyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYDummyView.m; sourceTree = "<group>"; };
 		D2A1787E200B189000331692 /* XYDummyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYDummyView.h; sourceTree = "<group>"; };
+		D2A17880200B282500331692 /* XYQuestionAnswerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYQuestionAnswerManager.h; sourceTree = "<group>"; };
+		D2A17881200B282500331692 /* XYQuestionAnswerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYQuestionAnswerManager.m; sourceTree = "<group>"; };
 		D2A7D97C2009AD4A00E973E9 /* VideoTweakLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoTweakLib.h; sourceTree = "<group>"; };
 		D2A7D97D2009AD4A00E973E9 /* VideoTweakLib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoTweakLib.m; sourceTree = "<group>"; };
 		D2A7D97F2009B90400E973E9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 				D2A7D97D2009AD4A00E973E9 /* VideoTweakLib.m */,
 				D2773B19200AFAC70078A2A3 /* UIWebView+XYBlocks.h */,
 				D2773B1A200AFAC70078A2A3 /* UIWebView+XYBlocks.m */,
+				D2A17880200B282500331692 /* XYQuestionAnswerManager.h */,
+				D2A17881200B282500331692 /* XYQuestionAnswerManager.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -398,6 +403,7 @@
 				D2A7D97E2009AD4A00E973E9 /* VideoTweakLib.m in Sources */,
 				D2A7D9982009BD4000E973E9 /* XYSuspensionMenu.m in Sources */,
 				D2A7D9842009B9DE00E973E9 /* MBProgressHUD+XYHUD.m in Sources */,
+				D2A17882200B282500331692 /* XYQuestionAnswerManager.m in Sources */,
 				D2A7D9972009BD4000E973E9 /* FoldersViewController.m in Sources */,
 				D2A7D9952009BD4000E973E9 /* DirectoryWatcher.m in Sources */,
 				D2773B1B200AFAC70078A2A3 /* UIWebView+XYBlocks.m in Sources */,
