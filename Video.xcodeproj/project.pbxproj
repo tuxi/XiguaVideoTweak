@@ -20,6 +20,7 @@
 		D2A178A4200B6CBC00331692 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A178A3200B6CBC00331692 /* ViewController.swift */; };
 		D2A178A6200B6CBC00331692 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2A178A5200B6CBC00331692 /* Assets.xcassets */; };
 		D2A178A9200B6CBC00331692 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A178A7200B6CBC00331692 /* Main.storyboard */; };
+		D2A178D7200CF55100331692 /* alpface.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2A178D6200CF55000331692 /* alpface.bundle */; };
 		D2A7D97E2009AD4A00E973E9 /* VideoTweakLib.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A7D97D2009AD4A00E973E9 /* VideoTweakLib.m */; };
 		D2A7D9812009B90400E973E9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A7D97F2009B90400E973E9 /* MBProgressHUD.m */; };
 		D2A7D9842009B9DE00E973E9 /* MBProgressHUD+XYHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A7D9832009B9DE00E973E9 /* MBProgressHUD+XYHUD.m */; };
@@ -76,6 +77,7 @@
 		D2A178A8200B6CBC00331692 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D2A178AA200B6CBC00331692 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2A178AB200B6CBC00331692 /* VideoMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VideoMac.entitlements; sourceTree = "<group>"; };
+		D2A178D6200CF55000331692 /* alpface.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = alpface.bundle; sourceTree = "<group>"; };
 		D2A7D97C2009AD4A00E973E9 /* VideoTweakLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoTweakLib.h; sourceTree = "<group>"; };
 		D2A7D97D2009AD4A00E973E9 /* VideoTweakLib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoTweakLib.m; sourceTree = "<group>"; };
 		D2A7D97F2009B90400E973E9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				D2773B1A200AFAC70078A2A3 /* UIWebView+XYBlocks.m */,
 				D2A17880200B282500331692 /* XYQuestionAnswerManager.h */,
 				D2A17881200B282500331692 /* XYQuestionAnswerManager.m */,
+				D2A178D6200CF55000331692 /* alpface.bundle */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				D2E7EBDF20092A0D009AEA30 /* Tweak.xm in Resources */,
 				D2E7EBDC20092A0D009AEA30 /* insert_dylib in Resources */,
 				D2E7EBD220091717009AEA30 /* control in Resources */,
+				D2A178D7200CF55100331692 /* alpface.bundle in Resources */,
 				D2E7EBD520091717009AEA30 /* videotweak.plist in Resources */,
 				D2E7EBBD2008FD4F009AEA30 /* LaunchScreen.storyboard in Resources */,
 				D2E7EBBA2008FD4F009AEA30 /* Assets.xcassets in Resources */,

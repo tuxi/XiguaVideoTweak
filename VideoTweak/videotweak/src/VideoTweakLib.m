@@ -187,7 +187,7 @@ void hookFunc(UIViewController *v) {
 //    }];
 
     [NSClassFromString(@"TTFQuestionOptionView") aspect_hookSelector:@selector(beClicked:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, UITapGestureRecognizer *tap){
-        NSLog(@"答案被选中:%@", arg);
+        NSLog(@"答案被选中:%@", tap);
     } error:&error];
     
     
@@ -254,7 +254,13 @@ static __attribute__((constructor)) void entry() {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
             XYSuspensionMenu *menuView = [[XYSuspensionMenu alloc] initWithFrame:CGRectMake(0, 0, 300, 300) itemSize:CGSizeMake(50, 50)];
-            [menuView.centerButton setBackgroundColor:[UIColor redColor]];
+            UIImage *iconImage = [UIImage imageNamed:@"alpface.bundle/menIcon.png"];
+            if (!iconImage) {
+                [menuView.centerButton setBackgroundColor:[UIColor redColor]];
+            }
+            else {
+                [menuView.centerButton setImage:iconImage forState:UIControlStateNormal];
+            }
             menuView.shouldOpenWhenViewWillAppear = NO;
             menuView.shouldHiddenCenterButtonWhenOpen = YES;
             menuView.shouldCloseWhenDeviceOrientationDidChange = YES;
@@ -278,7 +284,6 @@ static __attribute__((constructor)) void entry() {
                     UIViewController *vc = [UIViewController xy_topViewController];
                     if ([vc isKindOfClass:NSClassFromString(@"TTFQuizShowLiveRoomViewController")]) {
                         hookFunc(vc);
-                        [MBProgressHUD xy_showMessage:@"已开启"];
                     }
                     else if ([vc isKindOfClass:NSClassFromString(@"TTFDashboardViewController")]) {
                         UIViewController *liveVc = [vc invoke:NSStringFromSelector(@selector(curQuizShowLiveRoomVC))];
@@ -293,7 +298,7 @@ static __attribute__((constructor)) void entry() {
                     
                 }];
                 [menuView addAction:item];
-                [item.hypotenuseButton setTitle:@"英雄直播辅助" forState:UIControlStateNormal];
+                [item.hypotenuseButton setTitle:@"开启答题辅助" forState:UIControlStateNormal];
                 [item.hypotenuseButton setBackgroundColor:[UIColor whiteColor]];
                 item.hypotenuseButton.layer.cornerRadius = 10.0;
             }
@@ -326,12 +331,14 @@ static __attribute__((constructor)) void entry() {
             
             {
                 HypotenuseAction *item = [HypotenuseAction actionWithType:1 handler:^(HypotenuseAction * _Nonnull action, SuspensionMenuView * _Nonnull menuView) {
-                    [[UIApplication sharedApplication] xy_toggleWebViewWithCompletion:nil];
+                    [[UIApplication sharedApplication] xy_toggleWebViewWithCompletion:^(BOOL finished) {
+                        [menuView close];
+                    }];
                 }];
                 [menuView addAction:item];
                 item.hypotenuseButton.titleLabel.adjustsFontSizeToFitWidth = YES;
                 [item.hypotenuseButton setBackgroundColor:[UIColor blackColor]];
-                [item.hypotenuseButton setTitle:@"test webview" forState:UIControlStateNormal];
+                [item.hypotenuseButton setTitle:@"webview" forState:UIControlStateNormal];
                 
             }
             [menuView showWithCompetion:NULL];
