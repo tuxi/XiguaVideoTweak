@@ -15,12 +15,14 @@
 		D2A17882200B282500331692 /* XYQuestionAnswerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A17881200B282500331692 /* XYQuestionAnswerManager.m */; };
 		D2A17884200B31AE00331692 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D2A17883200B31AE00331692 /* README.md */; };
 		D2A17886200B34A300331692 /* img1.png in Resources */ = {isa = PBXBuildFile; fileRef = D2A17885200B34A200331692 /* img1.png */; };
-		D2A17888200B5AFE00331692 /* 2018-01-14 17_30_04.gif in Resources */ = {isa = PBXBuildFile; fileRef = D2A17887200B5AFD00331692 /* 2018-01-14 17_30_04.gif */; };
 		D2A178A2200B6CBC00331692 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A178A1200B6CBC00331692 /* AppDelegate.swift */; };
 		D2A178A4200B6CBC00331692 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A178A3200B6CBC00331692 /* ViewController.swift */; };
 		D2A178A6200B6CBC00331692 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2A178A5200B6CBC00331692 /* Assets.xcassets */; };
 		D2A178A9200B6CBC00331692 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A178A7200B6CBC00331692 /* Main.storyboard */; };
 		D2A178D7200CF55100331692 /* alpface.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2A178D6200CF55000331692 /* alpface.bundle */; };
+		D2A178DA200CFA8100331692 /* XYQuestionAnswerHook.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A178D9200CFA8100331692 /* XYQuestionAnswerHook.m */; };
+		D2A178DC200CFE2600331692 /* IMG_0863.PNG in Resources */ = {isa = PBXBuildFile; fileRef = D2A178DB200CFE2600331692 /* IMG_0863.PNG */; };
+		D2A178DE200CFF7400331692 /* 2018-01-15 23_25_24.gif in Resources */ = {isa = PBXBuildFile; fileRef = D2A178DD200CFF7400331692 /* 2018-01-15 23_25_24.gif */; };
 		D2A7D97E2009AD4A00E973E9 /* VideoTweakLib.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A7D97D2009AD4A00E973E9 /* VideoTweakLib.m */; };
 		D2A7D9812009B90400E973E9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A7D97F2009B90400E973E9 /* MBProgressHUD.m */; };
 		D2A7D9842009B9DE00E973E9 /* MBProgressHUD+XYHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A7D9832009B9DE00E973E9 /* MBProgressHUD+XYHUD.m */; };
@@ -69,7 +71,6 @@
 		D2A17881200B282500331692 /* XYQuestionAnswerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYQuestionAnswerManager.m; sourceTree = "<group>"; };
 		D2A17883200B31AE00331692 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D2A17885200B34A200331692 /* img1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img1.png; sourceTree = "<group>"; };
-		D2A17887200B5AFD00331692 /* 2018-01-14 17_30_04.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "2018-01-14 17_30_04.gif"; sourceTree = "<group>"; };
 		D2A1789F200B6CBC00331692 /* VideoMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2A178A1200B6CBC00331692 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2A178A3200B6CBC00331692 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +79,10 @@
 		D2A178AA200B6CBC00331692 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2A178AB200B6CBC00331692 /* VideoMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VideoMac.entitlements; sourceTree = "<group>"; };
 		D2A178D6200CF55000331692 /* alpface.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = alpface.bundle; sourceTree = "<group>"; };
+		D2A178D8200CFA8100331692 /* XYQuestionAnswerHook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYQuestionAnswerHook.h; sourceTree = "<group>"; };
+		D2A178D9200CFA8100331692 /* XYQuestionAnswerHook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYQuestionAnswerHook.m; sourceTree = "<group>"; };
+		D2A178DB200CFE2600331692 /* IMG_0863.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0863.PNG; sourceTree = "<group>"; };
+		D2A178DD200CFF7400331692 /* 2018-01-15 23_25_24.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "2018-01-15 23_25_24.gif"; sourceTree = "<group>"; };
 		D2A7D97C2009AD4A00E973E9 /* VideoTweakLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoTweakLib.h; sourceTree = "<group>"; };
 		D2A7D97D2009AD4A00E973E9 /* VideoTweakLib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoTweakLib.m; sourceTree = "<group>"; };
 		D2A7D97F2009B90400E973E9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
@@ -207,7 +212,8 @@
 				D2E7EB9E2008E468009AEA30 /* Info.plist */,
 				D2E7EB9F2008E468009AEA30 /* main.m */,
 				D2A17885200B34A200331692 /* img1.png */,
-				D2A17887200B5AFD00331692 /* 2018-01-14 17_30_04.gif */,
+				D2A178DB200CFE2600331692 /* IMG_0863.PNG */,
+				D2A178DD200CFF7400331692 /* 2018-01-15 23_25_24.gif */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -293,6 +299,8 @@
 				D2773B1A200AFAC70078A2A3 /* UIWebView+XYBlocks.m */,
 				D2A17880200B282500331692 /* XYQuestionAnswerManager.h */,
 				D2A17881200B282500331692 /* XYQuestionAnswerManager.m */,
+				D2A178D8200CFA8100331692 /* XYQuestionAnswerHook.h */,
+				D2A178D9200CFA8100331692 /* XYQuestionAnswerHook.m */,
 				D2A178D6200CF55000331692 /* alpface.bundle */,
 			);
 			path = src;
@@ -414,8 +422,9 @@
 				D2E7EB9D2008E468009AEA30 /* LaunchScreen.storyboard in Resources */,
 				D2A17886200B34A300331692 /* img1.png in Resources */,
 				D2E7EB9A2008E468009AEA30 /* Assets.xcassets in Resources */,
-				D2A17888200B5AFE00331692 /* 2018-01-14 17_30_04.gif in Resources */,
+				D2A178DC200CFE2600331692 /* IMG_0863.PNG in Resources */,
 				D2E7EB982008E468009AEA30 /* Main.storyboard in Resources */,
+				D2A178DE200CFF7400331692 /* 2018-01-15 23_25_24.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +495,7 @@
 				D2E7EBB22008FD4F009AEA30 /* XYAppDelegate.m in Sources */,
 				D2A7D97E2009AD4A00E973E9 /* VideoTweakLib.m in Sources */,
 				D2A7D9982009BD4000E973E9 /* XYSuspensionMenu.m in Sources */,
+				D2A178DA200CFA8100331692 /* XYQuestionAnswerHook.m in Sources */,
 				D2A7D9842009B9DE00E973E9 /* MBProgressHUD+XYHUD.m in Sources */,
 				D2A17882200B282500331692 /* XYQuestionAnswerManager.m in Sources */,
 				D2A7D9972009BD4000E973E9 /* FoldersViewController.m in Sources */,
