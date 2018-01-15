@@ -4,7 +4,7 @@
 
 <img src = "https://github.com/alpface/XiguaVideoTweak/blob/master/Video/img1.png?raw=true" width = "1015" height = "682" alt = "Screenshot1.png"/>
 
-<img src = "https://github.com/alpface/XiguaVideoTweak/blob/master/Video/2018-01-15%23_25_24.gif?raw=true" width = "375" height = "667" alt = "Screenshot2.png"/>
+<img src = "https://github.com/alpface/XiguaVideoTweak/blob/develop/Video/2018-01-15%2023_25_24.gif?raw=true?raw=true" width = "375" height = "667" alt = "Screenshot2.png"/>
 
 #### 使用：
 - 点击英雄直播辅助时，iPhone上弹出一个webview；
