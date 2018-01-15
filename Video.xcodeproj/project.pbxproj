@@ -15,7 +15,6 @@
 		D2A17882200B282500331692 /* XYQuestionAnswerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A17881200B282500331692 /* XYQuestionAnswerManager.m */; };
 		D2A17884200B31AE00331692 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D2A17883200B31AE00331692 /* README.md */; };
 		D2A17886200B34A300331692 /* img1.png in Resources */ = {isa = PBXBuildFile; fileRef = D2A17885200B34A200331692 /* img1.png */; };
-		D2A17888200B5AFE00331692 /* 2018-01-14 17_30_04.gif in Resources */ = {isa = PBXBuildFile; fileRef = D2A17887200B5AFD00331692 /* 2018-01-14 17_30_04.gif */; };
 		D2A178A2200B6CBC00331692 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A178A1200B6CBC00331692 /* AppDelegate.swift */; };
 		D2A178A4200B6CBC00331692 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A178A3200B6CBC00331692 /* ViewController.swift */; };
 		D2A178A6200B6CBC00331692 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2A178A5200B6CBC00331692 /* Assets.xcassets */; };
@@ -72,7 +71,6 @@
 		D2A17881200B282500331692 /* XYQuestionAnswerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYQuestionAnswerManager.m; sourceTree = "<group>"; };
 		D2A17883200B31AE00331692 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D2A17885200B34A200331692 /* img1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img1.png; sourceTree = "<group>"; };
-		D2A17887200B5AFD00331692 /* 2018-01-14 17_30_04.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "2018-01-14 17_30_04.gif"; sourceTree = "<group>"; };
 		D2A1789F200B6CBC00331692 /* VideoMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2A178A1200B6CBC00331692 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2A178A3200B6CBC00331692 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -215,7 +213,6 @@
 				D2E7EB9F2008E468009AEA30 /* main.m */,
 				D2A17885200B34A200331692 /* img1.png */,
 				D2A178DB200CFE2600331692 /* IMG_0863.PNG */,
-				D2A17887200B5AFD00331692 /* 2018-01-14 17_30_04.gif */,
 				D2A178DD200CFF7400331692 /* 2018-01-15 23_25_24.gif */,
 			);
 			path = Video;
@@ -425,7 +422,6 @@
 				D2E7EB9D2008E468009AEA30 /* LaunchScreen.storyboard in Resources */,
 				D2A17886200B34A300331692 /* img1.png in Resources */,
 				D2E7EB9A2008E468009AEA30 /* Assets.xcassets in Resources */,
-				D2A17888200B5AFE00331692 /* 2018-01-14 17_30_04.gif in Resources */,
 				D2A178DC200CFE2600331692 /* IMG_0863.PNG in Resources */,
 				D2E7EB982008E468009AEA30 /* Main.storyboard in Resources */,
 				D2A178DE200CFF7400331692 /* 2018-01-15 23_25_24.gif in Resources */,
