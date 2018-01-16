@@ -21,7 +21,8 @@
 #### 主要更新日志
 - 2018-1-14 添加mac端监听剪切板改变，当运行VideoMac后：问题文本一旦发生改变，自动打开safari搜索问题！
 - 2018-1-15 更新WebView显示区域，优化UI
-- 2018-1-15 通过问题进行搜索，解析html，匹配问题选项，高亮筛选到的结果，如果快到时间时自动选择匹配到的最佳结果，未到时用户自行选择答案
+- 2018-1-16 让西瓜视频支持iPad，并在iPad上运行
+- 预计：2018-1-17 通过问题进行搜索，解析html，匹配问题选项，高亮筛选到的结果，如果快到时间时自动选择匹配到的最佳结果，未到时用户自行选择答案
 
 
 以下为部分实现:
@@ -160,3 +161,15 @@ void hookFunc(UIViewController *v) {
 
     
 ```
+#### 其他小技巧
+- 让西瓜视频支持iPad，并在iPad上运行
+> 由于西瓜视频只支持iPhone，而iPhone屏幕较小，展示一个WebView效果并不是很理想，那就让他在iPad上运行，下面是修改的方法：
+1. 修改Video.app文件下的info.plist文件，找到UIDeviceFamily这个key，将其对应的value(是一个Array)中的item0的值由1修改为2即可。
+2. 安装到iPad上，如果通过Run Script安装，此时会出现一些错误，可尝试先Clean下Xcode 将iPad上原有的西瓜视频删除后，再重新安装修改过的；
+3. 这里我遇到一个启动Crash的问题，问题如下:
+```
+ideo[1600:364634] *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: 'Could not find a storyboard named 'RootTabPad' in bundle NSBundle </var/containers/Bundle/Application/A8D878C3-F7B8-48C7-A530-48325F7F4346/Video.app> (loaded)'
+```
+问题原因: Video.app中缺少`RootTabPad.storyboardc`， 我在Video.app中搜索并未查找，但是找到了`RootTab.storyboardc`，尝试将`RootTab.storyboardc`修改为`RootTabPad.storyboardc`，然后重新安装到iPad，可正常运行
+
+
