@@ -57,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D0B764AE200DF0D200DDF93B /* XYVideoConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYVideoConst.h; sourceTree = "<group>"; };
 		D2773B09200A058A0078A2A3 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
 		D2773B0A200A058B0078A2A3 /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
 		D2773B0C200A0A590078A2A3 /* AutoTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoTimer.m; sourceTree = "<group>"; };
@@ -301,6 +302,7 @@
 				D2A17881200B282500331692 /* XYQuestionAnswerManager.m */,
 				D2A178D8200CFA8100331692 /* XYQuestionAnswerHook.h */,
 				D2A178D9200CFA8100331692 /* XYQuestionAnswerHook.m */,
+				D0B764AE200DF0D200DDF93B /* XYVideoConst.h */,
 				D2A178D6200CF55000331692 /* alpface.bundle */,
 			);
 			path = src;
@@ -333,7 +335,7 @@
 				D2E7EB892008E468009AEA30 /* Sources */,
 				D2E7EB8A2008E468009AEA30 /* Frameworks */,
 				D2E7EB8B2008E468009AEA30 /* Resources */,
-				D2E7EBA62008E493009AEA30 /* ShellScript */,
+				D2E7EBA62008E493009AEA30 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -447,18 +449,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		D2E7EBA62008E493009AEA30 /* ShellScript */ = {
+		D2E7EBA62008E493009AEA30 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -rf ~/Desktop/work/Tweak/xiguavideo/new/Payload/Video.app ~/Library/Developer/Xcode/DerivedData/Video-ccmvyaieotmhkvbpiuykxqzhqluw/Build/Products/Debug-iphoneos/";
+			shellScript = "cp -rf ~/Desktop/work/Theos/XiguaVideo/ipa/new/Payload/Video.app ~/Library/Developer/Xcode/DerivedData/Video-ezlrrnsnutzbnnawszxdzxncugqt/Build/Products/Debug-iphoneos/";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -740,6 +743,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NKW67GFDHM;
 				INFOPLIST_FILE = VideoTweak/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -758,6 +762,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NKW67GFDHM;
 				INFOPLIST_FILE = VideoTweak/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
