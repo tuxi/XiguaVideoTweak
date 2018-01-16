@@ -11,6 +11,8 @@
 
 #import <UIKit/UIKit.h>
 
+typedef id CDUnknownBlockType;
+
 @class NSDictionary, NSNumber, NSString;
 @class SSHttpOperation, ArticleAPNsManager;
 
@@ -414,6 +416,7 @@
 
 @class CAShapeLayer, TTFOptionStruct, UILabel;
 
+/// 2.2.9 api
 @interface TTFQuestionOptionView : UIView
 {
     BOOL _selected;
@@ -422,9 +425,11 @@
     TTFOptionStruct *_option;
     CAShapeLayer *_shapeLayer;
     UILabel *_choosenUserCountLabel;
+    UIButton *_chooseButton;
 }
 
 - (void)beClicked:(id)arg1;
+@property(retain, nonatomic) UIButton *chooseButton; // @synthesize chooseButton=_chooseButton;
 @property(retain, nonatomic) UILabel *choosenUserCountLabel; // @synthesize choosenUserCountLabel=_choosenUserCountLabel;
 @property(nonatomic) __weak id <TTFQuestionOptionViewDelegate> delegate; // @synthesize delegate=_delegate;
 - (void)initUIComponents;
@@ -443,10 +448,12 @@
 
 @class CAGradientLayer, CAShapeLayer, NSMutableArray, NSString, TTFPlayer, TTFQuestionAnswerUnit, TTFResultTipsView, TTFTimeUpView, UIImageView, UILabel;
 
+/// 已匹配2.2.9
 @interface TTFQuestionAnswerView : UIView <TTFQuestionOptionViewDelegate>
 {
     BOOL _isQAViewShow;
     BOOL _isPlayerContainerViewAnimationFinish;
+    BOOL _hasShowTimeUp; // 2.2.9添加的api
     id <TTFQAViewDelegate> _delegate;
     TTFQuestionAnswerUnit *_questionAnswerUnit;
     TTFPlayer *_player;
@@ -472,7 +479,9 @@
 @property(nonatomic) unsigned long curRemainingAnswerTime; // @synthesize curRemainingAnswerTime=_curRemainingAnswerTime;
 - (void)dealloc;
 @property(nonatomic) __weak id <TTFQAViewDelegate> delegate; // @synthesize delegate=_delegate;
+// 答案富文本
 - (id)getQuestionAttributedString;
+@property(nonatomic) BOOL hasShowTimeUp; // @synthesize hasShowTimeUp=_hasShowTimeUp;
 - (float)heightWithQuestionAnswerUnit:(id)arg1;
 - (void)hideWithAnimated:(BOOL)arg1;
 - (void)initUIComponents;
@@ -945,6 +954,8 @@
     
 @end
 
+
+
 @interface TTFQuizShowLiveRoomNetworkManager : NSObject
 {
 }
@@ -1072,6 +1083,7 @@
 
 @class CADisplayLink, NSArray, TTFAnswerStruct, TTFAnswerTrace, TTFHeartBeatTrace, TTFQuestionStruct, TTFQuestionTrace, TTFQuizShowLiveRoomViewModel;
 
+/// 2.2.9
 /// 与回答问题相关的model类
 @interface TTFQuestionAnswerUnit : NSObject
 {
@@ -1086,6 +1098,9 @@
     NSArray *_userChoosenOptions;
     TTFAnswerTrace *_answerTrace;
     TTFHeartBeatTrace *_heartbeatTrace;
+    /// 2.2.9添加
+    /// 缓冲区剩余回答时间
+    float _bufferRemainingAnswerTime;
     float _endTime;
     CADisplayLink *_countdownDisplayLink;
     int _retryCount;
@@ -1099,6 +1114,7 @@
 - (void)answerTimeUp;
 @property(retain, nonatomic) TTFAnswerTrace *answerTrace; // @synthesize answerTrace=_answerTrace;
 - (void)beginAnswerCountdown;
+@property(nonatomic) float bufferRemainingAnswerTime; // @synthesize bufferRemainingAnswerTime=_bufferRemainingAnswerTime;
 - (BOOL)canAnswer;
 @property(retain, nonatomic) CADisplayLink *countdownDisplayLink; // @synthesize countdownDisplayLink=_countdownDisplayLink;
 - (void)dealloc;
@@ -1225,6 +1241,232 @@
 
 
 
+/////////////// net work ///////////////
 
+/// url
+@interface TTFURLSetting : NSObject
+{
+}
+
++ (id)ansWinURL;
++ (id)checkInvicationCodeURL;
++ (id)commentBrowURL;
++ (id)commentPostURL;
++ (id)domainForType:(int)arg1;
++ (id)frontierURL;
++ (id)heartbeatURLWithActivityID:(long long)arg1;
++ (id)indexInfoURL;
++ (id)indexURL;
++ (id)inviteCodeURL;
++ (id)logURL;
++ (id)playURLsURLWithGroupID:(long long)arg1;
++ (id)quizShowInitURL;
++ (id)quizShowLeaveURL;
++ (id)rankURL;
++ (id)recoverURL;
++ (id)resurrectPageURL;
++ (id)settingsURL;
++ (id)shareAddLifeURL;
++ (id)shareToFriendsBaseURL;
++ (id)shareTypeURL;
++ (id)signUpURL;
++ (id)submitAnwserURL;
++ (id)userGuideURL;
++ (id)walletPageURL;
+
+@end
+
+
+@class NSDictionary, NSString, TTHttpRequest, TTRequestModel;
+
+@protocol TTMultipartFormData <NSObject>
+- (void)appendPartWithFileData:(NSData *)arg1 name:(NSString *)arg2 fileName:(NSString *)arg3 mimeType:(NSString *)arg4;
+- (void)appendPartWithFormData:(NSData *)arg1 name:(NSString *)arg2;
+@end
+
+
+@class AFHTTPRequestSerializer, NSString;
+@interface TTHttpMultipartFormData : NSObject <TTMultipartFormData>
+{
+}
+
+@end
+
+@protocol TTHTTPRequestSerializerProtocol <NSObject>
++ (NSObject<TTHTTPRequestSerializerProtocol> *)serializer;
+- (TTHttpRequest *)URLRequestWithRequestModel:(TTRequestModel *)arg1 commonParams:(NSDictionary *)arg2;
+- (TTHttpRequest *)URLRequestWithURL:(NSString *)arg1 headerField:(NSDictionary *)arg2 params:(NSDictionary *)arg3 method:(NSString *)arg4 constructingBodyBlock:(void (^)(id <TTMultipartFormData>))arg5 commonParams:(NSDictionary *)arg6;
+- (TTHttpRequest *)URLRequestWithURL:(NSString *)arg1 params:(id)arg2 method:(NSString *)arg3 constructingBodyBlock:(void (^)(id <TTMultipartFormData>))arg4 commonParams:(NSDictionary *)arg5;
+- (NSString *)userAgentString;
+@end
+
+
+
+@interface TTHTTPRequestSerializerBaseAFNetworking : NSObject <TTHTTPRequestSerializerProtocol>
+{
+    NSString *_defaultUserAgentString;
+    AFHTTPRequestSerializer *_realAFHTTPRequestSerializer;
+}
+
++ (id)serializer;
+- (id)URLRequestWithRequestModel:(id)arg1 commonParams:(id)arg2;
+- (id)URLRequestWithURL:(id)arg1 headerField:(id)arg2 params:(id)arg3 method:(id)arg4 constructingBodyBlock:(id)arg5 commonParams:(id)arg6;
+- (id)URLRequestWithURL:(id)arg1 params:(id)arg2 method:(id)arg3 constructingBodyBlock:(id)arg4 commonParams:(id)arg5;
+- (void)_buildRequestHeaders:(id)arg1;
+@property(copy, nonatomic) NSString *defaultUserAgentString; // @synthesize defaultUserAgentString=_defaultUserAgentString;
+- (id)init;
+@property(retain, nonatomic) AFHTTPRequestSerializer *realAFHTTPRequestSerializer; // @synthesize realAFHTTPRequestSerializer=_realAFHTTPRequestSerializer;
+- (id)userAgentString;
+
+@end
+
+
+
+@interface TTHTTPRequestSerializerBase : NSObject <TTHTTPRequestSerializerProtocol>
+{
+    NSObject<TTHTTPRequestSerializerProtocol> *_currentImpl;
+}
+
++ (id)hashRequest:(id)arg1 body:(id)arg2;
++ (id)serializer;
+- (id)URLRequestWithRequestModel:(id)arg1 commonParams:(id)arg2;
+- (id)URLRequestWithURL:(id)arg1 headerField:(id)arg2 params:(id)arg3 method:(id)arg4 constructingBodyBlock:(id)arg5 commonParams:(id)arg6;
+- (id)URLRequestWithURL:(id)arg1 params:(id)arg2 method:(id)arg3 constructingBodyBlock:(id)arg4 commonParams:(id)arg5;
+@property(retain, nonatomic) NSObject<TTHTTPRequestSerializerProtocol> *currentImpl; // @synthesize currentImpl=_currentImpl;
+- (id)init;
+- (id)userAgentString;
+
+@end
+
+
+@interface TTFHTTPRequestSerializer : TTHTTPRequestSerializerBase
+{
+    NSString *_defaultUserAgent;
+}
+
++ (id)serializer;
+- (id)URLRequestWithRequestModel:(id)arg1 commonParams:(id)arg2;
+- (id)URLRequestWithURL:(id)arg1 headerField:(id)arg2 params:(id)arg3 method:(id)arg4 constructingBodyBlock:(id)arg5 commonParams:(id)arg6;
+- (id)URLRequestWithURL:(id)arg1 params:(id)arg2 method:(id)arg3 constructingBodyBlock:(id)arg4 commonParams:(id)arg5;
+- (id)_transferedURL:(id)arg1;
+- (void)applyCookieHeader:(id)arg1;
+- (void)applyCookieHeaderFrom:(id)arg1 toRequest:(id)arg2;
+- (void)buildRequestHeaders:(id)arg1;
+- (void)buildRequestHeaders:(id)arg1 parameters:(id)arg2;
+@property(copy, nonatomic) NSString *defaultUserAgent; // @synthesize defaultUserAgent=_defaultUserAgent;
+- (id)defaultUserAgentString;
+
+@end
+
+
+
+@interface TTFBinaryHTTPRequestSerializer : TTFHTTPRequestSerializer
+{
+}
+
++ (void)configTimeout:(double)arg1;
+- (id)URLRequestWithURL:(id)idarg1 headerField:(id)arg2 params:(id)arg3 method:(id)arg4 constructingBodyBlock:(id)arg5 commonParams:(id)arg6;
+- (id)URLRequestWithURL:(id)arg1 params:(id)arg2 method:(id)arg3 constructingBodyBlock:(id)arg4 commonParams:(id)arg5;
+
+@end
+
+@interface TTNetworkManager : NSObject
+{
+    BOOL _pureChannelForJSONResponseSerializer;
+    BOOL _isEncryptQuery;
+    BOOL _isEncryptQueryInHeader;
+    BOOL _isKeepPlainQuery;
+    Class _defaultJSONResponseSerializerClass;
+    Class _defaultResponseModelResponseSerializerClass;
+    Class _defaultBinaryResponseSerializerClass;
+    Class _defaultRequestSerializerClass;
+    Class _defaultResponseRreprocessorClass;
+    NSDictionary *_commonParams;
+    CDUnknownBlockType _commonParamsblock;
+    CDUnknownBlockType _urlTransformBlock;
+    CDUnknownBlockType _urlHashBlock;
+}
+
++ (id)GetCityName;
++ (CDUnknownBlockType)GetDomainBlock;
++ (CDUnknownBlockType)MonitorBlock;
++ (int)getLibraryImpl;
++ (BOOL)httpDnsEnabled;
++ (void)setCityName:(id)arg1;
++ (void)setGetDomainBlock:(CDUnknownBlockType)arg1;
++ (void)setHttpDnsEnabled:(BOOL)arg1;
++ (void)setLibraryImpl:(int)arg1;
++ (void)setMonitorBlock:(CDUnknownBlockType)arg1;
++ (id)shareInstance;
++ (id)sharedInstance;
+@property(copy, nonatomic) NSDictionary *commonParams; // @synthesize commonParams=_commonParams;
+@property(copy, nonatomic) CDUnknownBlockType commonParamsblock; // @synthesize commonParamsblock=_commonParamsblock;
+@property(retain, nonatomic) Class defaultBinaryResponseSerializerClass; // @synthesize defaultBinaryResponseSerializerClass=_defaultBinaryResponseSerializerClass;
+@property(retain, nonatomic) Class defaultJSONResponseSerializerClass; // @synthesize defaultJSONResponseSerializerClass=_defaultJSONResponseSerializerClass;
+@property(retain, nonatomic) Class defaultRequestSerializerClass; // @synthesize defaultRequestSerializerClass=_defaultRequestSerializerClass;
+@property(retain, nonatomic) Class defaultResponseModelResponseSerializerClass; // @synthesize defaultResponseModelResponseSerializerClass=_defaultResponseModelResponseSerializerClass;
+@property(retain, nonatomic) Class defaultResponseRreprocessorClass; // @synthesize defaultResponseRreprocessorClass=_defaultResponseRreprocessorClass;
+@property(nonatomic) BOOL isEncryptQuery; // @synthesize isEncryptQuery=_isEncryptQuery;
+@property(nonatomic) BOOL isEncryptQueryInHeader; // @synthesize isEncryptQueryInHeader=_isEncryptQueryInHeader;
+@property(nonatomic) BOOL isKeepPlainQuery; // @synthesize isKeepPlainQuery=_isKeepPlainQuery;
+@property(nonatomic) BOOL pureChannelForJSONResponseSerializer; // @synthesize pureChannelForJSONResponseSerializer=_pureChannelForJSONResponseSerializer;
+@property(copy, nonatomic) CDUnknownBlockType urlHashBlock; // @synthesize urlHashBlock=_urlHashBlock;
+@property(copy, nonatomic) CDUnknownBlockType urlTransformBlock; // @synthesize urlTransformBlock=_urlTransformBlock;
+- (id)transferedURL:(id)arg1;
+
+@end
+
+
+@class TTNetworkHTTPClient;
+
+@interface TTNetworkManagerAFNetworking : TTNetworkManager
+{
+    TTNetworkHTTPClient *_binaryClient;
+    TTNetworkHTTPClient *_jsonModelClient;
+}
+
++ (id)shareInstance;
+@property(retain, nonatomic) TTNetworkHTTPClient *binaryClient; // @synthesize binaryClient=_binaryClient;
+- (void)clearHttpCache;
+- (void)creatAppInfo;
+- (void)doCommand:(id)arg1;
+- (void)doRouteSelection;
+- (id)downloadTaskWithRequest:(id)arg1 parameters:(id)arg2 headerField:(id)arg3 needCommonParams:(BOOL)arg4 progress:(id *)arg5 destination:(id)arg6 autoResume:(BOOL)arg7 completionHandler:(CDUnknownBlockType)arg8;
+- (id)downloadTaskWithRequest:(id)arg1 parameters:(id)arg2 headerField:(id)arg3 needCommonParams:(BOOL)arg4 progress:(id *)arg5 destination:(id)arg6 completionHandler:(CDUnknownBlockType)arg7;
+- (void)enableVerboseLog;
+- (long long)getHttpDiskCacheSize;
+- (id)init;
+@property(retain, nonatomic) TTNetworkHTTPClient *jsonModelClient; // @synthesize jsonModelClient=_jsonModelClient;
+- (id)needCommonParams:(BOOL)arg1;
+- (id)pickCommonParams;
+- (id)requestForBinaryWithResponse:(id)arg1 params:(id)arg2 method:(id)arg3 needCommonParams:(BOOL)arg4 callback:(CDUnknownBlockType)arg5;
+- (id)requestForBinaryWithResponse:(id)arg1 params:(id)arg2 method:(id)arg3 needCommonParams:(BOOL)arg4 headerField:(id)arg5 enableHttpCache:(BOOL)arg6 requestSerializer:(Class)arg7 responseSerializer:(Class)arg8 progress:(id *)arg9 callback:(CDUnknownBlockType)arg10;
+- (id)requestForBinaryWithResponse:(id)arg1 params:(id)arg2 method:(id)arg3 needCommonParams:(BOOL)arg4 requestSerializer:(Class)arg5 responseSerializer:(Class)arg6 autoResume:(BOOL)arg7 callback:(CDUnknownBlockType)arg8;
+- (id)requestForBinaryWithURL:(id)arg1 params:(id)arg2 method:(id)arg3 needCommonParams:(BOOL)arg4 callback:(CDUnknownBlockType)arg5;
+/*
+ 终
+ */
+- (id)requestForBinaryWithURL:(id)arg1 params:(id)arg2 method:(id)arg3 needCommonParams:(BOOL)arg4 requestSerializer:(Class)arg5 responseSerializer:(Class)arg6 autoResume:(BOOL)arg7 callback:(CDUnknownBlockType)arg8;
+- (id)requestForJSONWithResponse:(id)arg1 params:(id)arg2 method:(id)arg3 needCommonParams:(BOOL)arg4 callback:(CDUnknownBlockType)arg5;
+- (id)requestForJSONWithResponse:(id)arg1 params:(id)arg2 method:(id)arg3 needCommonParams:(BOOL)arg4 headerField:(id)arg5 requestSerializer:(Class)arg6 responseSerializer:(Class)arg7 autoResume:(BOOL)arg8 callback:(CDUnknownBlockType)arg9;
+- (id)requestForJSONWithResponse:(id)arg1 params:(id)arg2 method:(id)arg3 needCommonParams:(BOOL)arg4 headerField:(id)arg5 requestSerializer:(Class)arg6 responseSerializer:(Class)arg7 autoResume:(BOOL)arg8 verifyRequest:(BOOL)arg9 isCustomizedCookie:(BOOL)arg10 callback:(CDUnknownBlockType)arg11;
+- (id)requestForJSONWithResponse:(id)arg1 params:(id)arg2 method:(id)arg3 needCommonParams:(BOOL)arg4 requestSerializer:(Class)arg5 responseSerializer:(Class)arg6 autoResume:(BOOL)arg7 callback:(CDUnknownBlockType)arg8;
+- (id)requestForJSONWithURL:(id)arg1 params:(id)arg2 method:(id)arg3 needCommonParams:(BOOL)arg4 callback:(CDUnknownBlockType)arg5;
+- (id)requestForJSONWithURL:(id)arg1 params:(id)arg2 method:(id)arg3 needCommonParams:(BOOL)arg4 requestSerializer:(Class)arg5 responseSerializer:(Class)arg6 autoResume:(BOOL)arg7 callback:(CDUnknownBlockType)arg8;
+- (id)requestModel:(id)arg1 callback:(CDUnknownBlockType)arg2;
+- (id)requestModel:(id)arg1 requestSerializer:(Class)arg2 responseSerializer:(Class)arg3 autoResume:(BOOL)arg4 callback:(CDUnknownBlockType)arg5;
+- (void)setPureChannelForJSONResponseSerializer:(BOOL)arg1;
+- (id)synchronizedRequstForURL:(id)arg1 method:(id)arg2 headerField:(id)arg3 jsonObjParams:(id)arg4 needCommonParams:(BOOL)arg5;
+- (id)synchronizedRequstForURL:(id)arg1 method:(id)arg2 headerField:(id)arg3 jsonObjParams:(id)arg4 needCommonParams:(BOOL)arg5 needEncrypt:(BOOL)arg6;
+- (id)synchronizedRequstForURL:(id)arg1 method:(id)arg2 headerField:(id)arg3 jsonObjParams:(id)arg4 needCommonParams:(BOOL)arg5 needResponse:(BOOL)arg6;
+- (id)synchronizedRequstForURL:(id)arg1 method:(id)arg2 headerField:(id)arg3 jsonObjParams:(id)arg4 needCommonParams:(BOOL)arg5 needResponse:(BOOL)arg6 needEncrypt:(BOOL)arg7;
+- (id)synchronizedRequstForURL:(id)arg1 method:(id)arg2 headerField:(id)arg3 jsonObjParams:(id)arg4 needCommonParams:(BOOL)arg5 needResponse:(BOOL)arg6 needEncrypt:(BOOL)arg7 needContentEncodingAfterEncrypt:(BOOL)arg8;
+- (id)uploadWithResponse:(id)arg1 parameters:(id)arg2 headerField:(id)arg3 constructingBodyWithBlock:(CDUnknownBlockType)arg4 progress:(id *)arg5 needcommonParams:(BOOL)arg6 requestSerializer:(Class)arg7 responseSerializer:(Class)arg8 autoResume:(BOOL)arg9 callback:(CDUnknownBlockType)arg10;
+- (id)uploadWithResponse:(id)arg1 parameters:(id)arg2 headerField:(id)arg3 constructingBodyWithBlock:(CDUnknownBlockType)arg4 progress:(id *)arg5 needcommonParams:(BOOL)arg6 requestSerializer:(Class)arg7 responseSerializer:(Class)arg8 autoResume:(BOOL)arg9 callback:(CDUnknownBlockType)arg10 timeout:(double)arg11;
+- (id)uploadWithURL:(id)arg1 headerField:(id)arg2 parameters:(id)arg3 constructingBodyWithBlock:(CDUnknownBlockType)arg4 progress:(id *)arg5 needcommonParams:(BOOL)arg6 callback:(CDUnknownBlockType)arg7;
+- (id)uploadWithURL:(id)arg1 parameters:(id)arg2 constructingBodyWithBlock:(CDUnknownBlockType)arg3 progress:(id *)arg4 needcommonParams:(BOOL)arg5 callback:(CDUnknownBlockType)arg6;
+- (id)uploadWithURL:(id)arg1 parameters:(id)arg2 headerField:(id)arg3 constructingBodyWithBlock:(CDUnknownBlockType)arg4 progress:(id *)arg5 needcommonParams:(BOOL)arg6 requestSerializer:(Class)arg7 responseSerializer:(Class)arg8 autoResume:(BOOL)arg9 callback:(CDUnknownBlockType)arg10;
+
+@end
 
 #endif /* VideoHeaders_h */

@@ -240,7 +240,26 @@ void hookFunc(UIViewController *v) {
         NSLog(@"%@", arg);
     } error:&error];
     
+    [NSClassFromString(@"TTNetworkManagerAFNetworking") aspect_hookSelector:@selector(requestForBinaryWithURL:params:method:needCommonParams:requestSerializer:responseSerializer:autoResume:callback:) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo> info, id url, id params, id method, BOOL needCommonParams, Class requestSerializer, BOOL autoResume, id callback) {
+        if (!url) {
+            return;
+        }
+        
+        DLog(@"%@---%@", url, params);
+    } error:&error];
     
+    [NSClassFromString(@"TTFURLSetting") aspect_hookSelector:NSSelectorFromString(@"ansWinURL") withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info) {
+        id __unsafe_unretained tempResultSet;
+        [[info originalInvocation] getReturnValue:&tempResultSet];
+        DLog(@"ansWinURL: %@", tempResultSet);
+        tempResultSet = nil;
+    } error:&error];
+    
+    
+    [NSClassFromString(@"TTFQuizShowLiveRoomNetworkManager") aspect_hookSelector:@selector(submitAnwserOfActivityID:questionID:optionIDs:completion:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, long long activityID, long long questionID, id optionIDs, id completion) {
+        
+        
+    } error:&error];
 }
 
 static __attribute__((constructor)) void entry() {
