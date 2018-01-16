@@ -57,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D0B764AE200DF0D200DDF93B /* XYVideoConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYVideoConst.h; sourceTree = "<group>"; };
 		D2773B09200A058A0078A2A3 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
 		D2773B0A200A058B0078A2A3 /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
 		D2773B0C200A0A590078A2A3 /* AutoTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoTimer.m; sourceTree = "<group>"; };
@@ -301,6 +302,7 @@
 				D2A17881200B282500331692 /* XYQuestionAnswerManager.m */,
 				D2A178D8200CFA8100331692 /* XYQuestionAnswerHook.h */,
 				D2A178D9200CFA8100331692 /* XYQuestionAnswerHook.m */,
+				D0B764AE200DF0D200DDF93B /* XYVideoConst.h */,
 				D2A178D6200CF55000331692 /* alpface.bundle */,
 			);
 			path = src;

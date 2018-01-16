@@ -10,8 +10,9 @@
 #import <objc/runtime.h>
 #import "UIWebView+XYBlocks.h"
 #import "XYDummyView.h"
+#import "XYVideoConst.h"
 
-#define XYWebViewheight [UIScreen mainScreen].bounds.size.height*0.45
+#define XYWebViewheight [UIScreen mainScreen].bounds.size.height*  (UI_IS_IPHONE6PLUS || UI_IS_iPHONEX ? 0.45 : 0.4)
 
 @interface XYSuspensionWebView () <UIGestureRecognizerDelegate>
 
@@ -29,6 +30,7 @@
 
 - (void)setXy_suspensionWebView:(XYSuspensionWebView *)xy_suspensionWebView {
     objc_setAssociatedObject(self, @selector(xy_suspensionWebView), xy_suspensionWebView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
 }
 
 - (XYSuspensionWebView *)xy_suspensionWebView {
