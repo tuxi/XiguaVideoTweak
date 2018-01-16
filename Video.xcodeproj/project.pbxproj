@@ -458,7 +458,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -rf ~/Desktop/work/Tweak/xiguavideo/new/Payload/Video.app ~/Library/Developer/Xcode/DerivedData/Video-ccmvyaieotmhkvbpiuykxqzhqluw/Build/Products/Debug-iphoneos/";
+			shellScript = "cp -rf ~/Desktop/work/Theos/XiguaVideo/ipa/new/Payload/Video.app ~/Library/Developer/Xcode/DerivedData/Video-ezlrrnsnutzbnnawszxdzxncugqt/Build/Products/Debug-iphoneos/";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -740,6 +740,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NKW67GFDHM;
 				INFOPLIST_FILE = VideoTweak/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -758,6 +759,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NKW67GFDHM;
 				INFOPLIST_FILE = VideoTweak/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
