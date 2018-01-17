@@ -1,3 +1,5 @@
+DEBUG=1
+
 ARCHS = armv7 arm64
 TARGET = iphone:latest:8.0
 

@@ -58,6 +58,12 @@
 
 /* Begin PBXFileReference section */
 		D0B764AE200DF0D200DDF93B /* XYVideoConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYVideoConst.h; sourceTree = "<group>"; };
+		D26FD4B0200EC9A200644024 /* TTFHeartBeatTrace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFHeartBeatTrace.m; sourceTree = "<group>"; };
+		D26FD4B1200EC9A200644024 /* TTFQuestionAnswerUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFQuestionAnswerUnit.m; sourceTree = "<group>"; };
+		D26FD4B2200EC9A200644024 /* TTFQuizShowLiveRoomNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFQuizShowLiveRoomNetworkManager.m; sourceTree = "<group>"; };
+		D26FD4B3200EC9A200644024 /* TTFQuizShowLiveRoomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFQuizShowLiveRoomViewController.m; sourceTree = "<group>"; };
+		D26FD4B4200EC9A200644024 /* TTFQuizShowLiveRoomViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFQuizShowLiveRoomViewModel.m; sourceTree = "<group>"; };
+		D26FD4B5200EC9A200644024 /* TTFURLSetting.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFURLSetting.m; sourceTree = "<group>"; };
 		D2773B09200A058A0078A2A3 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
 		D2773B0A200A058B0078A2A3 /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
 		D2773B0C200A0A590078A2A3 /* AutoTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoTimer.m; sourceTree = "<group>"; };
@@ -166,6 +172,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D26FD4AF200EC9A200644024 /* decompile */ = {
+			isa = PBXGroup;
+			children = (
+				D26FD4B0200EC9A200644024 /* TTFHeartBeatTrace.m */,
+				D26FD4B1200EC9A200644024 /* TTFQuestionAnswerUnit.m */,
+				D26FD4B2200EC9A200644024 /* TTFQuizShowLiveRoomNetworkManager.m */,
+				D26FD4B3200EC9A200644024 /* TTFQuizShowLiveRoomViewController.m */,
+				D26FD4B4200EC9A200644024 /* TTFQuizShowLiveRoomViewModel.m */,
+				D26FD4B5200EC9A200644024 /* TTFURLSetting.m */,
+			);
+			path = decompile;
+			sourceTree = "<group>";
+		};
 		D2A178A0200B6CBC00331692 /* VideoMac */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +244,7 @@
 				D2E7EBCD20091717009AEA30 /* videotweak */,
 				D2E7EBB02008FD4F009AEA30 /* XYAppDelegate.h */,
 				D2E7EBB12008FD4F009AEA30 /* XYAppDelegate.m */,
+				D26FD4AF200EC9A200644024 /* decompile */,
 				D2E7EBB32008FD4F009AEA30 /* ViewController.h */,
 				D2E7EBB42008FD4F009AEA30 /* ViewController.m */,
 				D2E7EBB62008FD4F009AEA30 /* Main.storyboard */,
@@ -461,7 +481,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -rf ~/Desktop/work/Theos/XiguaVideo/ipa/new/Payload/Video.app ~/Library/Developer/Xcode/DerivedData/Video-ezlrrnsnutzbnnawszxdzxncugqt/Build/Products/Debug-iphoneos/";
+			shellScript = "cp -rf ~/Desktop/work/Tweak/xiguavideo/new/Payload/Video.app ~/Library/Developer/Xcode/DerivedData/Video-ccmvyaieotmhkvbpiuykxqzhqluw/Build/Products/Debug-iphoneos/";
 		};
 /* End PBXShellScriptBuildPhase section */
 
