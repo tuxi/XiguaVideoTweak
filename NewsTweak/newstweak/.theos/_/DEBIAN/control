@@ -1,0 +1,10 @@
+Package: com.alpface.news
+Name: newstweak
+Depends: mobilesubstrate
+Architecture: iphoneos-arm
+Description: An awesome MobileSubstrate tweak!
+Maintainer: xiaoyuan
+Author: xiaoyuan
+Section: Tweaks
+Version: 0.0.1-3+debug
+Installed-Size: 1368
