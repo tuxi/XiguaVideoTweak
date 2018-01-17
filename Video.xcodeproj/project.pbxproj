@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0E412D2200F109B00E34197 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E412D1200F109B00E34197 /* AppDelegate.m */; };
+		D0E412D5200F109B00E34197 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E412D4200F109B00E34197 /* ViewController.m */; };
+		D0E412D8200F109B00E34197 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E412D6200F109B00E34197 /* Main.storyboard */; };
+		D0E412DA200F109B00E34197 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0E412D9200F109B00E34197 /* Assets.xcassets */; };
+		D0E412DD200F109B00E34197 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E412DB200F109B00E34197 /* LaunchScreen.storyboard */; };
+		D0E412E0200F109B00E34197 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E412DF200F109B00E34197 /* main.m */; };
 		D2773B0B200A058B0078A2A3 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = D2773B0A200A058B0078A2A3 /* Aspects.m */; };
 		D2773B0E200A0A5A0078A2A3 /* AutoTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = D2773B0C200A0A590078A2A3 /* AutoTimer.m */; };
 		D2773B18200AF6C50078A2A3 /* XYSuspensionWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2773B17200AF6C50078A2A3 /* XYSuspensionWebView.m */; };
@@ -58,6 +64,16 @@
 
 /* Begin PBXFileReference section */
 		D0B764AE200DF0D200DDF93B /* XYVideoConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYVideoConst.h; sourceTree = "<group>"; };
+		D0E412CE200F109B00E34197 /* News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = News.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0E412D0200F109B00E34197 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D0E412D1200F109B00E34197 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D0E412D3200F109B00E34197 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D0E412D4200F109B00E34197 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D0E412D7200F109B00E34197 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D0E412D9200F109B00E34197 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D0E412DC200F109B00E34197 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D0E412DE200F109B00E34197 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0E412DF200F109B00E34197 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D26FD4B0200EC9A200644024 /* TTFHeartBeatTrace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFHeartBeatTrace.m; sourceTree = "<group>"; };
 		D26FD4B1200EC9A200644024 /* TTFQuestionAnswerUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFQuestionAnswerUnit.m; sourceTree = "<group>"; };
 		D26FD4B2200EC9A200644024 /* TTFQuizShowLiveRoomNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFQuizShowLiveRoomNetworkManager.m; sourceTree = "<group>"; };
@@ -146,6 +162,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D0E412CB200F109B00E34197 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2A1789C200B6CBC00331692 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -172,6 +195,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D0E412CF200F109B00E34197 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				D0E412D0200F109B00E34197 /* AppDelegate.h */,
+				D0E412D1200F109B00E34197 /* AppDelegate.m */,
+				D0E412D3200F109B00E34197 /* ViewController.h */,
+				D0E412D4200F109B00E34197 /* ViewController.m */,
+				D0E412D6200F109B00E34197 /* Main.storyboard */,
+				D0E412D9200F109B00E34197 /* Assets.xcassets */,
+				D0E412DB200F109B00E34197 /* LaunchScreen.storyboard */,
+				D0E412DE200F109B00E34197 /* Info.plist */,
+				D0E412DF200F109B00E34197 /* main.m */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
 		D26FD4AF200EC9A200644024 /* decompile */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +244,7 @@
 				D2E7EB8F2008E468009AEA30 /* Video */,
 				D2E7EBAF2008FD4F009AEA30 /* VideoTweak */,
 				D2A178A0200B6CBC00331692 /* VideoMac */,
+				D0E412CF200F109B00E34197 /* News */,
 				D2E7EB8E2008E468009AEA30 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -215,6 +255,7 @@
 				D2E7EB8D2008E468009AEA30 /* Video.app */,
 				D2E7EBAE2008FD4F009AEA30 /* VideoTweak.app */,
 				D2A1789F200B6CBC00331692 /* VideoMac.app */,
+				D0E412CE200F109B00E34197 /* News.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -331,6 +372,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D0E412CD200F109B00E34197 /* News */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0E412E1200F109B00E34197 /* Build configuration list for PBXNativeTarget "News" */;
+			buildPhases = (
+				D0E412CA200F109B00E34197 /* Sources */,
+				D0E412CB200F109B00E34197 /* Frameworks */,
+				D0E412CC200F109B00E34197 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = News;
+			productName = News;
+			productReference = D0E412CE200F109B00E34197 /* News.app */;
+			productType = "com.apple.product-type.application";
+		};
 		D2A1789E200B6CBC00331692 /* VideoMac */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D2A178AC200B6CBC00331692 /* Build configuration list for PBXNativeTarget "VideoMac" */;
@@ -393,6 +451,10 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = alpface;
 				TargetAttributes = {
+					D0E412CD200F109B00E34197 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					D2A1789E200B6CBC00331692 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -423,11 +485,22 @@
 				D2E7EB8C2008E468009AEA30 /* Video */,
 				D2E7EBAD2008FD4F009AEA30 /* VideoTweak */,
 				D2A1789E200B6CBC00331692 /* VideoMac */,
+				D0E412CD200F109B00E34197 /* News */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D0E412CC200F109B00E34197 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0E412DD200F109B00E34197 /* LaunchScreen.storyboard in Resources */,
+				D0E412DA200F109B00E34197 /* Assets.xcassets in Resources */,
+				D0E412D8200F109B00E34197 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2A1789D200B6CBC00331692 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -481,11 +554,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -rf ~/Desktop/work/Tweak/xiguavideo/new/Payload/Video.app ~/Library/Developer/Xcode/DerivedData/Video-ccmvyaieotmhkvbpiuykxqzhqluw/Build/Products/Debug-iphoneos/";
+			shellScript = "cp -rf ~/Desktop/work/Theos/XiguaVideo/ipa/new/Payload ~/Library/Developer/Xcode/DerivedData/Video-ezlrrnsnutzbnnawszxdzxncugqt/Build/Products/Debug-iphoneos/";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D0E412CA200F109B00E34197 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0E412D5200F109B00E34197 /* ViewController.m in Sources */,
+				D0E412E0200F109B00E34197 /* main.m in Sources */,
+				D0E412D2200F109B00E34197 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2A1789B200B6CBC00331692 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -538,6 +621,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		D0E412D6200F109B00E34197 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0E412D7200F109B00E34197 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D0E412DB200F109B00E34197 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0E412DC200F109B00E34197 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		D2A178A7200B6CBC00331692 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -581,6 +680,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D0E412E2200F109B00E34197 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NKW67GFDHM;
+				INFOPLIST_FILE = News/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alpface.News;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D0E412E3200F109B00E34197 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NKW67GFDHM;
+				INFOPLIST_FILE = News/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alpface.News;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		D2A178AD200B6CBC00331692 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -797,6 +924,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D0E412E1200F109B00E34197 /* Build configuration list for PBXNativeTarget "News" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0E412E2200F109B00E34197 /* Debug */,
+				D0E412E3200F109B00E34197 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D2A178AC200B6CBC00331692 /* Build configuration list for PBXNativeTarget "VideoMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
