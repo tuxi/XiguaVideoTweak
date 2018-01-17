@@ -7,6 +7,73 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0E412D2200F109B00E34197 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E412D1200F109B00E34197 /* AppDelegate.m */; };
+		D0E412D5200F109B00E34197 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E412D4200F109B00E34197 /* ViewController.m */; };
+		D0E412D8200F109B00E34197 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E412D6200F109B00E34197 /* Main.storyboard */; };
+		D0E412DA200F109B00E34197 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0E412D9200F109B00E34197 /* Assets.xcassets */; };
+		D0E412DD200F109B00E34197 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E412DB200F109B00E34197 /* LaunchScreen.storyboard */; };
+		D0E412E0200F109B00E34197 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E412DF200F109B00E34197 /* main.m */; };
+		D0E41337200F12F900E34197 /* control in Resources */ = {isa = PBXBuildFile; fileRef = D0E412E8200F12F900E34197 /* control */; };
+		D0E41338200F12F900E34197 /* newstweak.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E412EC200F12F900E34197 /* newstweak.dylib */; };
+		D0E41339200F12F900E34197 /* newstweak.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0E412ED200F12F900E34197 /* newstweak.plist */; };
+		D0E4133A200F12F900E34197 /* build_session in Resources */ = {isa = PBXBuildFile; fileRef = D0E412EE200F12F900E34197 /* build_session */; };
+		D0E4133B200F12F900E34197 /* fakeroot in Resources */ = {isa = PBXBuildFile; fileRef = D0E412EF200F12F900E34197 /* fakeroot */; };
+		D0E4133C200F12F900E34197 /* last_package in Resources */ = {isa = PBXBuildFile; fileRef = D0E412F0200F12F900E34197 /* last_package */; };
+		D0E4133D200F12F900E34197 /* newstweak.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E412F4200F12F900E34197 /* newstweak.dylib */; };
+		D0E4133E200F12F900E34197 /* newstweak.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E412F6200F12F900E34197 /* newstweak.dylib */; };
+		D0E4133F200F12F900E34197 /* newstweak.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E412F7200F12F900E34197 /* newstweak.dylib */; };
+		D0E41340200F12F900E34197 /* Aspects.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E412FB200F12F900E34197 /* Aspects.m.593a3950.o */; };
+		D0E41341200F12F900E34197 /* Aspects.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E412FC200F12F900E34197 /* Aspects.m.df1b67d5.o */; };
+		D0E41342200F12F900E34197 /* AutoTimer.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E412FD200F12F900E34197 /* AutoTimer.m.593a3950.o */; };
+		D0E41343200F12F900E34197 /* AutoTimer.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E412FE200F12F900E34197 /* AutoTimer.m.df1b67d5.o */; };
+		D0E41344200F12F900E34197 /* DirectoryWatcher.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E412FF200F12F900E34197 /* DirectoryWatcher.m.593a3950.o */; };
+		D0E41345200F12F900E34197 /* DirectoryWatcher.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41300200F12F900E34197 /* DirectoryWatcher.m.df1b67d5.o */; };
+		D0E41346200F12F900E34197 /* ExceptionUtils.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41301200F12F900E34197 /* ExceptionUtils.m.593a3950.o */; };
+		D0E41347200F12F900E34197 /* ExceptionUtils.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41302200F12F900E34197 /* ExceptionUtils.m.df1b67d5.o */; };
+		D0E41348200F12F900E34197 /* FoldersViewController.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41303200F12F900E34197 /* FoldersViewController.m.593a3950.o */; };
+		D0E41349200F12F900E34197 /* FoldersViewController.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41304200F12F900E34197 /* FoldersViewController.m.df1b67d5.o */; };
+		D0E4134A200F12F900E34197 /* MBProgressHUD+XYHUD.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41305200F12F900E34197 /* MBProgressHUD+XYHUD.m.593a3950.o */; };
+		D0E4134B200F12F900E34197 /* MBProgressHUD+XYHUD.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41306200F12F900E34197 /* MBProgressHUD+XYHUD.m.df1b67d5.o */; };
+		D0E4134C200F12F900E34197 /* MBProgressHUD.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41307200F12F900E34197 /* MBProgressHUD.m.593a3950.o */; };
+		D0E4134D200F12F900E34197 /* MBProgressHUD.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41308200F12F900E34197 /* MBProgressHUD.m.df1b67d5.o */; };
+		D0E4134E200F12F900E34197 /* NSString+FileExtend.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41309200F12F900E34197 /* NSString+FileExtend.m.593a3950.o */; };
+		D0E4134F200F12F900E34197 /* NSString+FileExtend.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E4130A200F12F900E34197 /* NSString+FileExtend.m.df1b67d5.o */; };
+		D0E41350200F12F900E34197 /* OSFileManager.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E4130B200F12F900E34197 /* OSFileManager.m.593a3950.o */; };
+		D0E41351200F12F900E34197 /* OSFileManager.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E4130C200F12F900E34197 /* OSFileManager.m.df1b67d5.o */; };
+		D0E41352200F12F900E34197 /* RuntimeInvoker.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E4130D200F12F900E34197 /* RuntimeInvoker.m.593a3950.o */; };
+		D0E41353200F12F900E34197 /* RuntimeInvoker.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E4130E200F12F900E34197 /* RuntimeInvoker.m.df1b67d5.o */; };
+		D0E41354200F12F900E34197 /* Tweak.xm.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E4130F200F12F900E34197 /* Tweak.xm.593a3950.o */; };
+		D0E41355200F12F900E34197 /* Tweak.xm.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41310200F12F900E34197 /* Tweak.xm.df1b67d5.o */; };
+		D0E41356200F12F900E34197 /* UIViewController+XYExtensions.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41311200F12F900E34197 /* UIViewController+XYExtensions.m.593a3950.o */; };
+		D0E41357200F12F900E34197 /* UIViewController+XYExtensions.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41312200F12F900E34197 /* UIViewController+XYExtensions.m.df1b67d5.o */; };
+		D0E41358200F12F900E34197 /* UIWebView+XYBlocks.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41313200F12F900E34197 /* UIWebView+XYBlocks.m.593a3950.o */; };
+		D0E41359200F12F900E34197 /* UIWebView+XYBlocks.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41314200F12F900E34197 /* UIWebView+XYBlocks.m.df1b67d5.o */; };
+		D0E4135A200F12F900E34197 /* VideoTweakLib.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41315200F12F900E34197 /* VideoTweakLib.m.593a3950.o */; };
+		D0E4135B200F12F900E34197 /* VideoTweakLib.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41316200F12F900E34197 /* VideoTweakLib.m.df1b67d5.o */; };
+		D0E4135C200F12F900E34197 /* XYConsoleView.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41317200F12F900E34197 /* XYConsoleView.m.593a3950.o */; };
+		D0E4135D200F12F900E34197 /* XYConsoleView.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41318200F12F900E34197 /* XYConsoleView.m.df1b67d5.o */; };
+		D0E4135E200F12F900E34197 /* XYDummyView.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41319200F12F900E34197 /* XYDummyView.m.593a3950.o */; };
+		D0E4135F200F12F900E34197 /* XYDummyView.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E4131A200F12F900E34197 /* XYDummyView.m.df1b67d5.o */; };
+		D0E41360200F12F900E34197 /* XYQuestionAnswerHook.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E4131B200F12F900E34197 /* XYQuestionAnswerHook.m.593a3950.o */; };
+		D0E41361200F12F900E34197 /* XYQuestionAnswerHook.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E4131C200F12F900E34197 /* XYQuestionAnswerHook.m.df1b67d5.o */; };
+		D0E41362200F12F900E34197 /* XYQuestionAnswerManager.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E4131D200F12F900E34197 /* XYQuestionAnswerManager.m.593a3950.o */; };
+		D0E41363200F12F900E34197 /* XYQuestionAnswerManager.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E4131E200F12F900E34197 /* XYQuestionAnswerManager.m.df1b67d5.o */; };
+		D0E41364200F12F900E34197 /* XYSuspensionMenu.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E4131F200F12F900E34197 /* XYSuspensionMenu.m.593a3950.o */; };
+		D0E41365200F12F900E34197 /* XYSuspensionMenu.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41320200F12F900E34197 /* XYSuspensionMenu.m.df1b67d5.o */; };
+		D0E41366200F12F900E34197 /* XYSuspensionWebView.m.593a3950.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41321200F12F900E34197 /* XYSuspensionWebView.m.593a3950.o */; };
+		D0E41367200F12F900E34197 /* XYSuspensionWebView.m.df1b67d5.o in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41322200F12F900E34197 /* XYSuspensionWebView.m.df1b67d5.o */; };
+		D0E41368200F12F900E34197 /* com.alpface.news-0.0.1 in Resources */ = {isa = PBXBuildFile; fileRef = D0E41324200F12F900E34197 /* com.alpface.news-0.0.1 */; };
+		D0E41369200F12F900E34197 /* .stamp in Resources */ = {isa = PBXBuildFile; fileRef = D0E41328200F12F900E34197 /* .stamp */; };
+		D0E4136A200F12F900E34197 /* control in Resources */ = {isa = PBXBuildFile; fileRef = D0E41329200F12F900E34197 /* control */; };
+		D0E4136B200F12F900E34197 /* alpface.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D0E4132B200F12F900E34197 /* alpface.bundle */; };
+		D0E4136C200F12F900E34197 /* insert_dylib in Resources */ = {isa = PBXBuildFile; fileRef = D0E4132C200F12F900E34197 /* insert_dylib */; };
+		D0E4136D200F12F900E34197 /* libsubstrate.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E4132D200F12F900E34197 /* libsubstrate.dylib */; };
+		D0E4136E200F12F900E34197 /* newstweak.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E4132E200F12F900E34197 /* newstweak.dylib */; };
+		D0E4136F200F12F900E34197 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = D0E4132F200F12F900E34197 /* Makefile */; };
+		D0E41370200F12F900E34197 /* newstweak.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0E41330200F12F900E34197 /* newstweak.plist */; };
+		D0E41371200F12F900E34197 /* com.alpface.news_0.0.1-1+debug_iphoneos-arm.deb in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41334200F12F900E34197 /* com.alpface.news_0.0.1-1+debug_iphoneos-arm.deb */; };
+		D0E41372200F12F900E34197 /* com.alpface.news_0.0.1-2+debug_iphoneos-arm.deb in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E41335200F12F900E34197 /* com.alpface.news_0.0.1-2+debug_iphoneos-arm.deb */; };
+		D0E41373200F12F900E34197 /* Tweak.xm in Resources */ = {isa = PBXBuildFile; fileRef = D0E41336200F12F900E34197 /* Tweak.xm */; };
 		D2773B0B200A058B0078A2A3 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = D2773B0A200A058B0078A2A3 /* Aspects.m */; };
 		D2773B0E200A0A5A0078A2A3 /* AutoTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = D2773B0C200A0A590078A2A3 /* AutoTimer.m */; };
 		D2773B18200AF6C50078A2A3 /* XYSuspensionWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2773B17200AF6C50078A2A3 /* XYSuspensionWebView.m */; };
@@ -58,6 +125,77 @@
 
 /* Begin PBXFileReference section */
 		D0B764AE200DF0D200DDF93B /* XYVideoConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYVideoConst.h; sourceTree = "<group>"; };
+		D0E412CE200F109B00E34197 /* News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = News.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0E412D0200F109B00E34197 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D0E412D1200F109B00E34197 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D0E412D3200F109B00E34197 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D0E412D4200F109B00E34197 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D0E412D7200F109B00E34197 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D0E412D9200F109B00E34197 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D0E412DC200F109B00E34197 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D0E412DE200F109B00E34197 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0E412DF200F109B00E34197 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D0E412E8200F12F900E34197 /* control */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
+		D0E412EC200F12F900E34197 /* newstweak.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = newstweak.dylib; sourceTree = "<group>"; };
+		D0E412ED200F12F900E34197 /* newstweak.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = newstweak.plist; sourceTree = "<group>"; };
+		D0E412EE200F12F900E34197 /* build_session */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build_session; sourceTree = "<group>"; };
+		D0E412EF200F12F900E34197 /* fakeroot */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fakeroot; sourceTree = "<group>"; };
+		D0E412F0200F12F900E34197 /* last_package */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = last_package; sourceTree = "<group>"; };
+		D0E412F4200F12F900E34197 /* newstweak.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = newstweak.dylib; sourceTree = "<group>"; };
+		D0E412F6200F12F900E34197 /* newstweak.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = newstweak.dylib; sourceTree = "<group>"; };
+		D0E412F7200F12F900E34197 /* newstweak.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = newstweak.dylib; sourceTree = "<group>"; };
+		D0E412FB200F12F900E34197 /* Aspects.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = Aspects.m.593a3950.o; sourceTree = "<group>"; };
+		D0E412FC200F12F900E34197 /* Aspects.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = Aspects.m.df1b67d5.o; sourceTree = "<group>"; };
+		D0E412FD200F12F900E34197 /* AutoTimer.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = AutoTimer.m.593a3950.o; sourceTree = "<group>"; };
+		D0E412FE200F12F900E34197 /* AutoTimer.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = AutoTimer.m.df1b67d5.o; sourceTree = "<group>"; };
+		D0E412FF200F12F900E34197 /* DirectoryWatcher.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = DirectoryWatcher.m.593a3950.o; sourceTree = "<group>"; };
+		D0E41300200F12F900E34197 /* DirectoryWatcher.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = DirectoryWatcher.m.df1b67d5.o; sourceTree = "<group>"; };
+		D0E41301200F12F900E34197 /* ExceptionUtils.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = ExceptionUtils.m.593a3950.o; sourceTree = "<group>"; };
+		D0E41302200F12F900E34197 /* ExceptionUtils.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = ExceptionUtils.m.df1b67d5.o; sourceTree = "<group>"; };
+		D0E41303200F12F900E34197 /* FoldersViewController.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = FoldersViewController.m.593a3950.o; sourceTree = "<group>"; };
+		D0E41304200F12F900E34197 /* FoldersViewController.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = FoldersViewController.m.df1b67d5.o; sourceTree = "<group>"; };
+		D0E41305200F12F900E34197 /* MBProgressHUD+XYHUD.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "MBProgressHUD+XYHUD.m.593a3950.o"; sourceTree = "<group>"; };
+		D0E41306200F12F900E34197 /* MBProgressHUD+XYHUD.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "MBProgressHUD+XYHUD.m.df1b67d5.o"; sourceTree = "<group>"; };
+		D0E41307200F12F900E34197 /* MBProgressHUD.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = MBProgressHUD.m.593a3950.o; sourceTree = "<group>"; };
+		D0E41308200F12F900E34197 /* MBProgressHUD.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = MBProgressHUD.m.df1b67d5.o; sourceTree = "<group>"; };
+		D0E41309200F12F900E34197 /* NSString+FileExtend.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "NSString+FileExtend.m.593a3950.o"; sourceTree = "<group>"; };
+		D0E4130A200F12F900E34197 /* NSString+FileExtend.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "NSString+FileExtend.m.df1b67d5.o"; sourceTree = "<group>"; };
+		D0E4130B200F12F900E34197 /* OSFileManager.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = OSFileManager.m.593a3950.o; sourceTree = "<group>"; };
+		D0E4130C200F12F900E34197 /* OSFileManager.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = OSFileManager.m.df1b67d5.o; sourceTree = "<group>"; };
+		D0E4130D200F12F900E34197 /* RuntimeInvoker.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = RuntimeInvoker.m.593a3950.o; sourceTree = "<group>"; };
+		D0E4130E200F12F900E34197 /* RuntimeInvoker.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = RuntimeInvoker.m.df1b67d5.o; sourceTree = "<group>"; };
+		D0E4130F200F12F900E34197 /* Tweak.xm.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = Tweak.xm.593a3950.o; sourceTree = "<group>"; };
+		D0E41310200F12F900E34197 /* Tweak.xm.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = Tweak.xm.df1b67d5.o; sourceTree = "<group>"; };
+		D0E41311200F12F900E34197 /* UIViewController+XYExtensions.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "UIViewController+XYExtensions.m.593a3950.o"; sourceTree = "<group>"; };
+		D0E41312200F12F900E34197 /* UIViewController+XYExtensions.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "UIViewController+XYExtensions.m.df1b67d5.o"; sourceTree = "<group>"; };
+		D0E41313200F12F900E34197 /* UIWebView+XYBlocks.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "UIWebView+XYBlocks.m.593a3950.o"; sourceTree = "<group>"; };
+		D0E41314200F12F900E34197 /* UIWebView+XYBlocks.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = "UIWebView+XYBlocks.m.df1b67d5.o"; sourceTree = "<group>"; };
+		D0E41315200F12F900E34197 /* VideoTweakLib.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = VideoTweakLib.m.593a3950.o; sourceTree = "<group>"; };
+		D0E41316200F12F900E34197 /* VideoTweakLib.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = VideoTweakLib.m.df1b67d5.o; sourceTree = "<group>"; };
+		D0E41317200F12F900E34197 /* XYConsoleView.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = XYConsoleView.m.593a3950.o; sourceTree = "<group>"; };
+		D0E41318200F12F900E34197 /* XYConsoleView.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = XYConsoleView.m.df1b67d5.o; sourceTree = "<group>"; };
+		D0E41319200F12F900E34197 /* XYDummyView.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = XYDummyView.m.593a3950.o; sourceTree = "<group>"; };
+		D0E4131A200F12F900E34197 /* XYDummyView.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = XYDummyView.m.df1b67d5.o; sourceTree = "<group>"; };
+		D0E4131B200F12F900E34197 /* XYQuestionAnswerHook.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = XYQuestionAnswerHook.m.593a3950.o; sourceTree = "<group>"; };
+		D0E4131C200F12F900E34197 /* XYQuestionAnswerHook.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = XYQuestionAnswerHook.m.df1b67d5.o; sourceTree = "<group>"; };
+		D0E4131D200F12F900E34197 /* XYQuestionAnswerManager.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = XYQuestionAnswerManager.m.593a3950.o; sourceTree = "<group>"; };
+		D0E4131E200F12F900E34197 /* XYQuestionAnswerManager.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = XYQuestionAnswerManager.m.df1b67d5.o; sourceTree = "<group>"; };
+		D0E4131F200F12F900E34197 /* XYSuspensionMenu.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = XYSuspensionMenu.m.593a3950.o; sourceTree = "<group>"; };
+		D0E41320200F12F900E34197 /* XYSuspensionMenu.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = XYSuspensionMenu.m.df1b67d5.o; sourceTree = "<group>"; };
+		D0E41321200F12F900E34197 /* XYSuspensionWebView.m.593a3950.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = XYSuspensionWebView.m.593a3950.o; sourceTree = "<group>"; };
+		D0E41322200F12F900E34197 /* XYSuspensionWebView.m.df1b67d5.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = XYSuspensionWebView.m.df1b67d5.o; sourceTree = "<group>"; };
+		D0E41324200F12F900E34197 /* com.alpface.news-0.0.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = "com.alpface.news-0.0.1"; sourceTree = "<group>"; };
+		D0E41328200F12F900E34197 /* .stamp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .stamp; sourceTree = "<group>"; };
+		D0E41329200F12F900E34197 /* control */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
+		D0E4132B200F12F900E34197 /* alpface.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = alpface.bundle; sourceTree = "<group>"; };
+		D0E4132C200F12F900E34197 /* insert_dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = insert_dylib; sourceTree = "<group>"; };
+		D0E4132D200F12F900E34197 /* libsubstrate.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libsubstrate.dylib; sourceTree = "<group>"; };
+		D0E4132E200F12F900E34197 /* newstweak.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = newstweak.dylib; sourceTree = "<group>"; };
+		D0E4132F200F12F900E34197 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		D0E41330200F12F900E34197 /* newstweak.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = newstweak.plist; sourceTree = "<group>"; };
+		D0E41334200F12F900E34197 /* com.alpface.news_0.0.1-1+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.alpface.news_0.0.1-1+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		D0E41335200F12F900E34197 /* com.alpface.news_0.0.1-2+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.alpface.news_0.0.1-2+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
+		D0E41336200F12F900E34197 /* Tweak.xm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tweak.xm; sourceTree = "<group>"; };
 		D26FD4B0200EC9A200644024 /* TTFHeartBeatTrace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFHeartBeatTrace.m; sourceTree = "<group>"; };
 		D26FD4B1200EC9A200644024 /* TTFQuestionAnswerUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFQuestionAnswerUnit.m; sourceTree = "<group>"; };
 		D26FD4B2200EC9A200644024 /* TTFQuizShowLiveRoomNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFQuizShowLiveRoomNetworkManager.m; sourceTree = "<group>"; };
@@ -146,6 +284,61 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D0E412CB200F109B00E34197 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0E41360200F12F900E34197 /* XYQuestionAnswerHook.m.593a3950.o in Frameworks */,
+				D0E4133D200F12F900E34197 /* newstweak.dylib in Frameworks */,
+				D0E4136E200F12F900E34197 /* newstweak.dylib in Frameworks */,
+				D0E4135A200F12F900E34197 /* VideoTweakLib.m.593a3950.o in Frameworks */,
+				D0E41343200F12F900E34197 /* AutoTimer.m.df1b67d5.o in Frameworks */,
+				D0E4134A200F12F900E34197 /* MBProgressHUD+XYHUD.m.593a3950.o in Frameworks */,
+				D0E41356200F12F900E34197 /* UIViewController+XYExtensions.m.593a3950.o in Frameworks */,
+				D0E41354200F12F900E34197 /* Tweak.xm.593a3950.o in Frameworks */,
+				D0E41338200F12F900E34197 /* newstweak.dylib in Frameworks */,
+				D0E41361200F12F900E34197 /* XYQuestionAnswerHook.m.df1b67d5.o in Frameworks */,
+				D0E4134F200F12F900E34197 /* NSString+FileExtend.m.df1b67d5.o in Frameworks */,
+				D0E41358200F12F900E34197 /* UIWebView+XYBlocks.m.593a3950.o in Frameworks */,
+				D0E4135E200F12F900E34197 /* XYDummyView.m.593a3950.o in Frameworks */,
+				D0E41344200F12F900E34197 /* DirectoryWatcher.m.593a3950.o in Frameworks */,
+				D0E41353200F12F900E34197 /* RuntimeInvoker.m.df1b67d5.o in Frameworks */,
+				D0E41340200F12F900E34197 /* Aspects.m.593a3950.o in Frameworks */,
+				D0E41365200F12F900E34197 /* XYSuspensionMenu.m.df1b67d5.o in Frameworks */,
+				D0E4134B200F12F900E34197 /* MBProgressHUD+XYHUD.m.df1b67d5.o in Frameworks */,
+				D0E4135B200F12F900E34197 /* VideoTweakLib.m.df1b67d5.o in Frameworks */,
+				D0E41363200F12F900E34197 /* XYQuestionAnswerManager.m.df1b67d5.o in Frameworks */,
+				D0E41349200F12F900E34197 /* FoldersViewController.m.df1b67d5.o in Frameworks */,
+				D0E41371200F12F900E34197 /* com.alpface.news_0.0.1-1+debug_iphoneos-arm.deb in Frameworks */,
+				D0E41366200F12F900E34197 /* XYSuspensionWebView.m.593a3950.o in Frameworks */,
+				D0E41362200F12F900E34197 /* XYQuestionAnswerManager.m.593a3950.o in Frameworks */,
+				D0E4133F200F12F900E34197 /* newstweak.dylib in Frameworks */,
+				D0E41351200F12F900E34197 /* OSFileManager.m.df1b67d5.o in Frameworks */,
+				D0E41341200F12F900E34197 /* Aspects.m.df1b67d5.o in Frameworks */,
+				D0E4135C200F12F900E34197 /* XYConsoleView.m.593a3950.o in Frameworks */,
+				D0E41348200F12F900E34197 /* FoldersViewController.m.593a3950.o in Frameworks */,
+				D0E41357200F12F900E34197 /* UIViewController+XYExtensions.m.df1b67d5.o in Frameworks */,
+				D0E41345200F12F900E34197 /* DirectoryWatcher.m.df1b67d5.o in Frameworks */,
+				D0E41359200F12F900E34197 /* UIWebView+XYBlocks.m.df1b67d5.o in Frameworks */,
+				D0E41352200F12F900E34197 /* RuntimeInvoker.m.593a3950.o in Frameworks */,
+				D0E4135F200F12F900E34197 /* XYDummyView.m.df1b67d5.o in Frameworks */,
+				D0E4134E200F12F900E34197 /* NSString+FileExtend.m.593a3950.o in Frameworks */,
+				D0E41347200F12F900E34197 /* ExceptionUtils.m.df1b67d5.o in Frameworks */,
+				D0E41350200F12F900E34197 /* OSFileManager.m.593a3950.o in Frameworks */,
+				D0E41364200F12F900E34197 /* XYSuspensionMenu.m.593a3950.o in Frameworks */,
+				D0E41342200F12F900E34197 /* AutoTimer.m.593a3950.o in Frameworks */,
+				D0E4136D200F12F900E34197 /* libsubstrate.dylib in Frameworks */,
+				D0E4135D200F12F900E34197 /* XYConsoleView.m.df1b67d5.o in Frameworks */,
+				D0E4134D200F12F900E34197 /* MBProgressHUD.m.df1b67d5.o in Frameworks */,
+				D0E41372200F12F900E34197 /* com.alpface.news_0.0.1-2+debug_iphoneos-arm.deb in Frameworks */,
+				D0E41355200F12F900E34197 /* Tweak.xm.df1b67d5.o in Frameworks */,
+				D0E41367200F12F900E34197 /* XYSuspensionWebView.m.df1b67d5.o in Frameworks */,
+				D0E41346200F12F900E34197 /* ExceptionUtils.m.593a3950.o in Frameworks */,
+				D0E4134C200F12F900E34197 /* MBProgressHUD.m.593a3950.o in Frameworks */,
+				D0E4133E200F12F900E34197 /* newstweak.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2A1789C200B6CBC00331692 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -172,6 +365,259 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D0E412CF200F109B00E34197 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				D0E412E4200F12F900E34197 /* newstweak */,
+				D0E412D0200F109B00E34197 /* AppDelegate.h */,
+				D0E412D1200F109B00E34197 /* AppDelegate.m */,
+				D0E412D3200F109B00E34197 /* ViewController.h */,
+				D0E412D4200F109B00E34197 /* ViewController.m */,
+				D0E412D6200F109B00E34197 /* Main.storyboard */,
+				D0E412D9200F109B00E34197 /* Assets.xcassets */,
+				D0E412DB200F109B00E34197 /* LaunchScreen.storyboard */,
+				D0E412DE200F109B00E34197 /* Info.plist */,
+				D0E412DF200F109B00E34197 /* main.m */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		D0E412E4200F12F900E34197 /* newstweak */ = {
+			isa = PBXGroup;
+			children = (
+				D0E412E5200F12F900E34197 /* .theos */,
+				D0E41329200F12F900E34197 /* control */,
+				D0E4132A200F12F900E34197 /* dylib */,
+				D0E4132F200F12F900E34197 /* Makefile */,
+				D0E41330200F12F900E34197 /* newstweak.plist */,
+				D0E41331200F12F900E34197 /* obj */,
+				D0E41333200F12F900E34197 /* packages */,
+				D0E41336200F12F900E34197 /* Tweak.xm */,
+			);
+			path = newstweak;
+			sourceTree = "<group>";
+		};
+		D0E412E5200F12F900E34197 /* .theos */ = {
+			isa = PBXGroup;
+			children = (
+				D0E412E6200F12F900E34197 /* _ */,
+				D0E412EE200F12F900E34197 /* build_session */,
+				D0E412EF200F12F900E34197 /* fakeroot */,
+				D0E412F0200F12F900E34197 /* last_package */,
+				D0E412F1200F12F900E34197 /* obj */,
+				D0E41323200F12F900E34197 /* packages */,
+				D0E41325200F12F900E34197 /* VideoTweak */,
+			);
+			path = .theos;
+			sourceTree = "<group>";
+		};
+		D0E412E6200F12F900E34197 /* _ */ = {
+			isa = PBXGroup;
+			children = (
+				D0E412E7200F12F900E34197 /* DEBIAN */,
+				D0E412E9200F12F900E34197 /* Library */,
+			);
+			path = _;
+			sourceTree = "<group>";
+		};
+		D0E412E7200F12F900E34197 /* DEBIAN */ = {
+			isa = PBXGroup;
+			children = (
+				D0E412E8200F12F900E34197 /* control */,
+			);
+			path = DEBIAN;
+			sourceTree = "<group>";
+		};
+		D0E412E9200F12F900E34197 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				D0E412EA200F12F900E34197 /* MobileSubstrate */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		D0E412EA200F12F900E34197 /* MobileSubstrate */ = {
+			isa = PBXGroup;
+			children = (
+				D0E412EB200F12F900E34197 /* DynamicLibraries */,
+			);
+			path = MobileSubstrate;
+			sourceTree = "<group>";
+		};
+		D0E412EB200F12F900E34197 /* DynamicLibraries */ = {
+			isa = PBXGroup;
+			children = (
+				D0E412EC200F12F900E34197 /* newstweak.dylib */,
+				D0E412ED200F12F900E34197 /* newstweak.plist */,
+			);
+			path = DynamicLibraries;
+			sourceTree = "<group>";
+		};
+		D0E412F1200F12F900E34197 /* obj */ = {
+			isa = PBXGroup;
+			children = (
+				D0E412F2200F12F900E34197 /* debug */,
+				D0E412F8200F12F900E34197 /* VideoTweak */,
+			);
+			path = obj;
+			sourceTree = "<group>";
+		};
+		D0E412F2200F12F900E34197 /* debug */ = {
+			isa = PBXGroup;
+			children = (
+				D0E412F3200F12F900E34197 /* arm64 */,
+				D0E412F5200F12F900E34197 /* armv7 */,
+				D0E412F7200F12F900E34197 /* newstweak.dylib */,
+			);
+			path = debug;
+			sourceTree = "<group>";
+		};
+		D0E412F3200F12F900E34197 /* arm64 */ = {
+			isa = PBXGroup;
+			children = (
+				D0E412F4200F12F900E34197 /* newstweak.dylib */,
+			);
+			path = arm64;
+			sourceTree = "<group>";
+		};
+		D0E412F5200F12F900E34197 /* armv7 */ = {
+			isa = PBXGroup;
+			children = (
+				D0E412F6200F12F900E34197 /* newstweak.dylib */,
+			);
+			path = armv7;
+			sourceTree = "<group>";
+		};
+		D0E412F8200F12F900E34197 /* VideoTweak */ = {
+			isa = PBXGroup;
+			children = (
+				D0E412F9200F12F900E34197 /* videotweak */,
+			);
+			path = VideoTweak;
+			sourceTree = "<group>";
+		};
+		D0E412F9200F12F900E34197 /* videotweak */ = {
+			isa = PBXGroup;
+			children = (
+				D0E412FA200F12F900E34197 /* src */,
+			);
+			path = videotweak;
+			sourceTree = "<group>";
+		};
+		D0E412FA200F12F900E34197 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D0E412FB200F12F900E34197 /* Aspects.m.593a3950.o */,
+				D0E412FC200F12F900E34197 /* Aspects.m.df1b67d5.o */,
+				D0E412FD200F12F900E34197 /* AutoTimer.m.593a3950.o */,
+				D0E412FE200F12F900E34197 /* AutoTimer.m.df1b67d5.o */,
+				D0E412FF200F12F900E34197 /* DirectoryWatcher.m.593a3950.o */,
+				D0E41300200F12F900E34197 /* DirectoryWatcher.m.df1b67d5.o */,
+				D0E41301200F12F900E34197 /* ExceptionUtils.m.593a3950.o */,
+				D0E41302200F12F900E34197 /* ExceptionUtils.m.df1b67d5.o */,
+				D0E41303200F12F900E34197 /* FoldersViewController.m.593a3950.o */,
+				D0E41304200F12F900E34197 /* FoldersViewController.m.df1b67d5.o */,
+				D0E41305200F12F900E34197 /* MBProgressHUD+XYHUD.m.593a3950.o */,
+				D0E41306200F12F900E34197 /* MBProgressHUD+XYHUD.m.df1b67d5.o */,
+				D0E41307200F12F900E34197 /* MBProgressHUD.m.593a3950.o */,
+				D0E41308200F12F900E34197 /* MBProgressHUD.m.df1b67d5.o */,
+				D0E41309200F12F900E34197 /* NSString+FileExtend.m.593a3950.o */,
+				D0E4130A200F12F900E34197 /* NSString+FileExtend.m.df1b67d5.o */,
+				D0E4130B200F12F900E34197 /* OSFileManager.m.593a3950.o */,
+				D0E4130C200F12F900E34197 /* OSFileManager.m.df1b67d5.o */,
+				D0E4130D200F12F900E34197 /* RuntimeInvoker.m.593a3950.o */,
+				D0E4130E200F12F900E34197 /* RuntimeInvoker.m.df1b67d5.o */,
+				D0E4130F200F12F900E34197 /* Tweak.xm.593a3950.o */,
+				D0E41310200F12F900E34197 /* Tweak.xm.df1b67d5.o */,
+				D0E41311200F12F900E34197 /* UIViewController+XYExtensions.m.593a3950.o */,
+				D0E41312200F12F900E34197 /* UIViewController+XYExtensions.m.df1b67d5.o */,
+				D0E41313200F12F900E34197 /* UIWebView+XYBlocks.m.593a3950.o */,
+				D0E41314200F12F900E34197 /* UIWebView+XYBlocks.m.df1b67d5.o */,
+				D0E41315200F12F900E34197 /* VideoTweakLib.m.593a3950.o */,
+				D0E41316200F12F900E34197 /* VideoTweakLib.m.df1b67d5.o */,
+				D0E41317200F12F900E34197 /* XYConsoleView.m.593a3950.o */,
+				D0E41318200F12F900E34197 /* XYConsoleView.m.df1b67d5.o */,
+				D0E41319200F12F900E34197 /* XYDummyView.m.593a3950.o */,
+				D0E4131A200F12F900E34197 /* XYDummyView.m.df1b67d5.o */,
+				D0E4131B200F12F900E34197 /* XYQuestionAnswerHook.m.593a3950.o */,
+				D0E4131C200F12F900E34197 /* XYQuestionAnswerHook.m.df1b67d5.o */,
+				D0E4131D200F12F900E34197 /* XYQuestionAnswerManager.m.593a3950.o */,
+				D0E4131E200F12F900E34197 /* XYQuestionAnswerManager.m.df1b67d5.o */,
+				D0E4131F200F12F900E34197 /* XYSuspensionMenu.m.593a3950.o */,
+				D0E41320200F12F900E34197 /* XYSuspensionMenu.m.df1b67d5.o */,
+				D0E41321200F12F900E34197 /* XYSuspensionWebView.m.593a3950.o */,
+				D0E41322200F12F900E34197 /* XYSuspensionWebView.m.df1b67d5.o */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D0E41323200F12F900E34197 /* packages */ = {
+			isa = PBXGroup;
+			children = (
+				D0E41324200F12F900E34197 /* com.alpface.news-0.0.1 */,
+			);
+			path = packages;
+			sourceTree = "<group>";
+		};
+		D0E41325200F12F900E34197 /* VideoTweak */ = {
+			isa = PBXGroup;
+			children = (
+				D0E41326200F12F900E34197 /* videotweak */,
+			);
+			path = VideoTweak;
+			sourceTree = "<group>";
+		};
+		D0E41326200F12F900E34197 /* videotweak */ = {
+			isa = PBXGroup;
+			children = (
+				D0E41327200F12F900E34197 /* src */,
+			);
+			path = videotweak;
+			sourceTree = "<group>";
+		};
+		D0E41327200F12F900E34197 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D0E41328200F12F900E34197 /* .stamp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D0E4132A200F12F900E34197 /* dylib */ = {
+			isa = PBXGroup;
+			children = (
+				D0E4132B200F12F900E34197 /* alpface.bundle */,
+				D0E4132C200F12F900E34197 /* insert_dylib */,
+				D0E4132D200F12F900E34197 /* libsubstrate.dylib */,
+				D0E4132E200F12F900E34197 /* newstweak.dylib */,
+			);
+			path = dylib;
+			sourceTree = "<group>";
+		};
+		D0E41331200F12F900E34197 /* obj */ = {
+			isa = PBXGroup;
+			children = (
+				D0E41332200F12F900E34197 /* debug */,
+			);
+			path = obj;
+			sourceTree = "<group>";
+		};
+		D0E41332200F12F900E34197 /* debug */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = debug;
+			sourceTree = "<group>";
+		};
+		D0E41333200F12F900E34197 /* packages */ = {
+			isa = PBXGroup;
+			children = (
+				D0E41334200F12F900E34197 /* com.alpface.news_0.0.1-1+debug_iphoneos-arm.deb */,
+				D0E41335200F12F900E34197 /* com.alpface.news_0.0.1-2+debug_iphoneos-arm.deb */,
+			);
+			path = packages;
+			sourceTree = "<group>";
+		};
 		D26FD4AF200EC9A200644024 /* decompile */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +651,7 @@
 				D2E7EB8F2008E468009AEA30 /* Video */,
 				D2E7EBAF2008FD4F009AEA30 /* VideoTweak */,
 				D2A178A0200B6CBC00331692 /* VideoMac */,
+				D0E412CF200F109B00E34197 /* News */,
 				D2E7EB8E2008E468009AEA30 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -215,6 +662,7 @@
 				D2E7EB8D2008E468009AEA30 /* Video.app */,
 				D2E7EBAE2008FD4F009AEA30 /* VideoTweak.app */,
 				D2A1789F200B6CBC00331692 /* VideoMac.app */,
+				D0E412CE200F109B00E34197 /* News.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -331,6 +779,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D0E412CD200F109B00E34197 /* News */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0E412E1200F109B00E34197 /* Build configuration list for PBXNativeTarget "News" */;
+			buildPhases = (
+				D0E412CA200F109B00E34197 /* Sources */,
+				D0E412CB200F109B00E34197 /* Frameworks */,
+				D0E412CC200F109B00E34197 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = News;
+			productName = News;
+			productReference = D0E412CE200F109B00E34197 /* News.app */;
+			productType = "com.apple.product-type.application";
+		};
 		D2A1789E200B6CBC00331692 /* VideoMac */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D2A178AC200B6CBC00331692 /* Build configuration list for PBXNativeTarget "VideoMac" */;
@@ -393,6 +858,10 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = alpface;
 				TargetAttributes = {
+					D0E412CD200F109B00E34197 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					D2A1789E200B6CBC00331692 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -423,11 +892,34 @@
 				D2E7EB8C2008E468009AEA30 /* Video */,
 				D2E7EBAD2008FD4F009AEA30 /* VideoTweak */,
 				D2A1789E200B6CBC00331692 /* VideoMac */,
+				D0E412CD200F109B00E34197 /* News */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D0E412CC200F109B00E34197 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0E41370200F12F900E34197 /* newstweak.plist in Resources */,
+				D0E41337200F12F900E34197 /* control in Resources */,
+				D0E41373200F12F900E34197 /* Tweak.xm in Resources */,
+				D0E4133B200F12F900E34197 /* fakeroot in Resources */,
+				D0E4136A200F12F900E34197 /* control in Resources */,
+				D0E41339200F12F900E34197 /* newstweak.plist in Resources */,
+				D0E4133C200F12F900E34197 /* last_package in Resources */,
+				D0E412DD200F109B00E34197 /* LaunchScreen.storyboard in Resources */,
+				D0E4136B200F12F900E34197 /* alpface.bundle in Resources */,
+				D0E41369200F12F900E34197 /* .stamp in Resources */,
+				D0E41368200F12F900E34197 /* com.alpface.news-0.0.1 in Resources */,
+				D0E4136C200F12F900E34197 /* insert_dylib in Resources */,
+				D0E412DA200F109B00E34197 /* Assets.xcassets in Resources */,
+				D0E4133A200F12F900E34197 /* build_session in Resources */,
+				D0E412D8200F109B00E34197 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2A1789D200B6CBC00331692 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -481,11 +973,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -rf ~/Desktop/work/Tweak/xiguavideo/new/Payload/Video.app ~/Library/Developer/Xcode/DerivedData/Video-ccmvyaieotmhkvbpiuykxqzhqluw/Build/Products/Debug-iphoneos/";
+			shellScript = "cp -rf ~/Desktop/work/Theos/XiguaVideo/ipa/new/Payload ~/Library/Developer/Xcode/DerivedData/Video-ezlrrnsnutzbnnawszxdzxncugqt/Build/Products/Debug-iphoneos/";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D0E412CA200F109B00E34197 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0E412D5200F109B00E34197 /* ViewController.m in Sources */,
+				D0E412E0200F109B00E34197 /* main.m in Sources */,
+				D0E4136F200F12F900E34197 /* Makefile in Sources */,
+				D0E412D2200F109B00E34197 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D2A1789B200B6CBC00331692 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -538,6 +1041,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		D0E412D6200F109B00E34197 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0E412D7200F109B00E34197 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D0E412DB200F109B00E34197 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0E412DC200F109B00E34197 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		D2A178A7200B6CBC00331692 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -581,6 +1100,52 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D0E412E2200F109B00E34197 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NKW67GFDHM;
+				INFOPLIST_FILE = News/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/News/newstweak/.theos/_/Library/MobileSubstrate/DynamicLibraries",
+					"$(PROJECT_DIR)/News/newstweak/.theos/obj/debug/arm64",
+					"$(PROJECT_DIR)/News/newstweak/.theos/obj/debug/armv7",
+					"$(PROJECT_DIR)/News/newstweak/.theos/obj/debug",
+					"$(PROJECT_DIR)/News/newstweak/dylib",
+					"$(PROJECT_DIR)/News/newstweak/packages",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alpface.News;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D0E412E3200F109B00E34197 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NKW67GFDHM;
+				INFOPLIST_FILE = News/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/News/newstweak/.theos/_/Library/MobileSubstrate/DynamicLibraries",
+					"$(PROJECT_DIR)/News/newstweak/.theos/obj/debug/arm64",
+					"$(PROJECT_DIR)/News/newstweak/.theos/obj/debug/armv7",
+					"$(PROJECT_DIR)/News/newstweak/.theos/obj/debug",
+					"$(PROJECT_DIR)/News/newstweak/dylib",
+					"$(PROJECT_DIR)/News/newstweak/packages",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.alpface.News;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		D2A178AD200B6CBC00331692 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -797,6 +1362,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D0E412E1200F109B00E34197 /* Build configuration list for PBXNativeTarget "News" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0E412E2200F109B00E34197 /* Debug */,
+				D0E412E3200F109B00E34197 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D2A178AC200B6CBC00331692 /* Build configuration list for PBXNativeTarget "VideoMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
