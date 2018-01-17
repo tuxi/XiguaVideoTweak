@@ -1060,7 +1060,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -rf ~/Desktop/work/Theos/XiguaVideo/ipa/new/Payload ~/Library/Developer/Xcode/DerivedData/Video-ezlrrnsnutzbnnawszxdzxncugqt/Build/Products/Debug-iphoneos/";
+			shellScript = "cp -rf ~/Desktop/work/Theos/XiguaVideo/ipa/new/Payload/Video.app ~/Library/Developer/Xcode/DerivedData/Video-ezlrrnsnutzbnnawszxdzxncugqt/Build/Products/Debug-iphoneos/";
 		};
 /* End PBXShellScriptBuildPhase section */
 

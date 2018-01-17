@@ -324,14 +324,17 @@ static __attribute__((constructor)) void entry() {
             {
                 HypotenuseAction *item = [HypotenuseAction actionWithType:1 handler:^(HypotenuseAction * _Nonnull action, SuspensionMenuView * _Nonnull menuView) {
                     UIViewController *vc = [UIViewController xy_topViewController];
-                    if (![vc isKindOfClass:NSClassFromString(@"TTFQuizShowLiveRoomViewController")]) {
-                        [NSClassFromString(@"TTFQuizShowLiveRoomViewController") prepareForQuizShowLiveRoom];
+                    if (![vc isKindOfClass:NSClassFromString(@"TTFDashboardViewController")]) {
+                        UIViewController *vc = [NSClassFromString(@"TTFDashboardViewController") new];
+//                        UINavigationController *nac = [(UINavigationController *)[NSClassFromString(@"TTNavigationController") alloc] initWithRootViewController:vc];
+                        [[UIViewController xy_topViewController] presentViewController:vc animated:YES completion:nil];
+                        
                     }
                     [menuView close];
                     
                 }];
                 [menuView addAction:item];
-                [item.hypotenuseButton setTitle:@"进入英雄直播间" forState:UIControlStateNormal];
+                [item.hypotenuseButton setTitle:@"进入Dashboard" forState:UIControlStateNormal];
                 [item.hypotenuseButton setBackgroundColor:[UIColor whiteColor]];
                 item.hypotenuseButton.layer.cornerRadius = 10.0;
             }
