@@ -16,6 +16,22 @@ typedef id CDUnknownBlockType;
 @class NSDictionary, NSNumber, NSString;
 @class SSHttpOperation, ArticleAPNsManager;
 
+@interface TTFActivityInfo : NSObject //GPBMessage
+{
+}
+
++ (id)descriptor;
+
+// Remaining properties
+@property(nonatomic) long long activityId; // @dynamic activityId;
+@property(copy, nonatomic) NSString *labelURL; // @dynamic labelURL;
+@property(nonatomic) long long plannedTime; // @dynamic plannedTime;
+@property(copy, nonatomic) NSString *prizeColor; // @dynamic prizeColor;
+@property(copy, nonatomic) NSString *prizeString; // @dynamic prizeString;
+
+@end
+
+
 @protocol ArticleAPNsManagerDelegate <NSObject>
     
     @optional
@@ -1183,6 +1199,67 @@ typedef id CDUnknownBlockType;
 
 @end
 
+@protocol TTFDashboardViewWrapperDelegate <NSObject>
+- (void)clickAvatarButton:(id)arg1;
+- (void)clickHelp:(id)arg1;
+- (void)closeDashboard:(id)arg1;
+- (void)enterAgainButtonDidClicked;
+- (void)enterTopListViewController;
+- (void)inputInvitationCode:(id)arg1;
+- (void)resurrection:(id)arg1;
+- (void)shareToFriend:(id)arg1;
+- (void)signUp:(id)arg1;
+@end
+
+
+@class LOTAnimationView, TTFDashboardView, TTFResurrectionView, UIButton, UIImageView, UILabel;
+
+/// 进入直播Button的父视图
+@interface TTFDashboardViewWrapper : UIView
+{
+    NSObject<TTFDashboardViewWrapperDelegate> *_delegate;
+    UIImageView *_bannerImageView;
+    UIButton *_avatarButton;
+    UIButton *_closeButton;
+    UIView *_dashboardContainerView;
+    TTFDashboardView *_dashboardView;
+    TTFResurrectionView *_resurrectionView;
+    UIButton *_enterAgainButton;
+    UILabel *_enterAgainTextLabel;
+    LOTAnimationView *_enterAgainAnimationView;
+}
+
+@property(retain, nonatomic) UIButton *avatarButton; // @synthesize avatarButton=_avatarButton;
+@property(retain, nonatomic) UIImageView *bannerImageView; // @synthesize bannerImageView=_bannerImageView;
+- (void)clickAvatarButton:(id)arg1;
+- (void)clickHelp:(id)arg1;
+@property(retain, nonatomic) UIButton *closeButton; // @synthesize closeButton=_closeButton;
+- (void)closeDashboard:(id)arg1;
+@property(retain, nonatomic) UIView *dashboardContainerView; // @synthesize dashboardContainerView=_dashboardContainerView;
+- (void)dashboardContainerViewHidden:(BOOL)arg1;
+@property(retain, nonatomic) TTFDashboardView *dashboardView; // @synthesize dashboardView=_dashboardView;
+- (void)dealloc;
+@property(nonatomic) __weak NSObject<TTFDashboardViewWrapperDelegate> *delegate; // @synthesize delegate=_delegate;
+- (void)enterAgainAnimationChangeIsPlay:(BOOL)arg1;
+@property(retain, nonatomic) LOTAnimationView *enterAgainAnimationView; // @synthesize enterAgainAnimationView=_enterAgainAnimationView;
+@property(retain, nonatomic) UIButton *enterAgainButton; // @synthesize enterAgainButton=_enterAgainButton;
+/// 点击进入直播按钮enterAgainButton调用
+- (void)enterAgainButtonDidClicked:(id)arg1;
+@property(retain, nonatomic) UILabel *enterAgainTextLabel; // @synthesize enterAgainTextLabel=_enterAgainTextLabel;
+- (void)enterTopListViewController;
+- (void)getAvatarButtonImage;
+- (id)initWithFrame:(struct CGRect)arg1;
+- (void)inputInvitationCode:(id)arg1;
+- (void)resurrection:(id)arg1;
+@property(retain, nonatomic) TTFResurrectionView *resurrectionView; // @synthesize resurrectionView=_resurrectionView;
+- (void)shareToFriend:(id)arg1;
+- (void)signUp:(id)arg1;
+- (void)ttf_applicationDidEnterBackground:(id)arg1;
+- (void)ttf_applicationWillEnterForeground:(id)arg1;
+- (void)ttf_setupConstraint;
+
+@end
+
 //@interface TTFQuestionStruct : GPBMessage
 //{
 //}
@@ -1241,7 +1318,20 @@ typedef id CDUnknownBlockType;
 
 
 
-/////////////// net work ///////////////
+////////////////////////////////////////////////////////////////////////
+#pragma mark - net work
+////////////////////////////////////////////////////////////////////////
+
+@interface TTFShareNetworkManager : NSObject
+{
+}
+
++ (void)requestInviteCodeWithAppID:(int)arg1 deviceID:(long long)arg2 completion:(CDUnknownBlockType)arg3;
++ (void)requestShareTypeWithDiveceID:(long long)arg1 appID:(int)arg2 completion:(CDUnknownBlockType)arg3;
+
+@end
+
+
 
 /// url
 @interface TTFURLSetting : NSObject
@@ -1466,6 +1556,532 @@ typedef id CDUnknownBlockType;
 - (id)uploadWithURL:(id)arg1 headerField:(id)arg2 parameters:(id)arg3 constructingBodyWithBlock:(CDUnknownBlockType)arg4 progress:(id *)arg5 needcommonParams:(BOOL)arg6 callback:(CDUnknownBlockType)arg7;
 - (id)uploadWithURL:(id)arg1 parameters:(id)arg2 constructingBodyWithBlock:(CDUnknownBlockType)arg3 progress:(id *)arg4 needcommonParams:(BOOL)arg5 callback:(CDUnknownBlockType)arg6;
 - (id)uploadWithURL:(id)arg1 parameters:(id)arg2 headerField:(id)arg3 constructingBodyWithBlock:(CDUnknownBlockType)arg4 progress:(id *)arg5 needcommonParams:(BOOL)arg6 requestSerializer:(Class)arg7 responseSerializer:(Class)arg8 autoResume:(BOOL)arg9 callback:(CDUnknownBlockType)arg10;
+
+@end
+
+@interface TTBaseRequestParam : NSObject
+{
+    NSString *_aId;
+    NSString *_deviceId;
+    NSString *_installId;
+    NSString *_appName;
+    NSString *_host;
+}
+
++ (id)requestParam;
+@property(copy, nonatomic) NSString *aId; // @synthesize aId=_aId;
+@property(copy, nonatomic) NSString *appName; // @synthesize appName=_appName;
+@property(copy, nonatomic) NSString *deviceId; // @synthesize deviceId=_deviceId;
+@property(copy, nonatomic) NSString *host; // @synthesize host=_host;
+- (id)init;
+@property(copy, nonatomic) NSString *installId; // @synthesize installId=_installId;
+
+@end
+
+@protocol TTFantasyLCSManagerDelegate <NSObject>
+
+@optional
+- (void)onPushManagerConnectionError:(NSString *)arg1 connectionState:(unsigned int)arg2 url:(NSString *)arg3;
+- (void)onPushManagerConnectionStateChanged:(unsigned int)arg1 url:(NSString *)arg2;
+- (void)onReceivedUnknownPushMessageWithPayload:(NSString *)arg1;
+@end
+
+
+@interface TTFantasyLCSManager : NSObject
+{
+    id <TTFantasyLCSManagerDelegate> _delegate;
+    NSString *_appKey;
+    NSString *_fpID;
+    NSString *_deviceID;
+    NSString *_appID;
+    NSString *_installID;
+    NSString *_sessionID;
+    NSArray *_wsURLs;
+}
+
++ (id)sharedManager;
+- (void)addObservers;
+@property(copy, nonatomic) NSString *appID; // @synthesize appID=_appID;
+@property(copy, nonatomic) NSString *appKey; // @synthesize appKey=_appKey;
+- (void)configLCSWithMessageReceiver:(id)arg1 appKey:(id)arg2 fpID:(id)arg3 deviceID:(id)arg4 appID:(id)arg5 installID:(id)arg6 sessionID:(id)arg7 wsURLs:(id)arg8;
+- (int)currentNetworkStatus;
+- (int)currentPlatform;
+- (void)dealloc;
+@property __weak id <TTFantasyLCSManagerDelegate> delegate; // @synthesize delegate=_delegate;
+@property(copy, nonatomic) NSString *deviceID; // @synthesize deviceID=_deviceID;
+@property(copy, nonatomic) NSString *fpID; // @synthesize fpID=_fpID;
+- (int)getClientVersionNumber;
+- (void)handleNetworkChange:(int)arg1;
+@property(copy, nonatomic) NSString *installID; // @synthesize installID=_installID;
+- (BOOL)isConnected;
+- (void)onAppDidBecomeActive:(id)arg1;
+- (void)onPushManagerConnectionError:(id)arg1;
+- (void)onPushManagerConnectionStateChanged:(id)arg1;
+- (void)onPushManagerUnknownPushMessage:(id)arg1;
+- (void)onReachabilityChangedNotification:(id)arg1;
+- (void)removeObservers;
+@property(copy, nonatomic) NSString *sessionID; // @synthesize sessionID=_sessionID;
+@property(copy, nonatomic) NSArray *wsURLs; // @synthesize wsURLs=_wsURLs;
+- (void)startConnection;
+- (void)stopConnection;
+
+@end
+
+@protocol Singleton <NSObject>
+
+@optional
++ (void)destorySharedInstance_tt;
++ (id)sharedInstance_tt;
+@end
+
+
+
+@interface TTHttpsControlManager : NSObject <Singleton>
+{
+    BOOL _shouldUseHTTPs;
+    BOOL _shouldFallbackToHTTP;
+    BOOL _shouldShowHijack;
+    BOOL _shouldVerifySign;
+    unsigned int _currentErrorCount;
+    unsigned int _maxErrorCount;
+    NSArray *_regularArray;
+    unsigned int _httpRetryCount;
+}
+
++ (id)httpsControlPersistence;
+- (id)checkFeedStrictModeResponse_:(id)arg1 responseBody:(id *)arg2 responseError:(id *)arg3 forRequest:(id)arg4;
+- (BOOL)checkHTTPsFailedWithURLResponse:(id)arg1 responseError:(id)arg2 trackInfoList:(id)arg3 forRequest:(id)arg4;
+- (BOOL)checkIfHTTPNeedsRetryWithResponse:(id)arg1 responseBody:(id *)arg2 responseError:(id *)arg3 trackInfoList:(id)arg4 forRequest:(id)arg5;
+- (void)configWithParameters:(id)arg1;
+- (void)configWithResponseModel:(id)arg1;
+@property unsigned int currentErrorCount; // @synthesize currentErrorCount=_currentErrorCount;
+@property(nonatomic) unsigned int httpRetryCount; // @synthesize httpRetryCount=_httpRetryCount;
+- (unsigned int)httpRetryCountWhenEtagCheckFailed;
+- (id)init;
+- (BOOL)isDisableShowHijack;
+@property(nonatomic) unsigned int maxErrorCount; // @synthesize maxErrorCount=_maxErrorCount;
+@property(copy) NSArray *regularArray; // @synthesize regularArray=_regularArray;
+- (void)reportRSADecryptionFailedEvent_:(id)arg1;
+@property(nonatomic) BOOL shouldFallbackToHTTP; // @synthesize shouldFallbackToHTTP=_shouldFallbackToHTTP;
+@property(nonatomic) BOOL shouldShowHijack; // @synthesize shouldShowHijack=_shouldShowHijack;
+@property(nonatomic) BOOL shouldUseHTTPs; // @synthesize shouldUseHTTPs=_shouldUseHTTPs;
+@property(nonatomic) BOOL shouldVerifySign; // @synthesize shouldVerifySign=_shouldVerifySign;
+- (id)transferedURLFrom:(id)arg1;
+- (BOOL)urlIsMatched:(id)arg1;
+
+@end
+
+
+////////////////////////////////////////////////////////////////////////
+#pragma mark - Util
+////////////////////////////////////////////////////////////////////////
+@interface TTInfoHelper : NSObject
+{
+}
+
++ (id)AppLaunchedTimesKey;
++ (id)MACAddress;
++ (float)OSVersionNumber;
++ (id)addressOfHost:(id)arg1;
++ (id)appDisplayName;
++ (int)appLaunchedTimes;
++ (id)appName;
++ (id)appOwnURL;
++ (id)bundleIdentifier;
++ (id)carrierMCC;
++ (id)carrierMNC;
++ (id)carrierName;
++ (id)connectMethodName;
++ (id)currentLanguage;
++ (id)deviceID;
++ (BOOL)disableBackupForPath:(id)arg1;
++ (id)getCurrentChannel;
++ (id)getIPAddresses;
++ (id)idfaString;
++ (id)idfvString;
++ (id)installID;
++ (BOOL)isAPPFirstLaunch;
++ (BOOL)isJailBroken;
++ (id)openUDID;
++ (void)resetAppLaunchedTimes;
++ (void)saveDeviceID:(id)arg1;
++ (void)saveInstallID:(id)arg1;
++ (void)setAppDidLaunchThisTime;
++ (void)setAppFirstLaunch;
++ (id)ssAppID;
++ (id)ssAppMID;
++ (id)ssAppScheme;
++ (id)versionName;
++ (id)videoApiVersion;
+
+@end
+
+@interface TTServiceInfoHelper : NSObject
+{
+}
+
++ (id)AppLaunchedTimesKey;
++ (id)MACAddress;
++ (float)OSVersionNumber;
++ (id)addressOfHost:(id)arg1;
++ (id)appDisplayName;
++ (int)appLaunchedTimes;
++ (id)appName;
++ (id)appOwnURL;
++ (id)bundleIdentifier;
++ (id)carrierMCC;
++ (id)carrierMNC;
++ (id)carrierName;
++ (id)currentLBSStatus;
++ (id)currentLanguage;
++ (id)deviceID;
++ (BOOL)disableBackupForPath:(id)arg1;
++ (id)getCurrentChannel;
++ (id)getIPAddresses;
++ (id)idfaString;
++ (id)idfvString;
++ (id)installID;
++ (BOOL)isAPPFirstLaunch;
++ (BOOL)isJailBroken;
++ (BOOL)isLocationServiceEnabled;
++ (void)resetAppLaunchedTimes;
++ (void)saveDeviceID:(id)arg1;
++ (void)saveInstallID:(id)arg1;
++ (void)setAppDidLaunchThisTime;
++ (void)setAppFirstLaunch;
++ (id)ssAppID;
++ (id)ssAppMID;
++ (id)ssAppScheme;
++ (id)userId;
++ (id)versionName;
+
+@end
+@class NSString, UIPasteboard, UTDIDHelper, UTDIDPersistentConf;
+
+@interface UTDIDMain : NSObject
+{
+    UIPasteboard *mUIPasteBoard;
+    NSString *mFilePath;
+    UTDIDHelper *mUtdidHelper;
+    UTDIDPersistentConf *mDevicePersistentConfig;
+}
+
++ (id)generateUtdid;
++ (id)uniqueGlobalDeviceIdentifier;
+- (id)NSData2Str:(id)arg1;
+- (id)generateUtdidAndSave;
+- (id)getUTDIDFromOldKeyChain;
+- (id)getUTDIDFromOldNSUserDefaults;
+- (id)getUTDIDFromOldUIPasteboard;
+- (_Bool)isUtdidValid:(id)arg1;
+- (void)preInit;
+- (void)removeUtdid;
+- (void)saveUtdid:(id)arg1;
+- (void)testInit;
+- (id)value;
+
+@end
+
+
+@interface UMANProtocolData : NSObject
+{
+}
+
++ (id)UUIDMD5String;
++ (id)UUIDString;
++ (id)accessString;
++ (id)appBundleVersionString;
++ (id)appDisplayNameString;
++ (id)appPackageNameString;
++ (id)appPirateString;
++ (id)appShortVersionString;
++ (id)carrierString;
++ (id)countryString;
++ (id)cpuString;
++ (id)dateString;
++ (id)deviceIDVendorString;
++ (id)deviceJailBreakString;
++ (id)deviceModelString;
++ (BOOL)isAppPirate;
++ (BOOL)isDeviceJailBreak;
++ (BOOL)isPad;
++ (id)languageString;
++ (id)latString;
++ (id)lngString;
++ (id)md5Value:(id)arg1;
++ (id)openUDIDString;
++ (id)orientationString;
++ (id)osString;
++ (id)osVersionString;
++ (id)resolutionString;
++ (id)timeMSString;
++ (id)timeString;
++ (id)timezoneString;
+
+@end
+
+@interface KeplerMAUtils : NSObject
+{
+}
+
++ (id)appVersion;
++ (id)commponParams;
++ (int)dayOfWeek;
++ (id)getDevicePlatform;
++ (int)hourOfDay;
++ (id)md5Encode:(id)arg1;
++ (id)networkType;
++ (id)network_type;
++ (id)queryAppVersion;
++ (id)resolution;
++ (id)stringFromJson:(id)arg1;
+
+@end
+
+@interface UMANUtil : NSObject
+{
+}
+
++ (id)JSONFragment:(id)arg1;
++ (id)JSONValue:(id)arg1;
++ (id)accessString;
++ (id)accessSubType;
++ (id)appDisplayNameString;
++ (id)appPackageNameString;
++ (id)appPirateString;
++ (id)appShortVersionString;
++ (id)appVersionString;
++ (id)bytesToHexString:(char *)arg1 length:(int)arg2;
++ (id)carrierString;
++ (id)countryString;
++ (id)dateString;
++ (id)deflatedData:(id)arg1;
++ (id)deflatedDataPrefixedWith:(id)arg1 level:(int)arg2 source:(id)arg3;
++ (id)deviceJailBreakString;
++ (id)deviceMacAddressString;
++ (id)deviceModelString;
++ (id)getString:(id)arg1 bytesLength:(int)arg2;
++ (id)idfa;
++ (id)idfv;
++ (BOOL)isAppPirate;
++ (BOOL)isDebugging;
++ (BOOL)isDeviceJailBreak;
++ (BOOL)isEmptyString:(id)arg1;
++ (BOOL)isOverSeas;
++ (BOOL)isPad;
++ (id)languageString;
++ (id)mccString;
++ (id)md5:(id)arg1;
++ (char *)md5BytesWithString:(id)arg1;
++ (id)md5DataWithData:(id)arg1;
++ (id)mncString;
++ (id)openUDIDString;
++ (id)osString;
++ (id)osVersionString;
++ (int)resolutionHeight;
++ (id)resolutionString;
++ (int)resolutionWidth;
++ (id)returnCheck:(id)arg1;
++ (id)sdkTypeString;
++ (id)sdkVersionString;
++ (id)timeString;
++ (int)timezone;
++ (id)timezoneString;
++ (id)urlEncode:(id)arg1;
++ (id)utdid;
+
+@end
+
+@protocol TTFantasyServiceProtocol <NSObject>
+- (NSString *)getAppID;
+- (NSString *)getAppName;
+- (NSString *)getChannel;
+- (NSString *)getDeviceID;
+- (NSString *)getDeviceType;
+- (NSString *)getInstallID;
+- (int)getNetworkReachabilityStatus;
+- (NSString *)getOpenUDID;
+- (NSString *)getReachabilityDidChangeNotificationName;
+- (NSString *)getSessionID;
+- (NSString *)getUserAvatarURL;
+- (NSString *)getUserID;
+- (NSString *)getUserName;
+- (NSString *)getVersionCode;
+- (NSString *)getVersionName;
+- (BOOL)isLogin;
+- (void)setImageForTargetButton:(UIButton *)arg1 URL:(NSURL *)arg2 state:(unsigned int)arg3 placeholderImage:(UIImage *)arg4 completed:(void (^)(UIImage *, NSError *, NSURL *))arg5;
+- (void)setImageForTargetImageView:(UIImageView *)arg1 URL:(NSURL *)arg2 placeholderImage:(UIImage *)arg3 completed:(void (^)(UIImage *, NSError *, NSURL *))arg4;
+- (NSString *)urlWithVideoId:(NSString *)arg1;
+
+@optional
+- (NSString *)getAppStoreOpenURL;
+@end
+
+@interface TTInstalliCloud : NSObject
+{
+}
+
++ (id)deviceIDsFingerPrintString;
++ (BOOL)isiCloudAvailable;
++ (void)saveDeviceIDIfNeeded:(id)arg1;
+
+@end
+
+
+@interface TTInstallIDManager : NSObject <UIApplicationDelegate>
+{
+    BOOL _hasObserveNetworkChange;
+    struct _opaque_pthread_mutex_t _blockslock;
+    NSRecursiveLock *_didRegisterlock;
+    NSMutableArray *_blocksArray;
+    NSString *_deviceID;
+    NSString *_installID;
+    NSString *_appID;
+    NSString *_channel;
+    CDUnknownBlockType _configParamsBlock;
+    CDUnknownBlockType _customHeaderBlock;
+    CDUnknownBlockType _overrideHeaderBlock;
+    unsigned int _bgTask;
+}
+
++ (id)getInstallIDURLString;
++ (id)sharedInstance;
+- (void)addRegisterBlockIfNeeded:(CDUnknownBlockType)arg1;
+@property(copy, nonatomic) NSString *appID; // @synthesize appID=_appID;
+@property(nonatomic) unsigned int bgTask; // @synthesize bgTask=_bgTask;
+@property(copy, nonatomic) NSString *channel; // @synthesize channel=_channel;
+- (id)configParams;
+@property(copy, nonatomic) CDUnknownBlockType configParamsBlock; // @synthesize configParamsBlock=_configParamsBlock;
+- (void)connectionChanged:(id)arg1;
+@property(copy, nonatomic) CDUnknownBlockType customHeaderBlock; // @synthesize customHeaderBlock=_customHeaderBlock;
+- (void)dealloc;
+@property(copy, nonatomic) NSString *deviceID; // @synthesize deviceID=_deviceID;
+- (void)didEnterBackground:(id)arg1;
+- (BOOL)hasRegistered;
+- (id)init;
+@property(copy, nonatomic) NSString *installID; // @synthesize installID=_installID;
+- (void)invalidBgTaskIfNeeded;
+@property(copy, nonatomic) CDUnknownBlockType overrideHeaderBlock; // @synthesize overrideHeaderBlock=_overrideHeaderBlock;
+- (void)saveDeviceAndInstallID:(id)arg1 maxRetryTimes:(int)arg2;
+- (void)setDidRegisterBlock:(CDUnknownBlockType)arg1;
+- (void)startGetInstallIDIfNeededWithRetryTimes:(int)arg1;
+- (void)startGetInstallIDWithMaxRetryTimes:(int)arg1;
+- (void)startWithAppID:(id)arg1 channel:(id)arg2 finishBlock:(CDUnknownBlockType)arg3;
+
+@property(retain, nonatomic) UIWindow *window;
+
+@end
+
+@interface WXOMTAEnv : NSObject
+{
+    BOOL _jailbroken;
+    NSString *_platform;
+    NSString *_os_version;
+    NSString *_language;
+    NSString *_resolution;
+    NSString *_deviceid;
+    NSString *_mccmnc;
+    NSString *_timezone;
+    NSString *_app_version;
+    NSString *_sdk_version;
+    NSString *_devicename;
+    NSString *_modulename;
+    NSUUID *_ifa;
+    NSUUID *_ifv;
+    NSString *_wf;
+}
+
+@property(retain, nonatomic) NSString *app_version; // @synthesize app_version=_app_version;
+- (void)dealloc;
+@property(retain, nonatomic) NSString *deviceid; // @synthesize deviceid=_deviceid;
+@property(retain, nonatomic) NSString *devicename; // @synthesize devicename=_devicename;
+@property(retain, nonatomic) NSUUID *ifa; // @synthesize ifa=_ifa;
+@property(retain, nonatomic) NSUUID *ifv; // @synthesize ifv=_ifv;
+@property BOOL jailbroken; // @synthesize jailbroken=_jailbroken;
+@property(retain, nonatomic) NSString *language; // @synthesize language=_language;
+@property(retain, nonatomic) NSString *mccmnc; // @synthesize mccmnc=_mccmnc;
+@property(retain, nonatomic) NSString *modulename; // @synthesize modulename=_modulename;
+@property(retain, nonatomic) NSString *os_version; // @synthesize os_version=_os_version;
+@property(retain, nonatomic) NSString *platform; // @synthesize platform=_platform;
+@property(retain, nonatomic) NSString *resolution; // @synthesize resolution=_resolution;
+@property(retain, nonatomic) NSString *sdk_version; // @synthesize sdk_version=_sdk_version;
+@property(retain, nonatomic) NSString *timezone; // @synthesize timezone=_timezone;
+@property(retain, nonatomic) NSString *wf; // @synthesize wf=_wf;
+
+@end
+
+@interface TTExtensions : NSObject
+{
+}
+
++ (id)MACAddress;
++ (id)OSVersion;
++ (float)OSVersionNumber;
++ (id)URLString:(id)arg1 appendCommonParams:(id)arg2;
++ (id)_dateformatter;
++ (id)_dictToUrlComponentsFor:(id)arg1;
++ (id)_getGlobalTelephonyNetworkInfo;
++ (int)_intergerFromNetworkStatus:(int)arg1;
++ (id)_stringFromNetworkStatus:(int)arg1;
++ (int)_syncToGetCurrentNetWorkStatus;
++ (id)addressOfHost:(id)arg1;
++ (id)appDisplayName;
++ (void)applyCookieHeader:(id)arg1;
++ (id)bundleIdentifier;
++ (id)carrierMCC;
++ (id)carrierMNC;
++ (id)carrierName;
++ (id)connectMethodName;
++ (int)connectionType;
++ (id)currentLanguage;
++ (id)generateUUID;
++ (id)getCurrentChannel;
++ (id)gzipDeflate:(id)arg1;
++ (id)idfaString;
++ (BOOL)isJailBroken;
++ (id)joinBaseUrlStr:(id)arg1 withParams:(id)arg2;
++ (int)networkStatus;
++ (id)openUDID;
++ (struct CGSize)resolution;
++ (id)resolutionString;
++ (id)ssAppID;
++ (id)userAgentString;
++ (id)versionName;
+
+@end
+
+
+@interface TTInstallDeviceHelper : NSObject
+{
+}
+
++ (id)MACAddress;
++ (float)OSVersionNumber;
++ (id)currentLanguage;
++ (id)fetchOpenUDIDFromKeychain;
++ (unsigned int)getDeviceType;
++ (id)idfaString;
++ (id)idfvString;
++ (BOOL)is480Screen;
++ (BOOL)is568Screen;
++ (BOOL)is667Screen;
++ (BOOL)is736Screen;
++ (BOOL)isIpadProDevice;
++ (BOOL)isJailBroken;
++ (BOOL)isPadDevice;
++ (BOOL)isScreenWidthLarge320;
++ (BOOL)judge480Screen;
++ (BOOL)judge568Screen;
++ (BOOL)judge667Screen;
++ (BOOL)judge736Screen;
++ (BOOL)judgePadDevice;
++ (id)openUDID;
++ (id)platformName;
++ (struct CGSize)resolution;
++ (id)resolutionString;
++ (void)saveOpenUDIDToKeychain:(id)arg1;
++ (float)screenScale;
++ (float)ssOnePixel;
 
 @end
 

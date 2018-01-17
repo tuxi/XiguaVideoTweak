@@ -85,7 +85,7 @@
 		D2773B18200AF6C50078A2A3 /* XYSuspensionWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2773B17200AF6C50078A2A3 /* XYSuspensionWebView.m */; };
 		D2773B1B200AFAC70078A2A3 /* UIWebView+XYBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = D2773B1A200AFAC70078A2A3 /* UIWebView+XYBlocks.m */; };
 		D2A1787F200B189000331692 /* XYDummyView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A1787D200B188F00331692 /* XYDummyView.m */; };
-		D2A17882200B282500331692 /* XYQuestionAnswerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A17881200B282500331692 /* XYQuestionAnswerManager.m */; };
+		D2A17882200B282500331692 /* XYQuestionAnswerUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A17881200B282500331692 /* XYQuestionAnswerUnit.m */; };
 		D2A17884200B31AE00331692 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D2A17883200B31AE00331692 /* README.md */; };
 		D2A17886200B34A300331692 /* img1.png in Resources */ = {isa = PBXBuildFile; fileRef = D2A17885200B34A200331692 /* img1.png */; };
 		D2A178A2200B6CBC00331692 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A178A1200B6CBC00331692 /* AppDelegate.swift */; };
@@ -93,7 +93,7 @@
 		D2A178A6200B6CBC00331692 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2A178A5200B6CBC00331692 /* Assets.xcassets */; };
 		D2A178A9200B6CBC00331692 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A178A7200B6CBC00331692 /* Main.storyboard */; };
 		D2A178D7200CF55100331692 /* alpface.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2A178D6200CF55000331692 /* alpface.bundle */; };
-		D2A178DA200CFA8100331692 /* XYQuestionAnswerHook.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A178D9200CFA8100331692 /* XYQuestionAnswerHook.m */; };
+		D2A178DA200CFA8100331692 /* XYQuestionAnswerHookHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A178D9200CFA8100331692 /* XYQuestionAnswerHookHelper.m */; };
 		D2A178DC200CFE2600331692 /* IMG_0863.PNG in Resources */ = {isa = PBXBuildFile; fileRef = D2A178DB200CFE2600331692 /* IMG_0863.PNG */; };
 		D2A178DE200CFF7400331692 /* 2018-01-15 23_25_24.gif in Resources */ = {isa = PBXBuildFile; fileRef = D2A178DD200CFF7400331692 /* 2018-01-15 23_25_24.gif */; };
 		D2A7D97E2009AD4A00E973E9 /* VideoTweakLib.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A7D97D2009AD4A00E973E9 /* VideoTweakLib.m */; };
@@ -228,8 +228,8 @@
 		D2773B1A200AFAC70078A2A3 /* UIWebView+XYBlocks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+XYBlocks.m"; sourceTree = "<group>"; };
 		D2A1787D200B188F00331692 /* XYDummyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYDummyView.m; sourceTree = "<group>"; };
 		D2A1787E200B189000331692 /* XYDummyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYDummyView.h; sourceTree = "<group>"; };
-		D2A17880200B282500331692 /* XYQuestionAnswerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYQuestionAnswerManager.h; sourceTree = "<group>"; };
-		D2A17881200B282500331692 /* XYQuestionAnswerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYQuestionAnswerManager.m; sourceTree = "<group>"; };
+		D2A17880200B282500331692 /* XYQuestionAnswerUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYQuestionAnswerUnit.h; sourceTree = "<group>"; };
+		D2A17881200B282500331692 /* XYQuestionAnswerUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYQuestionAnswerUnit.m; sourceTree = "<group>"; };
 		D2A17883200B31AE00331692 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D2A17885200B34A200331692 /* img1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img1.png; sourceTree = "<group>"; };
 		D2A1789F200B6CBC00331692 /* VideoMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,8 +240,8 @@
 		D2A178AA200B6CBC00331692 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2A178AB200B6CBC00331692 /* VideoMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VideoMac.entitlements; sourceTree = "<group>"; };
 		D2A178D6200CF55000331692 /* alpface.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = alpface.bundle; sourceTree = "<group>"; };
-		D2A178D8200CFA8100331692 /* XYQuestionAnswerHook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYQuestionAnswerHook.h; sourceTree = "<group>"; };
-		D2A178D9200CFA8100331692 /* XYQuestionAnswerHook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYQuestionAnswerHook.m; sourceTree = "<group>"; };
+		D2A178D8200CFA8100331692 /* XYQuestionAnswerHookHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XYQuestionAnswerHookHelper.h; sourceTree = "<group>"; };
+		D2A178D9200CFA8100331692 /* XYQuestionAnswerHookHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XYQuestionAnswerHookHelper.m; sourceTree = "<group>"; };
 		D2A178DB200CFE2600331692 /* IMG_0863.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0863.PNG; sourceTree = "<group>"; };
 		D2A178DD200CFF7400331692 /* 2018-01-15 23_25_24.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "2018-01-15 23_25_24.gif"; sourceTree = "<group>"; };
 		D2A7D97C2009AD4A00E973E9 /* VideoTweakLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoTweakLib.h; sourceTree = "<group>"; };
@@ -807,10 +807,10 @@
 				D2A7D97D2009AD4A00E973E9 /* VideoTweakLib.m */,
 				D2773B19200AFAC70078A2A3 /* UIWebView+XYBlocks.h */,
 				D2773B1A200AFAC70078A2A3 /* UIWebView+XYBlocks.m */,
-				D2A17880200B282500331692 /* XYQuestionAnswerManager.h */,
-				D2A17881200B282500331692 /* XYQuestionAnswerManager.m */,
-				D2A178D8200CFA8100331692 /* XYQuestionAnswerHook.h */,
-				D2A178D9200CFA8100331692 /* XYQuestionAnswerHook.m */,
+				D2A17880200B282500331692 /* XYQuestionAnswerUnit.h */,
+				D2A17881200B282500331692 /* XYQuestionAnswerUnit.m */,
+				D2A178D8200CFA8100331692 /* XYQuestionAnswerHookHelper.h */,
+				D2A178D9200CFA8100331692 /* XYQuestionAnswerHookHelper.m */,
 				D0B764AE200DF0D200DDF93B /* XYVideoConst.h */,
 				D2A178D6200CF55000331692 /* alpface.bundle */,
 			);
@@ -1046,7 +1046,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -rf ~/Desktop/work/Theos/News/ipa/new/Payload/News.app ~/Library/Developer/Xcode/DerivedData/Video-ezlrrnsnutzbnnawszxdzxncugqt/Build/Products/Debug-iphoneos";
+			shellScript = "cp -rf ~/Desktop/work/Tweak/News/ipa/new/Payload/News.app ~/Library/Developer/Xcode/DerivedData/Video-ccmvyaieotmhkvbpiuykxqzhqluw/Build/Products/Debug-iphoneos";
 		};
 		D2E7EBA62008E493009AEA30 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1118,9 +1118,9 @@
 				D2E7EBB22008FD4F009AEA30 /* XYAppDelegate.m in Sources */,
 				D2A7D97E2009AD4A00E973E9 /* VideoTweakLib.m in Sources */,
 				D2A7D9982009BD4000E973E9 /* XYSuspensionMenu.m in Sources */,
-				D2A178DA200CFA8100331692 /* XYQuestionAnswerHook.m in Sources */,
+				D2A178DA200CFA8100331692 /* XYQuestionAnswerHookHelper.m in Sources */,
 				D2A7D9842009B9DE00E973E9 /* MBProgressHUD+XYHUD.m in Sources */,
-				D2A17882200B282500331692 /* XYQuestionAnswerManager.m in Sources */,
+				D2A17882200B282500331692 /* XYQuestionAnswerUnit.m in Sources */,
 				D2A7D9972009BD4000E973E9 /* FoldersViewController.m in Sources */,
 				D2A7D9952009BD4000E973E9 /* DirectoryWatcher.m in Sources */,
 				D2773B1B200AFAC70078A2A3 /* UIWebView+XYBlocks.m in Sources */,
@@ -1231,7 +1231,7 @@
 					"$(PROJECT_DIR)/News/newstweak/dylib",
 					"$(PROJECT_DIR)/News/newstweak/packages",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alpface.News;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alpface.news;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1255,7 +1255,7 @@
 					"$(PROJECT_DIR)/News/newstweak/dylib",
 					"$(PROJECT_DIR)/News/newstweak/packages",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alpface.News;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alpface.news;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
