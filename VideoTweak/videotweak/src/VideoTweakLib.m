@@ -28,7 +28,7 @@
 static __attribute__((constructor)) void entry() {
     
     
-    DLog(@"\n 🎉 🎉 🎉🎉 🎉 🎉!!！Tweak!!！🎉🎉 🎉 🎉\n👍👍👍👍👍👍👍👍👍👍insert dylib success👍👍👍👍👍👍👍👍👍👍🎉🎉 🎉 🎉🎉 🎉 🎉!");
+    DLog(@"\n 🎉 🎉 🎉🎉 🎉 🎉!!！Tweak!!！🎉🎉 🎉 🎉\n👍👍👍👍👍👍👍👍👍👍insert dylib success👍👍👍👍👍👍👍👍👍👍👍👍🎉🎉 🎉 🎉🎉 🎉 🎉!");
     [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidFinishLaunchingNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         
         [ExceptionUtils configExceptionHandler];
