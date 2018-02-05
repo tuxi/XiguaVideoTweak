@@ -555,7 +555,7 @@ static NSString * const PreviousCenterYKey = @"previousCenterY";
     UIWindow *suspensionWindow = [[UIWindow alloc] initWithFrame:self.frame];
     
     //#ifdef DEBUG
-    suspensionWindow.windowLevel = CGFLOAT_MAX+10;
+    suspensionWindow.windowLevel = UIWindowLevelAlert;
     //#else
     //    suspensionWindow.windowLevel = UIWindowLevelAlert * 3;
     //#endif
@@ -575,7 +575,7 @@ static NSString * const PreviousCenterYKey = @"previousCenterY";
     [vc.view addSubview:self];
     
     suspensionWindow.suspensionView = self;
-    
+    [suspensionWindow makeKeyWindow];
     suspensionWindow.hidden = NO;
 }
 

@@ -15,6 +15,10 @@ static NSString * const XYRecordQuestionKey = @"questionKey";
 @interface XYQuestionAnswerUnit()
 
 @property (nonatomic, strong) NSMutableDictionary *questionAnserDict;
+/// 问题
+@property (nonatomic, copy) NSString *questionText;
+/// 答案选项
+@property (nonatomic, strong) NSArray<NSString *> *answerOptionArray;
 
 @end
 
@@ -41,14 +45,6 @@ static NSString * const XYRecordQuestionKey = @"questionKey";
     if (!questionText.length) {
         return;
     }
-    // 将问题复制到剪切板
-    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
-    pboard.string = questionText;
-    
-    // 执行第一中方案
-    if (self.auxiliary1Block) {
-        self.auxiliary1Block(questionText);
-    }
     
     [self.class recordQuestion:_questionText];
 }
@@ -57,6 +53,20 @@ static NSString * const XYRecordQuestionKey = @"questionKey";
     _answerOptionArray = answerOptionArray;
     
     DLog(@"%@", answerOptionArray);
+}
+
+- (void)setQuestionText:(NSString *)questionText answerOptions:(NSArray<NSString *> *)answerOptions {
+    self.questionText = questionText;
+    self.answerOptionArray = answerOptions;
+    
+    // 将问题复制到剪切板
+    //    UIPasteboard *pboard = [UIPasteboard generalPasteboard];
+    //    pboard.string = questionText;
+    
+    // 执行第一中方案
+    if (self.auxiliary1Block) {
+        self.auxiliary1Block(questionText, answerOptions);
+    }
 }
 
 //- (void)auxiliary1:(NSString *)questionText {

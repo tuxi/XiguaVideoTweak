@@ -60,19 +60,56 @@
         return;
     }
     
+    void (^ searchOnWebView)(NSString *qTest) = ^(NSString *qText){
+        // 第一中辅助方式：根据问题去百度搜索，以webView呈现
+        NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:qText] invertedSet];
+        NSString *wd = [qText stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
+        NSString *urlString = [NSString stringWithFormat:@"https://m.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=%@&inputT=1696&rsv_sug4=1697", wd];
+        [UIApplication sharedApplication].xy_suspensionWebView.urlString = urlString;
+    };
+    
     UIAlertController *arc = [UIAlertController alertControllerWithTitle:@"请选择" message:@"目前只支持读取问题的方式进行百度搜索，展示web" preferredStyle:UIAlertControllerStyleAlert];
     [arc addAction:[UIAlertAction actionWithTitle:@"show webview" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [[UIApplication sharedApplication] xy_showWebViewWithCompletion:nil];
-        [XYQuestionAnswerUnit defaultUnit].auxiliary1Block = ^(NSString *qText) {
+        [XYQuestionAnswerUnit defaultUnit].auxiliary1Block = ^(NSString *qText, NSArray<NSString *> *answerOps) {
             if (!qText.length) {
                 [MBProgressHUD xy_showMessage:@"没有获取到问题"];
                 return;
             }
-            /// 第一中辅助方式：根据问题去百度搜索，以webView呈现
-            NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:[XYQuestionAnswerUnit defaultUnit].questionText] invertedSet];
-            NSString *wd = [[XYQuestionAnswerUnit defaultUnit].questionText stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
-            NSString *urlString = [NSString stringWithFormat:@"https://m.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=%@&inputT=1696&rsv_sug4=1697", wd];
-            [UIApplication sharedApplication].xy_suspensionWebView.urlString = urlString;
+     
+            // searchOnWebView(qText);
+            
+            NSURLSession *session=[NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+            NSString *urlString=@"http://www.alpface.com/question/answer/";
+            NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+            [request setTimeoutInterval:6];
+            request.HTTPMethod=@"POST";
+            [request setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+            NSDictionary *paramer = @{@"csrfmiddlewaretoken":@"pCtkelfShtIJIKpUJttk6mDt9Zae9LW6tCvkvGeypNhexm09ndXE1x2YfwxpKCDb",
+                                      @"question_text":@"孟姜女是哪个朝代的人",
+                                      @"answeroptions1":@"宋代",
+                                      @"answeroptions2":@"唐朝",
+                                      @"answeroptions3":@"秦朝"};
+            NSMutableString *paramerStr = @"".mutableCopy;
+            [paramer enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                [paramerStr appendFormat:@"&%@=%@", key, obj];
+            }];
+            
+            request.HTTPBody=[paramerStr dataUsingEncoding:NSUTF8StringEncoding];
+            NSURLSessionDataTask *task=[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                
+                if (data) {
+                    NSError *er = nil;
+                    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&er];
+                    NSLog(@"%@", er);
+                    NSLog(@"%@", dict);
+                }
+                
+                
+            }];
+            
+            [task resume];
         };
         
     }]];
@@ -89,11 +126,17 @@
         // 问题结构
         TTFQuestionStruct *questionStruct = unit.question;
         DLog(@"TTFQuestionStruct:%@", questionStruct);
-        NSObject *questionStructTemp = (NSObject *)questionStruct;
-        // questionT 就是questionLabel.text
-        NSString *questionT = [questionStructTemp valueForKey:@"text"];
-        [XYQuestionAnswerUnit defaultUnit].questionText = questionT;
-        [XYQuestionAnswerUnit defaultUnit].answerOptionArray = [((NSObject *)unit.question) invoke:@"optionsArray"];
+//        NSObject *questionStructTemp = (NSObject *)questionStruct;
+//        // questionT 就是questionLabel.text
+//        NSString *questionT = [questionStructTemp valueForKey:@"text"];
+//        NSArray *array = [((NSObject *)unit.question) invoke:@"optionsArray"];
+//        NSMutableArray *optionTextList = @[].mutableCopy;
+//        for (id obj in array) {
+//            // TTFOptionStruct
+//            NSString *optionText = [obj objectForKey:@"text"];
+//            [optionTextList addObject:optionText];
+//        }
+//        [[XYQuestionAnswerUnit defaultUnit] setQuestionText:questionT answerOptions:optionTextList];
         // 问题跟踪
         TTFQuestionTrace *questionTrace = unit.questionTrace;
         DLog(@"TTFQuestionTrace:%@", questionTrace);
@@ -132,7 +175,14 @@
         NSObject *questionStructTemp = (NSObject *)questionStruct;
         // questionT 就是questionLabel.text
         NSString *questionT = [questionStructTemp valueForKey:@"text"];
-        [XYQuestionAnswerUnit defaultUnit].questionText = questionT;
+        NSArray *array = [((NSObject *)unit.question) invoke:@"optionsArray"];
+        NSMutableArray *optionTextList = @[].mutableCopy;
+        for (id obj in array) {
+            // TTFOptionStruct
+            NSString *optionText = [obj objectForKey:@"text"];
+            [optionTextList addObject:optionText];
+        }
+        [[XYQuestionAnswerUnit defaultUnit] setQuestionText:questionT answerOptions:optionTextList];
         
         // 问题跟踪
         TTFQuestionTrace *questionTrace = unit.questionTrace;
@@ -631,7 +681,7 @@ CHDeclareMethod1(void, TTCollectionPageViewController, viewDidAppear, BOOL, anim
 {
     CHSuper1(TTCollectionPageViewController, viewDidAppear, animated);
     
-    [MBProgressHUD xy_showMessage:@"TTCollectionPageViewController"];
+    [MBProgressHUD xy_showMessage:@"hello xiaoyuan"];
 }
 // 手动触发左侧返回按钮时调
 CHDeclareMethod0(void, TTFQuizShowLiveRoomViewController, closeLiveRoom) {
