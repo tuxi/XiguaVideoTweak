@@ -22,6 +22,7 @@
 #import "XYSuspensionWebView.h"
 #import "XYQuestionAnswerUnit.h"
 #import "CaptainHook.h"
+#import "XYSuspensionQuestionAnswerMatchView.h"
 
 #pragma clang diagnostic ignored "-Wunused-function"
 #pragma clang diagnostic ignored "-Wformat"
@@ -50,7 +51,7 @@
     });
     return _instance;
 }
-- (NSURLSessionDataTask *)request:(NSString *)quesText
++ (NSURLSessionDataTask *)request:(NSString *)quesText
                            ansOps:(NSArray <NSString *> *)ansOps
                        completion:(void (^)(NSDictionary *responseDict, NSError *error))completion {
     NSURLSessionDataTask * (^ searchOnAlpface)(NSString *qeustion, NSArray<NSString *> *quesOps, void (^ completion)(NSDictionary *responseDict, NSError *error)) = ^NSURLSessionDataTask *(NSString *qeustion, NSArray<NSString *> *quesOps, void (^ completion)(id responseDict, NSError *error)) {
@@ -58,10 +59,10 @@
             return nil;
         }
         NSURLSession *session=[NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-        NSString *urlString=@"http://10.211.55.3:8000/question/answer/";
+        NSString *urlString=@"http://www.alpface.com/question/answer/";
         
         /**
-         NSString *urlString=@"http://www.alpface.com/question/answer/";
+         NSString *urlString=@"http://10.211.55.3:8000/question/answer/";
          测试数据
          NSString *qeustion = @"孟姜女是哪个朝代的人";
          NSArray<NSString *> *quesOps = @[@"宋代", @"唐朝", @"秦朝"];
@@ -142,7 +143,7 @@
     
     UIAlertController *arc = [UIAlertController alertControllerWithTitle:@"请选择" message:@"目前只支持读取问题的方式进行百度搜索，展示web" preferredStyle:UIAlertControllerStyleAlert];
     [arc addAction:[UIAlertAction actionWithTitle:@"show webview" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [[UIApplication sharedApplication] xy_showWebViewWithCompletion:nil];
+//        [[UIApplication sharedApplication] xy_showWebViewWithCompletion:nil];
         [XYQuestionAnswerUnit defaultUnit].auxiliary1Block = ^(NSString *qText, NSArray<NSString *> *answerOps) {
             if (!qText.length) {
                 [MBProgressHUD xy_showMessage:@"没有获取到问题"];
@@ -151,8 +152,22 @@
             
             // searchOnWebView(qText);
             
-            [self request:qText ansOps:answerOps completion:^(NSDictionary *responseDict, NSError *error) {
+            [[UIApplication sharedApplication] xy_toggleSuspensionQuestionAnswerMatchViewWithCompletion:^(BOOL finished) {
                 
+                [self.class request:qText ansOps:answerOps completion:^(NSDictionary *responseDict, NSError *error) {
+                    
+                    if (!error) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            int bestIndex = [responseDict[@"best_answer_index"] intValue];
+                            if (bestIndex == -1) {
+                                [[UIApplication sharedApplication].xy_suspensionQuestionAnsweView setAttributedText:[[NSAttributedString alloc] initWithString:@"未返回结果"]];
+                            }
+                            NSString *bestAnswer = [NSString stringWithFormat:@"建议答案：\n第%d个\n%@", bestIndex+1, responseDict[@"best_answer"]];
+                            NSLog(@"%@", bestAnswer);
+                            [[UIApplication sharedApplication].xy_suspensionQuestionAnsweView setAttributedText:[[NSAttributedString alloc] initWithString:bestAnswer]];
+                        });
+                    }
+                }];
             }];
         };
         
@@ -196,7 +211,7 @@
     [self addHookObject:aspect toArray:self.quizShowLiveRoomVhoookList];
     
     /// 监听显示问题
-    aspect = [NSClassFromString(@"TTFQuizShowLiveRoomViewController") aspect_hookSelector:@selector(showQuestionWithQuestionAnswerUnit:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, TTFQuestionAnswerUnit *questionAnswerUnit) {
+    aspect = [NSClassFromString(@"TTFQuestionAnswerView") aspect_hookSelector:@selector(showQuestionWithQuestionAnswerUnit:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, TTFQuestionAnswerUnit *questionAnswerUnit) {
         
         TTFQuizShowLiveRoomViewController *vc =  info.instance;
         if (!vc) {
@@ -323,8 +338,8 @@
     } error:&error];
     [self addHookObject:aspect toArray:self.debugHookList];
     
-    aspect = [NSClassFromString(@"TTFQuestionOptionView") aspect_hookSelector:@selector(beClicked:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, UITapGestureRecognizer *tap){
-        NSLog(@"答案被选中:%@", tap);
+    aspect = [NSClassFromString(@"TTFQuestionOptionView") aspect_hookSelector:@selector(beClicked:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> info, UIButton *btn){
+        NSLog(@"答案被选中:%@", btn);// 点击答案选项按钮
     } error:&error];
     [self addHookObject:aspect toArray:self.debugHookList];
     

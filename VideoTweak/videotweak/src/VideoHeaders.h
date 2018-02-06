@@ -458,18 +458,16 @@ typedef id CDUnknownBlockType;
 
 @end
 
+
 @class GPBMessage;
 
+@class CAGradientLayer, CAShapeLayer, NSMutableArray, NSString, TTFPlayer, TTFQuestionAnswerUnit, TTFRebirthCardAnimationView, TTFResultTipsView, TTFTimeUpView, UIImageView, UILabel;
 
-
-@class CAGradientLayer, CAShapeLayer, NSMutableArray, NSString, TTFPlayer, TTFQuestionAnswerUnit, TTFResultTipsView, TTFTimeUpView, UIImageView, UILabel;
-
-/// 已匹配2.2.9
 @interface TTFQuestionAnswerView : UIView <TTFQuestionOptionViewDelegate>
 {
     BOOL _isQAViewShow;
     BOOL _isPlayerContainerViewAnimationFinish;
-    BOOL _hasShowTimeUp; // 2.2.9添加的api
+    BOOL _hasShowTimeUp;
     id <TTFQAViewDelegate> _delegate;
     TTFQuestionAnswerUnit *_questionAnswerUnit;
     TTFPlayer *_player;
@@ -487,15 +485,18 @@ typedef id CDUnknownBlockType;
     NSMutableArray *_optionViews;
     TTFResultTipsView *_tipsView;
     UILabel *_watchingTipsLabel;
+    UILabel *_questionBonusLabel;
     UIView *_playerContainerView;
     unsigned long _curRemainingAnswerTime;
+    TTFRebirthCardAnimationView *_animateView;
+    UIView *_specialQuestionHintContainerView;
 }
 
+@property(retain, nonatomic) TTFRebirthCardAnimationView *animateView; // @synthesize animateView=_animateView;
 @property(retain, nonatomic) CAShapeLayer *countdownShapeLayer; // @synthesize countdownShapeLayer=_countdownShapeLayer;
 @property(nonatomic) unsigned long curRemainingAnswerTime; // @synthesize curRemainingAnswerTime=_curRemainingAnswerTime;
 - (void)dealloc;
 @property(nonatomic) __weak id <TTFQAViewDelegate> delegate; // @synthesize delegate=_delegate;
-// 答案富文本
 - (id)getQuestionAttributedString;
 @property(nonatomic) BOOL hasShowTimeUp; // @synthesize hasShowTimeUp=_hasShowTimeUp;
 - (float)heightWithQuestionAnswerUnit:(id)arg1;
@@ -504,7 +505,6 @@ typedef id CDUnknownBlockType;
 - (id)initWithFrame:(struct CGRect)arg1;
 @property(nonatomic) BOOL isPlayerContainerViewAnimationFinish; // @synthesize isPlayerContainerViewAnimationFinish=_isPlayerContainerViewAnimationFinish;
 @property(nonatomic) BOOL isQAViewShow; // @synthesize isQAViewShow=_isQAViewShow;
-// 选择答案
 - (void)optionViewBeClicked:(id)arg1;
 @property(retain, nonatomic) NSMutableArray *optionViews; // @synthesize optionViews=_optionViews;
 @property(nonatomic) __weak TTFPlayer *player; // @synthesize player=_player;
@@ -513,11 +513,13 @@ typedef id CDUnknownBlockType;
 @property(retain, nonatomic) UIImageView *qaContainerHeaderView; // @synthesize qaContainerHeaderView=_qaContainerHeaderView;
 @property(retain, nonatomic) UIView *qaContainerView; // @synthesize qaContainerView=_qaContainerView;
 @property(retain, nonatomic) TTFQuestionAnswerUnit *questionAnswerUnit; // @synthesize questionAnswerUnit=_questionAnswerUnit;
+@property(retain, nonatomic) UILabel *questionBonusLabel; // @synthesize questionBonusLabel=_questionBonusLabel;
 @property(retain, nonatomic) UILabel *questionLabel; // @synthesize questionLabel=_questionLabel;
 @property(retain, nonatomic) CAGradientLayer *questionLabelGradientLayer; // @synthesize questionLabelGradientLayer=_questionLabelGradientLayer;
 @property(retain, nonatomic) UIView *questionLabelMaskView; // @synthesize questionLabelMaskView=_questionLabelMaskView;
 @property(retain, nonatomic) UILabel *remainingAnswerTimeFirstLabel; // @synthesize remainingAnswerTimeFirstLabel=_remainingAnswerTimeFirstLabel;
 @property(retain, nonatomic) UILabel *remainingAnswerTimeSecondLabel; // @synthesize remainingAnswerTimeSecondLabel=_remainingAnswerTimeSecondLabel;
+@property(retain, nonatomic) UIView *specialQuestionHintContainerView; // @synthesize specialQuestionHintContainerView=_specialQuestionHintContainerView;
 @property(retain, nonatomic) UILabel *timeUpLabel; // @synthesize timeUpLabel=_timeUpLabel;
 @property(retain, nonatomic) TTFTimeUpView *timeUpView; // @synthesize timeUpView=_timeUpView;
 @property(retain, nonatomic) TTFResultTipsView *tipsView; // @synthesize tipsView=_tipsView;
@@ -525,9 +527,16 @@ typedef id CDUnknownBlockType;
 - (void)showAnswerWithQuestionAnswerUnit:(id)arg1;
 - (void)showLineOfIndex:(unsigned int)arg1 withLineOrigins:(id)arg2 lineHeights:(id)arg3 offset:(float)arg4 lineTopGap:(float)arg5 eachLineShowDuration:(float)arg6;
 - (void)showQuestionWithQuestionAnswerUnit:(id)arg1;
+- (id)ttf_formattedStringWithUserCount:(long long)arg1;
+- (BOOL)ttf_isSpecialQuestion;
+- (void)ttf_showSpecialQuestionHint;
+- (id)ttf_specialQuestionHintStringsWhenAnswerShown;
+- (void)updateQuestionBonusUIWithBonus:(long long)arg1;
 
 
 @end
+
+
 
 @class UIButton, UIControl, UIImageView, UILabel;
 
