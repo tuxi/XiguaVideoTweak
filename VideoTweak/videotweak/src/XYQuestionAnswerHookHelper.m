@@ -68,6 +68,60 @@
         [UIApplication sharedApplication].xy_suspensionWebView.urlString = urlString;
     };
     
+    void (^ searchOnAlpface)(NSString *qeustion, NSArray<NSString *> *quesOps) = ^(NSString *qeustion, NSArray<NSString *> *quesOps) {
+        NSURLSession *session=[NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+        NSString *urlString=@"http://www.alpface.com/question/answer/";
+//        NSString *urlString=@"http://10.211.55.3:8000/question/answer/";
+        
+        if (qeustion.length == 0) {
+            return;
+        }
+        
+        /**
+         测试数据
+         NSString *qeustion = @"孟姜女是哪个朝代的人";
+         NSArray<NSString *> *quesOps = @[@"宋代", @"唐朝", @"秦朝"];
+         */
+        
+        NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+        [request setTimeoutInterval:20];
+        request.HTTPMethod=@"POST";
+        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        [request setValue:@"csrftoken=MKIxe7TiEwjVdITrEHfgd9qqeFjKEkqvHMPmNfSuJDIYfMJVBBsMOHJqq5S7rWcS" forHTTPHeaderField:@"Cookie"];
+        [request setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+        [request setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36" forHTTPHeaderField:@"User-Agent"];
+        
+        
+        NSMutableDictionary *paramer = @{@"csrfmiddlewaretoken":@"w2N7qYoxz8fHoWRmzUjNrFkyzkB7jCRor4UWZ6nJEfEKq0HQwOwj2dDyLKau6eDL",
+                                         @"question_text": qeustion}.mutableCopy;
+        [quesOps enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [paramer setObject:obj forKey:[NSString stringWithFormat:@"answeroptions%ld", idx+1]];
+        }];
+        NSMutableString *paramerStr = @"".mutableCopy;
+        [paramer enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            [paramerStr appendFormat:@"&%@=%@", key, obj];
+        }];
+        
+        request.HTTPBody=[paramerStr dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSURLSessionDataTask *task=[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (error) {
+                NSLog(@"%@", error);
+            }
+            if (data) {
+                NSError *er = nil;
+                NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&er];
+                NSLog(@"%@", er);
+                NSLog(@"%@", dict);
+            }
+            
+            
+        }];
+        
+        [task resume];
+    };
+    
+    
     UIAlertController *arc = [UIAlertController alertControllerWithTitle:@"请选择" message:@"目前只支持读取问题的方式进行百度搜索，展示web" preferredStyle:UIAlertControllerStyleAlert];
     [arc addAction:[UIAlertAction actionWithTitle:@"show webview" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [[UIApplication sharedApplication] xy_showWebViewWithCompletion:nil];
@@ -79,37 +133,7 @@
      
             // searchOnWebView(qText);
             
-            NSURLSession *session=[NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-            NSString *urlString=@"http://www.alpface.com/question/answer/";
-            NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-            [request setTimeoutInterval:6];
-            request.HTTPMethod=@"POST";
-            [request setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-            [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-            NSDictionary *paramer = @{@"csrfmiddlewaretoken":@"pCtkelfShtIJIKpUJttk6mDt9Zae9LW6tCvkvGeypNhexm09ndXE1x2YfwxpKCDb",
-                                      @"question_text":@"孟姜女是哪个朝代的人",
-                                      @"answeroptions1":@"宋代",
-                                      @"answeroptions2":@"唐朝",
-                                      @"answeroptions3":@"秦朝"};
-            NSMutableString *paramerStr = @"".mutableCopy;
-            [paramer enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-                [paramerStr appendFormat:@"&%@=%@", key, obj];
-            }];
-            
-            request.HTTPBody=[paramerStr dataUsingEncoding:NSUTF8StringEncoding];
-            NSURLSessionDataTask *task=[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                
-                if (data) {
-                    NSError *er = nil;
-                    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&er];
-                    NSLog(@"%@", er);
-                    NSLog(@"%@", dict);
-                }
-                
-                
-            }];
-            
-            [task resume];
+            searchOnAlpface(qText, answerOps);
         };
         
     }]];
