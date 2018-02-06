@@ -555,7 +555,7 @@ static NSString * const PreviousCenterYKey = @"previousCenterY";
     UIWindow *suspensionWindow = [[UIWindow alloc] initWithFrame:self.frame];
     
     //#ifdef DEBUG
-    suspensionWindow.windowLevel = UIWindowLevelAlert;
+    suspensionWindow.windowLevel = UIWindowLevelAlert+1;
     //#else
     //    suspensionWindow.windowLevel = UIWindowLevelAlert * 3;
     //#endif
@@ -575,8 +575,8 @@ static NSString * const PreviousCenterYKey = @"previousCenterY";
     [vc.view addSubview:self];
     
     suspensionWindow.suspensionView = self;
-    [suspensionWindow makeKeyWindow];
-    suspensionWindow.hidden = NO;
+    [suspensionWindow makeKeyAndVisible];
+//    suspensionWindow.hidden = NO;
 }
 
 @end
@@ -1849,7 +1849,7 @@ menuBarItems = _menuBarItems;
     
     UIWindow *suspensionWindow = [[UIWindow alloc] initWithFrame:menuWindowBounds];
     //#ifdef DEBUG
-    suspensionWindow.windowLevel = CGFLOAT_MAX;
+    suspensionWindow.windowLevel = UIWindowLevelAlert+1;
     //    suspensionWindow.windowLevel = CGFLOAT_MAX+10;
     // iOS9前自定义的window设置下面，不会被键盘遮罩，iOS10不行了
     //    NSArray<UIWindow *> *widnows = [UIApplication sharedApplication].windows;
@@ -1872,8 +1872,8 @@ menuBarItems = _menuBarItems;
     [vc.view addSubview:self];
     
     suspensionWindow.suspensionMenuView = self;
-    
-    suspensionWindow.hidden = NO;
+    [suspensionWindow makeKeyAndVisible];
+//    suspensionWindow.hidden = NO;
     
 }
 

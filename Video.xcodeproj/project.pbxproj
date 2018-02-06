@@ -80,6 +80,8 @@
 		D0E4141C200F14E100E34197 /* com.alpface.news_0.0.1-1+debug_iphoneos-arm.deb in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E413DF200F14E000E34197 /* com.alpface.news_0.0.1-1+debug_iphoneos-arm.deb */; };
 		D0E4141D200F14E100E34197 /* com.alpface.news_0.0.1-2+debug_iphoneos-arm.deb in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E413E0200F14E000E34197 /* com.alpface.news_0.0.1-2+debug_iphoneos-arm.deb */; };
 		D0E4141E200F14E100E34197 /* Tweak.xm in Resources */ = {isa = PBXBuildFile; fileRef = D0E413E1200F14E000E34197 /* Tweak.xm */; };
+		D23C58582029E73A00E2CF10 /* XYSuspensionQuestionAnswerMatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = D23C58562029E73900E2CF10 /* XYSuspensionQuestionAnswerMatchView.m */; };
+		D23C58592029E73A00E2CF10 /* XYSuspensionQuestionAnswerMatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = D23C58562029E73900E2CF10 /* XYSuspensionQuestionAnswerMatchView.m */; };
 		D2773B0B200A058B0078A2A3 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = D2773B0A200A058B0078A2A3 /* Aspects.m */; };
 		D2773B0E200A0A5A0078A2A3 /* AutoTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = D2773B0C200A0A590078A2A3 /* AutoTimer.m */; };
 		D2773B18200AF6C50078A2A3 /* XYSuspensionWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2773B17200AF6C50078A2A3 /* XYSuspensionWebView.m */; };
@@ -212,6 +214,8 @@
 		D0E413DF200F14E000E34197 /* com.alpface.news_0.0.1-1+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.alpface.news_0.0.1-1+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
 		D0E413E0200F14E000E34197 /* com.alpface.news_0.0.1-2+debug_iphoneos-arm.deb */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "com.alpface.news_0.0.1-2+debug_iphoneos-arm.deb"; sourceTree = "<group>"; };
 		D0E413E1200F14E000E34197 /* Tweak.xm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tweak.xm; sourceTree = "<group>"; };
+		D23C58562029E73900E2CF10 /* XYSuspensionQuestionAnswerMatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYSuspensionQuestionAnswerMatchView.m; sourceTree = "<group>"; };
+		D23C58572029E73900E2CF10 /* XYSuspensionQuestionAnswerMatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYSuspensionQuestionAnswerMatchView.h; sourceTree = "<group>"; };
 		D26FD4B0200EC9A200644024 /* TTFHeartBeatTrace.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFHeartBeatTrace.m; sourceTree = "<group>"; };
 		D26FD4B1200EC9A200644024 /* TTFQuestionAnswerUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFQuestionAnswerUnit.m; sourceTree = "<group>"; };
 		D26FD4B2200EC9A200644024 /* TTFQuizShowLiveRoomNetworkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTFQuizShowLiveRoomNetworkManager.m; sourceTree = "<group>"; };
@@ -811,6 +815,8 @@
 				D2A17881200B282500331692 /* XYQuestionAnswerUnit.m */,
 				D2A178D8200CFA8100331692 /* XYQuestionAnswerHookHelper.h */,
 				D2A178D9200CFA8100331692 /* XYQuestionAnswerHookHelper.m */,
+				D23C58572029E73900E2CF10 /* XYSuspensionQuestionAnswerMatchView.h */,
+				D23C58562029E73900E2CF10 /* XYSuspensionQuestionAnswerMatchView.m */,
 				D0B764AE200DF0D200DDF93B /* XYVideoConst.h */,
 				D2A178D6200CF55000331692 /* alpface.bundle */,
 			);
@@ -1099,6 +1105,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D23C58582029E73A00E2CF10 /* XYSuspensionQuestionAnswerMatchView.m in Sources */,
 				D2E7EB952008E468009AEA30 /* ViewController.m in Sources */,
 				D2E7EBA02008E468009AEA30 /* main.m in Sources */,
 				D2E7EB922008E468009AEA30 /* ExampleAppDelegate.m in Sources */,
@@ -1125,6 +1132,7 @@
 				D2A7D9952009BD4000E973E9 /* DirectoryWatcher.m in Sources */,
 				D2773B1B200AFAC70078A2A3 /* UIWebView+XYBlocks.m in Sources */,
 				D2A7D9992009BD4000E973E9 /* XYConsoleView.m in Sources */,
+				D23C58592029E73A00E2CF10 /* XYSuspensionQuestionAnswerMatchView.m in Sources */,
 				D2773B0B200A058B0078A2A3 /* Aspects.m in Sources */,
 				D2773B18200AF6C50078A2A3 /* XYSuspensionWebView.m in Sources */,
 				D2A7D99C2009C16700E973E9 /* OSFileManager.m in Sources */,
