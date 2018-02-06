@@ -139,6 +139,7 @@
         [UIApplication sharedApplication].xy_suspensionWebView.urlString = urlString;
     };
     
+    
     UIAlertController *arc = [UIAlertController alertControllerWithTitle:@"请选择" message:@"目前只支持读取问题的方式进行百度搜索，展示web" preferredStyle:UIAlertControllerStyleAlert];
     [arc addAction:[UIAlertAction actionWithTitle:@"show webview" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [[UIApplication sharedApplication] xy_showWebViewWithCompletion:nil];
@@ -147,7 +148,7 @@
                 [MBProgressHUD xy_showMessage:@"没有获取到问题"];
                 return;
             }
-     
+            
             // searchOnWebView(qText);
             
             [self request:qText ansOps:answerOps completion:^(NSDictionary *responseDict, NSError *error) {
